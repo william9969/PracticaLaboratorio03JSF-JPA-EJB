@@ -8,7 +8,7 @@ import ec.edu.ups.entidades.Persona;
 @Stateless
 public class PersonaFacade extends AbstractFacade<Persona>{
 
-	@PersistenceContext(unitName = "Practica3")
+	@PersistenceContext(unitName = "Practica03EJB-JPA-JSF")
 	private EntityManager em;
 	
 	public PersonaFacade() {

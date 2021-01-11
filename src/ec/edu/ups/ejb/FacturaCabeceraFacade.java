@@ -9,7 +9,7 @@ import ec.edu.ups.entidades.FacturaCabecera;
 @Stateless
 public class FacturaCabeceraFacade extends AbstractFacade<FacturaCabecera> {
 
-	@PersistenceContext(unitName = "Practica3")
+	@PersistenceContext(unitName = "Practica03EJB-JPA-JSF")
 	private EntityManager em;
 
 	public FacturaCabeceraFacade() {
