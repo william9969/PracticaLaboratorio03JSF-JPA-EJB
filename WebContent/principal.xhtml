@@ -77,15 +77,32 @@
 	
 	    <!-- ======= Whu Us Section ======= -->
     <section id="why-us" class="why-us">
-      <div class="container">
+       <div class="container">
 
+        <div class="section-title">
+          <h2>productos <span>Bodegas</span></h2>
+          <p>Visualiza tus productos favoritos ubicados en nuestras bodegas a lo largo del país.</p>
+        </div>
+
+        <div class="row">
+		<ui:repeat value="#{bodegaBean.listBodega}" var="bodega" >
+			<div class="col-lg-4 mt-4 mt-lg-0">
+				<div class="box">
+					<h4>Bodega: #{bodega.nombre}</h4>
+					<p>Ubicanos en #{bodega.cuidad} , #{bodega.direccion}</p>
+				</div>
+			</div>
+		</ui:repeat>	
+        </div>
+
+      </div>      
+      <!--  <div class="container">
         <div class="section-title">
           <h2>productos <span>Bodegas</span></h2>
           <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
         </div>
 
         <div class="row">
-
           <div class="col-lg-4">
             <div class="box">
               <span>01</span>
@@ -93,7 +110,6 @@
               <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
             </div>
           </div>
-
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box">
               <span>02</span>
@@ -101,7 +117,6 @@
               <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
             </div>
           </div>
-
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box">
               <span>03</span>
@@ -112,7 +127,7 @@
 
         </div>
 
-      </div>
+      </div>-->
     </section><!-- End Whu Us Section -->
 
 
@@ -121,12 +136,11 @@
 
         <div class="section-title">
           <h2>productos <span>Categorias</span></h2>
-          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+          <p>Ubica tus productos favoritos agrupados por su categoria.</p>
         </div>
 
         <div class="row">
-		
-		<ui:repeat value="#{categoriaBean.listCategoria}" var="categoria" varStatus="status">
+		<ui:repeat value="#{categoriaBean.listCategoria}" var="categoria" >
 			<div class="col-lg-4 mt-4 mt-lg-0">
 				<div class="box">
 					<h4>Categoria:</h4>

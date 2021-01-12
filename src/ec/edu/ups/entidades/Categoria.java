@@ -15,7 +15,6 @@ import ec.edu.ups.entidades.Productos;
  */
 
 @Entity
-
 public class Categoria implements Serializable {
 
 	

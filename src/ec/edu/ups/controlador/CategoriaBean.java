@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,19 +17,20 @@ import ec.edu.ups.entidades.Productos;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
-@SessionScoped
+@javax.enterprise.context.RequestScoped
 public class CategoriaBean implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	@EJB
 	private CategoriaFacade ejbCategoriaFacade;
-	
-	private String nombre;
 	private List<Categoria> listCategoria;
 	private List<Productos> listProductos;
+	private String nombre;
 	
-	 @PostConstruct
+	
+	@PostConstruct
 	 public void init() {
-		/*Categoria cuiPersonal = new Categoria("Cuidado Personal");
+		Categoria cuiPersonal = new Categoria("Cuidado Personal");
 		Categoria lavanderia = new Categoria("Lavanderia");
 		Categoria proteccion = new Categoria("Proteccion");
 		Categoria dispensadores = new Categoria("Dispensadores");
@@ -38,7 +40,7 @@ public class CategoriaBean implements Serializable {
 		ejbCategoriaFacade.create(lavanderia);
 		ejbCategoriaFacade.create(proteccion);
 		ejbCategoriaFacade.create(dispensadores);
-		ejbCategoriaFacade.create(limpieza);*/
+		ejbCategoriaFacade.create(limpieza);
 		listCategoria=ejbCategoriaFacade.findAll();
 	 }
 	public String getNombre() {
@@ -47,10 +49,21 @@ public class CategoriaBean implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+	 public List<Categoria> getListCategoria() {
+		return listCategoria;
+	}
+	public void setListCategoria(List<Categoria> listCategoria) {
+		this.listCategoria = listCategoria;
+	}
+	public List<Productos> getListProductos() {
+		return listProductos;
+	}
+	public void setListProductos(List<Productos> listProductos) {
+		this.listProductos = listProductos;
+	}
 	public String addBodega() {
 		ejbCategoriaFacade.create(new Categoria(this.nombre));
-		listCategoria=ejbCategoriaFacade.findAll();
+		this.listCategoria=ejbCategoriaFacade.findAll();
 		return null;
 	}
 	

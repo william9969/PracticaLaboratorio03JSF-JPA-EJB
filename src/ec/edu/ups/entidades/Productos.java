@@ -32,21 +32,19 @@ public class Productos implements Serializable {
 	@JoinColumn
 	private Categoria catProd;
 	
-	@ManyToMany(mappedBy = "listProductos")
-	private List<Bodega> listBodegas;
-	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "detProducto")
 	private List<FacturaDetalle> facturaDetalles;
 	
 	@Transient
 	private boolean editable;
 	
+	@ManyToMany(mappedBy = "listProductos")
+	private List<Bodega> listBodega;
+	
 	public Productos() {
 		
 	}
 	
-	
-
 	public Productos(String nombreProducto, double precioProducto, int stockProducto,
 			Categoria catProd) {
 		super();
@@ -56,7 +54,6 @@ public class Productos implements Serializable {
 		this.stockProducto = stockProducto;
 		this.catProd = catProd;
 		
-		listBodegas =  new ArrayList<Bodega>();
 	}
 
 
@@ -109,20 +106,23 @@ public class Productos implements Serializable {
 		this.catProd = catProd;
 	}
 
+	public List<Bodega> getListBodega() {
+		return listBodega;
+	}
+
+	public void addBodega(List<Bodega> listBodega) {
+		this.listBodega = listBodega;
+	}
+
 	
-	public List<Bodega> getListBodegas() {
-		return listBodegas;
+	public void addBodega(Bodega bodega) {
+		 if(this.listBodega == null){
+	            this.listBodega = new ArrayList<>();
+	        }
+	        
+	        this.listBodega.add(bodega);
 	}
-
-
-	public void setListBodegas(List<Bodega> listBodegas) {
-		this.listBodegas = listBodegas;
-	}
-
-	public void addBodegas(Bodega bodegas) {
-		this.listBodegas.add(bodegas);
-	}
-
+	
 	public List<FacturaDetalle> getFacturaDetalles() {
 		return facturaDetalles;
 	}
@@ -145,7 +145,6 @@ public class Productos implements Serializable {
 		result = prime * result + (editable ? 1231 : 1237);
 		result = prime * result + ((facturaDetalles == null) ? 0 : facturaDetalles.hashCode());
 		result = prime * result + idProdcuto;
-		result = prime * result + ((listBodegas == null) ? 0 : listBodegas.hashCode());
 		result = prime * result + ((nombreProducto == null) ? 0 : nombreProducto.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(precioProducto);
@@ -178,11 +177,6 @@ public class Productos implements Serializable {
 		} else if (!facturaDetalles.equals(other.facturaDetalles))
 			return false;
 		if (idProdcuto != other.idProdcuto)
-			return false;
-		if (listBodegas == null) {
-			if (other.listBodegas != null)
-				return false;
-		} else if (!listBodegas.equals(other.listBodegas))
 			return false;
 		if (nombreProducto == null) {
 			if (other.nombreProducto != null)
