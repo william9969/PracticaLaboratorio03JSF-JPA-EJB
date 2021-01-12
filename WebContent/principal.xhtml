@@ -37,8 +37,8 @@
 	      <nav class="nav-menu d-none d-lg-block">
 	        <ul>
 	          <li class="active"><a href="index.html">Home</a></li>
-	          <li><a href="#about">Categorias</a></li>
-	          <li><a href="#menu">Bodegas</a></li>
+	          <li><a href="#why-us1">Categorias</a></li>
+	          <li><a href="#why-us">Bodegas</a></li>
 	          <li><a href="#contact">Contactanos</a></li>
 	          <li class="book-a-table text-center"><a href="#book-a-table">Iniciar Sesion</a></li>
 	        </ul>
@@ -90,6 +90,8 @@
 				<div class="box">
 					<h4>Bodega: #{bodega.nombre}</h4>
 					<p>Ubicanos en #{bodega.cuidad} , #{bodega.direccion}</p>
+					<div class="text-center"><button><h:commandButton value="Entrar" action="#{listarProductosBean.listadoProductiosCategoria(bodega)}">
+					</h:commandButton></button></div>
 				</div>
 			</div>
 		</ui:repeat>	
@@ -131,7 +133,7 @@
     </section><!-- End Whu Us Section -->
 
 
-    <section id="why-us" class="why-us">
+    <section id="why-us1" class="why-us">
       <div class="container">
 
         <div class="section-title">
@@ -145,6 +147,8 @@
 				<div class="box">
 					<h4>Categoria:</h4>
 					<p>#{categoria.nombre}</p>
+					<div class="text-center"><button><h:commandButton value="Entrar" action="#{listarProductosBean.listadoProductiosCategoria(categoria)}">
+					</h:commandButton></button></div>
 				</div>
 			</div>
 		</ui:repeat>	
