@@ -1,0 +1,90 @@
+ <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mediumModalLabel">Agregar Cliente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <h:form>
+                        <div class="modal-body">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="cliente-cedula">Cedula</label>
+                                    <h:inputText class="form-control" id="cliente-cedula" value="#{clienteBean.cedula}" required="true"
+                                                 requiredMessage="Campo Obligatorio"/>
+                                    <h:message for="cliente-cedula" style="color:red" />
+
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="cliente-nombre">Nombre</label>
+                                    <h:inputText class="form-control" id="cliente-nombre" value="#{clienteBean.nombre}" required="true"
+                                                 requiredMessage="Campo Obligatorio"/>
+                                    <h:message for="cliente-nombre" style="color:red" />
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="cliente-apellido">Apellido</label>
+                                    <h:inputText class="form-control" id="cliente-apellido" value="#{clienteBean.apellido}" required="true"
+                                                 requiredMessage="Campo Obligatorio"/>
+                                    <h:message for="cliente-apellido" style="color:red" />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="cliente-correo">Correo</label>
+                                    <h:inputText class="form-control" id="cliente-correo" value="#{clienteBean.correo}" required="true"
+                                                 requiredMessage="Campo Obligatorio"/>
+                                    <h:message for="cliente-correo" style="color:red" />
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="cliente-telefono">Telefono</label>
+                                    <h:inputText class="form-control" id="cliente-telefono" value="#{clienteBean.telefono}" required="true"
+                                                 requiredMessage="Campo Obligatorio"/>
+                                    <h:message for="cliente-telefono" style="color:red" />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="cliente-pais">Pais</label>
+                                    <h:inputText class="form-control" id="cliente-pais" value="#{clienteBean.pais}" required="true"
+                                                 requiredMessage="Campo Obligatorio"/>
+                                    <h:message for="cliente-pais" style="color:red" />
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="cliente-provincia">Provincia</label>
+                                    <h:inputText class="form-control" id="cliente-provincia" value="#{clienteBean.provincia}" required="true"
+                                                 requiredMessage="Campo Obligatorio"/>
+                                    <h:message for="cliente-provincia" style="color:red" />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="cliente-ciudad">Ciudad</label>
+                                    <h:inputText class="form-control" id="cliente-ciudad" value="#{clienteBean.ciudad}" required="true"
+                                                 requiredMessage="Campo Obligatorio"/>
+                                    <h:message for="cliente-ciudad" style="color:red" />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="cliente-direccion">Direccion</label>
+                                    <h:inputText class="form-control" 
+                                                 id="cliente-direccion" 
+                                                 value="#{clienteBean.direccion}" required="true"
+                                                 requiredMessage="Campo Obligatorio"/>
+                                    <h:message for="cliente-direccion" style="color:red" />
+                                </div>
+
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <h:commandButton class="btn btn-success" value="Crear Cliente" action="#{clienteBean.guardarDatos()}"/>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
