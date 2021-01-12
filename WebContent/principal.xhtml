@@ -37,8 +37,8 @@
 	      <nav class="nav-menu d-none d-lg-block">
 	        <ul>
 	          <li class="active"><a href="index.html">Home</a></li>
-	          <li><a href="#about">Categorias</a></li>
-	          <li><a href="#menu">Bodegas</a></li>
+	          <li><a href="#why-us1">Categorias</a></li>
+	          <li><a href="#why-us">Bodegas</a></li>
 	          <li><a href="#contact">Contactanos</a></li>
 	          <li class="book-a-table text-center"><a href="#book-a-table">Iniciar Sesion</a></li>
 	        </ul>
@@ -63,8 +63,8 @@
 	                <h2 class="animate__animated animate__fadeInDown"><span>Distribuidora</span> Los Angeles</h2>
 	                <p class="animate__animated animate__fadeInUp">Mira todos nuestros productos organizados por su Categoria o por su almacenamiento en Bodega.</p>
 	                <div>
-	                  <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Categorias</a>
-	                  <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Bodegas</a>
+	                  <a href="#why-us1" class="btn-menu animate__animated animate__fadeInUp scrollto">Categorias</a>
+	                  <a href="#why-us" class="btn-book animate__animated animate__fadeInUp scrollto">Bodegas</a>
 	                </div>
 	              </div>
 	            </div>
@@ -90,6 +90,10 @@
 				<div class="box">
 					<h4>Bodega: #{bodega.nombre}</h4>
 					<p>Ubicanos en #{bodega.cuidad} , #{bodega.direccion}</p>
+					<h:form>
+						<h:commandButton value="Visualizar" action="#{listarProductosBean.listadoProductosBodega(bodega.nombre)}">
+						</h:commandButton>
+					</h:form>
 				</div>
 			</div>
 		</ui:repeat>	
@@ -131,7 +135,7 @@
     </section><!-- End Whu Us Section -->
 
 
-    <section id="why-us" class="why-us">
+    <section id="why-us1" class="why-us">
       <div class="container">
 
         <div class="section-title">
@@ -145,6 +149,10 @@
 				<div class="box">
 					<h4>Categoria:</h4>
 					<p>#{categoria.nombre}</p>
+					<h:form>
+						<h:commandButton value="Visualizar" action="#{listarProductosBean.listadoProductiosCategoria(categoria.nombre)}">
+						</h:commandButton>
+					</h:form>
 				</div>
 			</div>
 		</ui:repeat>	
