@@ -22,15 +22,15 @@ import ec.edu.ups.entidades.Productos;
 @Named
 @SessionScoped
 public class FacturaDetalleBean implements Serializable{
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@EJB
 	private FacturaDetalleFacade ejbFacturaDetalleFacade;
-	
+
 	@EJB
 	private FacturaCabeceraFacade ejbFacturaCabecera;
-	
+
 	@EJB
 	private ProductosFacade ejbProductosFacade;
 	private int idFacturaDetalle;
@@ -42,7 +42,7 @@ public class FacturaDetalleBean implements Serializable{
 	private Persona persona;
 	private List<FacturaDetalle> list;
 	//private List<Productos> productos;
-	
+
 	public int getIdFacturaDetalle() {
 		return idFacturaDetalle;
 	}
@@ -67,7 +67,7 @@ public class FacturaDetalleBean implements Serializable{
 	public void setList(List<FacturaDetalle> list) {
 		this.list = list;
 	}
-	
+
 	public FacturaCabecera getFacCab() {
 		return facCab;
 	}
@@ -80,35 +80,36 @@ public class FacturaDetalleBean implements Serializable{
 	public void setProducto(Productos producto) {
 		this.producto = producto;
 	}
-	
+
 	public String add() {
-		
+
 		ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad,this.total,this.facCab, this.producto));
-		
+		list = ejbFacturaDetalleFacade.findAll();
 		return null;
 	}
-	
+
 	private String delete(FacturaDetalle facturaDetalle) {
 		ejbFacturaDetalleFacade.remove(facturaDetalle);
 		list = ejbFacturaDetalleFacade.findAll();
-		
+
 		return null;
 	}
-	
+
 	public String edict(FacturaDetalle facturaDetalle) 
 	{
 		facturaDetalle.setEditable(true);
 		return null;
 	}
-	
+
 	private String save(FacturaDetalle facturaDetalle) {
 		ejbFacturaDetalleFacade.edit(facturaDetalle);
 		facturaDetalle.setEditable(false);
 		return null;
 	}
-	
+
 	@PostConstruct
 	public void init() {
-	
+
 	}
+
 }

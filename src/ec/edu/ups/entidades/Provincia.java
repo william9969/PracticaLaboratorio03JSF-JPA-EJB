@@ -31,9 +31,9 @@ public class Provincia implements Serializable {
 	}
 
 
-	public Provincia(int idProvincia, String nombre) {
+	public Provincia(String nombre) {
 		super();
-		this.idProvincia = idProvincia;
+		
 		this.nombre = nombre;
 	}
 
