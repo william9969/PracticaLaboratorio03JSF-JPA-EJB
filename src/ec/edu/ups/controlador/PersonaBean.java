@@ -1,15 +1,20 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.entidades.Persona;
+import ec.edu.ups.controlador.*;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -29,15 +34,15 @@ public class PersonaBean implements Serializable {
 	//@Column(name = "CORREO", unique = true)
 	private String correo;
 	//@Column(name = "USUARIO", unique = true)
-	private String usuario;
+	private Persona usuario;
 	private String contrasenia;
 	private char rolUsuario; //Para rol de Usuario 'A' administrador, 'E' empleado, 'C' cliente
-	private char estado;
+	private boolean activo;
 	
 	private List<Persona> list;
 	
 	public String add() {
-		ejbPersonaFacade.create(new Persona(this.cedula, this.nombres, this.direccion, this.correo, this.usuario, this.contrasenia, this.rolUsuario, this.estado));
+		ejbPersonaFacade.create(new Persona(this.cedula, this.nombres, this.direccion, this.correo, this.contrasenia, this.rolUsuario, this.activo));
 		return null;
 	}
 	
@@ -50,6 +55,7 @@ public class PersonaBean implements Serializable {
 		
 		persona.setEditable(true);
 		return null;
+		
 	}
 	
 	public String save(Persona persona) {
@@ -106,11 +112,12 @@ public class PersonaBean implements Serializable {
 		this.correo = correo;
 	}
 
-	public String getUsuario() {
+	
+	public Persona getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(String usuario) {
+	public void setUsuario(Persona usuario) {
 		this.usuario = usuario;
 	}
 
@@ -130,12 +137,12 @@ public class PersonaBean implements Serializable {
 		this.rolUsuario = rolUsuario;
 	}
 
-	public char getEstado() {
-		return estado;
+	public boolean isActivo() {
+		return activo;
 	}
 
-	public void setEstado(char estado) {
-		this.estado = estado;
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 	public List<Persona> getList() {
@@ -146,5 +153,48 @@ public class PersonaBean implements Serializable {
 		this.list = list;
 	}
 	
-	
+	/**
+	 * Metodo Iniciar Seccion
+	 * */
+	public String login() {
+		try {
+            if (!correo.equals("") && !contrasenia.equals("")) {
+            	usuario = ejbPersonaFacade.finByEmailAndPass(correo, contrasenia);
+                if (usuario != null) {
+
+                    if (usuario.isActivo()) {
+                        //System.out.println("Usuario... " + usuario);
+
+                        HttpSession session = Session.getSession();
+                        session.setAttribute("usuario", ejbPersonaFacade);
+
+                        switch (usuario.getRolUsuario()) {
+                            case 'A':
+                                //System.out.println("admin");
+                                return "/admin.jsf";
+                            case 'E':
+                                //ystem.out.println("empleado");
+                                return "/empleado.jsf";
+                        }
+                    } else {
+                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Su cuenta ah sido desactivada contacte con un administrador"));
+                    }
+
+                } else{
+                    //System.out.println("Usuario no es correcto");
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Credenciales incorrectas"));
+                }
+
+                //System.out.println("Pass... " + password);
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Todos los campos son obligatorios"));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error Interno", "Error! interno intente de nuevo"));
+        }
+        return "/login.xhtml";
+	}
+
 }
