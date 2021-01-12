@@ -1,0 +1,52 @@
+body {
+    background-image:url("../Imagenes/SUPER.png");
+ }
+
+.container-md {
+    margin-top: 10%;
+
+}
+.card-title{
+    text-align: center;
+}
+
+.linkEmp {
+    color: white;
+
+}
+.car {
+    border-radius: 60px;
+}
+
+.linkEmp:hover {
+    color:white;
+    text-decoration: none;
+    font-size: larger;
+}
+
+.DatosPer {
+    margin-left: 30%;
+    
+}
+.contenidoDatos {
+    color: #343a40;
+}
+
+
+.container-md .Cabecera{
+    margin-top: -10%;
+    margin-right: -5%;
+    float: right;
+}
+.container-md .card-deck {
+    float: left;
+}
+
+.card-body input {
+    font-size: large;
+    margin-top: 3%;
+    margin-left: 20%;
+    text-decoration: none;
+    background-color: transparent;
+    border: transparent;
+}
