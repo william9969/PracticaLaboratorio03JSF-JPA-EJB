@@ -1,5 +1,7 @@
 package ec.edu.ups.controlador;
 
-public class ProvinciaBean {
+import java.io.Serializable;
+
+public class ProvinciaBean implements Serializable{
 
 }
