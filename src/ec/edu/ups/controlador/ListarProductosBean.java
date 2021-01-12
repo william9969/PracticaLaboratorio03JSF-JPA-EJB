@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
@@ -13,7 +14,6 @@ import ec.edu.ups.entidades.Productos;
 import ec.edu.ups.entidades.Bodega;
 import ec.edu.ups.entidades.Categoria;
 
-@FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 @RequestScoped
 public class ListarProductosBean implements Serializable{
@@ -49,10 +49,19 @@ public class ListarProductosBean implements Serializable{
 		this.listProductos = listProductos;
 	}
 	
-	public String listadoProductiosCategoria(Categoria categoria) {
+	public String method(String nombre) {
 		
+		return nombre;
+	}
+
+	public String listadoProductiosCategoria(String nombreCategoria) {
 		System.out.println("Si llego la categorias");
+		System.out.println(nombreCategoria);
 		return nombreProducto;
 	}
-	
+	public String listadoProductosBodega(String nombreBodega) {
+		System.out.println("Si llego la categorias");
+		System.out.println(nombreBodega);
+		return nombreProducto;
+	}
 }

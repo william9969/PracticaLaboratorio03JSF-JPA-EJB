@@ -17,7 +17,7 @@ import ec.edu.ups.entidades.Productos;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
-@javax.enterprise.context.RequestScoped
+@SessionScoped
 public class CategoriaBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

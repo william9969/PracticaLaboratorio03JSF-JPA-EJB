@@ -63,8 +63,8 @@
 	                <h2 class="animate__animated animate__fadeInDown"><span>Distribuidora</span> Los Angeles</h2>
 	                <p class="animate__animated animate__fadeInUp">Mira todos nuestros productos organizados por su Categoria o por su almacenamiento en Bodega.</p>
 	                <div>
-	                  <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Categorias</a>
-	                  <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Bodegas</a>
+	                  <a href="#why-us1" class="btn-menu animate__animated animate__fadeInUp scrollto">Categorias</a>
+	                  <a href="#why-us" class="btn-book animate__animated animate__fadeInUp scrollto">Bodegas</a>
 	                </div>
 	              </div>
 	            </div>
@@ -90,8 +90,10 @@
 				<div class="box">
 					<h4>Bodega: #{bodega.nombre}</h4>
 					<p>Ubicanos en #{bodega.cuidad} , #{bodega.direccion}</p>
-					<div class="text-center"><button><h:commandButton value="Entrar" action="#{listarProductosBean.listadoProductiosCategoria(bodega)}">
-					</h:commandButton></button></div>
+					<h:form>
+						<h:commandButton value="Visualizar" action="#{listarProductosBean.listadoProductosBodega(bodega.nombre)}">
+						</h:commandButton>
+					</h:form>
 				</div>
 			</div>
 		</ui:repeat>	
@@ -147,8 +149,10 @@
 				<div class="box">
 					<h4>Categoria:</h4>
 					<p>#{categoria.nombre}</p>
-					<div class="text-center"><button><h:commandButton value="Entrar" action="#{listarProductosBean.listadoProductiosCategoria(categoria)}">
-					</h:commandButton></button></div>
+					<h:form>
+						<h:commandButton value="Visualizar" action="#{listarProductosBean.listadoProductiosCategoria(categoria.nombre)}">
+						</h:commandButton>
+					</h:form>
 				</div>
 			</div>
 		</ui:repeat>	

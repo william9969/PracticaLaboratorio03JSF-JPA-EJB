@@ -39,7 +39,6 @@ public class BodegaBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-	
 		/*//ID=1
 		Categoria cat1 = ejbCategoriaFacade.find(1);
 		Productos pro1 =  new Productos("Crema", 4.75, 10, cat1);
