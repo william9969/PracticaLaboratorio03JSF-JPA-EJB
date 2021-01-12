@@ -175,7 +175,7 @@ public class PersonaBean implements Serializable {
                         //System.out.println("Usuario... " + usuario);
 
                         HttpSession session = Session.getSession();
-                        session.setAttribute("usuario", ejbPersonaFacade);
+                        session.setAttribute("usuario", usuario);
 
                         switch (usuario.getRolUsuario()) {
                             case 'A':

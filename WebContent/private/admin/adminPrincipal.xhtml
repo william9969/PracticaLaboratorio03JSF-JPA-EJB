@@ -12,40 +12,51 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
 	<meta content="" name="description"></meta>
 	<meta content="" name="keywords"></meta>
-	<link rel="stylesheet" href="css/bootstrap-grid.css" ></link>
-    <link rel="stylesheet"  href="css/bootstrap.css" ></link>
-    <link rel="stylesheet" href="css/style.css" ></link>
-    <link rel="stylesheet" href="css/styleS.css" ></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/imagen/favicon.png" rel="icon"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/imagen/apple-touch-icon.png" rel="apple-touch-icon"></link>
 
-    <script src="js/main.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet"></link>
+
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/icofont/icofont.min.css" rel="stylesheet"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/animate.css/animate.min.css" rel="stylesheet"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/venobox/venobox.css" rel="stylesheet"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet"></link>
+	<link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/bootstrap-grid.css" ></link>
+    <link rel="stylesheet"  href="http://localhost:8080/Practica03EJB-JPA-JSF/css/bootstrap.css" ></link>
+    <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/style.css" ></link>
+    <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/styleS.css" ></link>
+
+    <script src="../../js/main.js"></script>
 </h:head>
 <h:body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
 	<header class ="float-right">
             <ul class="nav justify-content-end">
 
                 <li class="nav-item">
-                	<a class="nav-link" href="/private/admin/adminPrincipal.xhtml">  Inicio</a>
+                	<a class="nav-link" href="adminPrincipal.xhtml">  Inicio</a>
                 </li>
                 <li class="nav-item">
-                	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion Bodegas</a>
+                	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion Bodega</a>
                 	<div class="dropdown-menu">
 		                 <a class="dropdown-item" href="#">Bodega en General</a>
 	                </div>
                 </li>
                 
                 <li class="nav-item">
-		            <a class="nav-link" href="#">Gestion Productos</a>
+		            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion Productos</a>
 		            <div class="dropdown-menu">
-		            	<a class="dropdown-item" href="#">Listar Productos</a>
-		            	<a class="dropdown-item" href="#">Agregar Producto</a>
-		            	<a class="dropdown-item" href="#">Eliminar Producto</a>
+		            	<a class="dropdown-item" href="gestionProducto.xhtml">Listar Productos</a>
+		            	<a class="dropdown-item" href="gestionProducto.xhtml">Agregar Producto</a>
+		            	<a class="dropdown-item" href="gestionProducto.xhtml">Eliminar Producto</a>
 	                </div>
                 </li>
                 <li class="nav-item">
-		        	<a class="nav-link" href="#">Gestionar Productos Bodega</a>
+		        	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestionar Productos Bodega</a>
 		            <div class="dropdown-menu">
-		            	<a class="dropdown-item" href="#">Listar Bodegas</a>
-		            	<a class="dropdown-item" href="#">Eliminar Bodega</a>
+		            	<a class="dropdown-item" href="gestionBodegas.xhtml">Listar Bodegas</a>
+		            	<a class="dropdown-item" href="gestionBodegas.xhtml">Eliminar Bodega</a>
 	                </div>
                 </li>
               <!--  <li class="nav-item">
@@ -64,7 +75,7 @@
                 <div class="col-md-12">
                    <div class="full">
                       <div class="heading_main text_align_center">
-                         <h2>Hola, #{personaBean.nombres} ¿Qué quieres hacer?</h2>
+                         <h2>Hola, #{personaBean.usuario.nombres} ¿Qué quieres hacer?</h2>
                       </div>
                    </div>
                 </div>
@@ -73,8 +84,8 @@
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                    <div class="full feature_box">
                        <div class="full icon">
-                          <a href=""><img class="default-block" src="" alt="#" /></a>
-                          <a href=""><img class="default-none" src="" alt="#" /></a>
+                          <a href=""><img class="default-block" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/bodegaMain.png" alt="#" /></a>
+                          <a href=""><img class="default-none" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/bodegaMain.png" alt="#" /></a>
                        </div>
                        <div class="full">
                           <h4>Empresa: Los Angeles</h4>
@@ -87,42 +98,42 @@
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                    <div class="full feature_box">
                        <div class="full icon">
-                          <a href=""><img class="default-block" src="" alt="#" /></a>
-                          <a href=""><img class="default-none" src="" alt="#" /></a>
+                          <a href=""><img class="default-block" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/productos.png" alt="#" /></a>
+                          <a href=""><img class="default-none" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/productos.png" alt="#" /></a>
                        </div>
                        <div class="full">
                           <h4>Productos</h4>
                        </div>
                        <div class="full">
-                         <p>Puedes revisar los productos existentes en la empresa, por categoria y bodega además, listarlos.</p>
+                         <p>Resvisa los productos existentes en la empresa, por categoria y bodega.</p>
                        </div>
                    </div>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                    <div class="full feature_box">
                        <div class="full icon">
-                          <a href=""><img class="default-block" src="" alt="#" /></a>
-                          <a href=""><img class="default-none" src="" alt="#" /></a>
+                          <a href=""><img class="default-block" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/gestion.png" alt="#" /></a>
+                          <a href=""><img class="default-none" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/gestion.png" alt="#" /></a>
                        </div>
                        <div class="full">
-                          <h4>Bedegas</h4>
+                          <h4>Inventario</h4>
                        </div>
                        <div class="full">
-                         <p>Puedes revisar el inventario general de la Empresa.</p>
+                         <p>Puedes revisar el inventario general de los productos de la Empresa.</p>
                        </div>
                    </div>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
                    <div class="full feature_box">
                        <div class="full icon">
-                          <a href=""><img class="default-block" src="" alt="#" /></a>
-                          <a href=""><img class="default-none" src="" alt="#" /></a>
+                          <a href=""><img class="default-block" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/bodegasSucur.png" alt="#" /></a>
+                          <a href=""><img class="default-none" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/bodegasSucur.png" alt="#" /></a>
                        </div>
                        <div class="full">
-                          <h4>Gestion</h4>
+                          <h4>Gestion Bodegas</h4>
                        </div>
                        <div class="full">
-                         <p>Prodrás gestionar los productos por bodega.</p>
+                         <p>Prodrás gestionar los productos de la empresa agrupados por bodega.</p>
                        </div>
                    </div>
                 </div>
