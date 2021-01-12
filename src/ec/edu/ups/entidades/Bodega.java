@@ -23,6 +23,8 @@ public class Bodega implements Serializable {
 	private String telefono;
 	private String cuidad;
 	private String direccion;
+	@Transient
+	private boolean editable;
 	
 	@ManyToOne
 	@JoinColumn
@@ -36,10 +38,9 @@ public class Bodega implements Serializable {
 		super();
 	}
 
-	public Bodega(int idBodega, String nombre, String telefono, String cuidad, String direccion, Provincia provincia
+	public Bodega(String nombre, String telefono, String cuidad, String direccion, Provincia provincia
 			) {
 		super();
-		this.idBodega = idBodega;
 		this.nombre = nombre;
 		this.telefono = telefono;
 		this.cuidad = cuidad;
@@ -94,7 +95,15 @@ public class Bodega implements Serializable {
 	public List<Productos> getListProductos() {
 		return listProductos;
 	}
+	
 
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
 
 	public void setListProductos(List<Productos> listProductos) {
 		this.listProductos = listProductos;
