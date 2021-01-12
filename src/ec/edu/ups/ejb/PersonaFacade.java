@@ -25,7 +25,7 @@ public class PersonaFacade extends AbstractFacade<Persona>{
 	
 	public Persona buscarPersonaCedula(String cedula) {
 		Persona persona=null;
-		String queryFindPRoductos="SELECT p FROM Persona p WHERE u.cedula=:ced";
+		String queryFindPRoductos="SELECT p FROM Persona p WHERE p.cedula=:ced";
 		try {
 			persona = (Persona) em.createQuery(queryFindPRoductos).setParameter("ced",cedula ).getSingleResult();
 			em.close();

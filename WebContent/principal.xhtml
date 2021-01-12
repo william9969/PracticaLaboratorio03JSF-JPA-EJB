@@ -76,30 +76,7 @@
 	
 	
 	    <!-- ======= Whu Us Section ======= -->
-    <section id="why-us" class="why-us">
-       <div class="container">
-
-        <div class="section-title">
-          <h2>productos <span>Bodegas</span></h2>
-          <p>Visualiza tus productos favoritos ubicados en nuestras bodegas a lo largo del país.</p>
-        </div>
-
-        <div class="row">
-		<ui:repeat value="#{bodegaBean.listBodega}" var="bodega" >
-			<div class="col-lg-4 mt-4 mt-lg-0">
-				<div class="box">
-					<h4>Bodega: #{bodega.nombre}</h4>
-					<p>Ubicanos en #{bodega.cuidad} , #{bodega.direccion}</p>
-					<h:form>
-						<h:commandButton value="Visualizar" action="#{listarProductosBean.listadoProductosBodega(bodega.nombre)}">
-						</h:commandButton>
-					</h:form>
-				</div>
-			</div>
-		</ui:repeat>	
-        </div>
-
-      </div>      
+  
       <!--  <div class="container">
         <div class="section-title">
           <h2>productos <span>Bodegas</span></h2>
@@ -132,8 +109,6 @@
         </div>
 
       </div>-->
-    </section><!-- End Whu Us Section -->
-
 
     <section id="why-us1" class="why-us">
       <div class="container">
@@ -150,7 +125,7 @@
 					<h4>Categoria:</h4>
 					<p>#{categoria.nombre}</p>
 					<h:form>
-						<h:commandButton value="Visualizar" action="#{listarProductosBean.listadoProductiosCategoria(categoria.nombre)}">
+						<h:commandButton value="Visualizar" action="#{listarProductosBean.listadoProductiosCategoria(categoria.idCategoria)}">
 						</h:commandButton>
 					</h:form>
 				</div>
@@ -160,7 +135,32 @@
 
       </div>
     </section><!-- End Whu Us Section -->
+    
+     <section id="why-us" class="why-us">
+       <div class="container">
 
+        <div class="section-title">
+          <h2>productos <span>Bodegas</span></h2>
+          <p>Visualiza tus productos favoritos ubicados en nuestras bodegas a lo largo del país.</p>
+        </div>
+
+        <div class="row">
+		<ui:repeat value="#{bodegaBean.listBodega}" var="bodega" >
+			<div class="col-lg-4 mt-4 mt-lg-0">
+				<div class="box">
+					<h4>Bodega: #{bodega.nombre}</h4>
+					<p>Ubicanos en #{bodega.cuidad} , #{bodega.direccion}</p>
+					<h:form>
+						<h:commandButton value="Visualizar" action="#{listarProductosBean.listadoProductosBodega(bodega.nombre)}">
+						</h:commandButton>
+					</h:form>
+				</div>
+			</div>
+		</ui:repeat>	
+        </div>
+
+      </div>      
+	</section><!-- End Whu Us Section -->
     <!-- ======= Chefs Section ======= -->
     <section id="colaboradores" class="chefs">
       <div class="container">

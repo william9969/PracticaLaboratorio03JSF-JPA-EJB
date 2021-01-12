@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<title>Productos</title>
+	<meta charset="utf-8"></meta>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+	<meta content="" name="description"></meta>
+	<meta content="" name="keywords"></meta>
+	
+	<link href="imagen/favicon.png" rel="icon"></link>
+	<link href="imagen/apple-touch-icon.png" rel="apple-touch-icon"></link>
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet"></link>
+
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+	<link href="vendor/icofont/icofont.min.css" rel="stylesheet"></link>
+	<link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet"></link>
+	<link href="vendor/animate.css/animate.min.css" rel="stylesheet"></link>
+	<link href="vendor/venobox/venobox.css" rel="stylesheet"></link>
+	<link href="vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet"></link>
+	<link href="css/style.css" rel="stylesheet"></link>
+</h:head>
+<h:body>
+	<header id="header" class="fixed-top d-flex align-items-center header-transparent">
+	  	<div class="container d-flex align-items-center">
+	      <div class="logo mr-auto">
+	        <h2 class="text-light"><a href=""><span>Distribuidora Los Angeles</span></a></h2>
+	        <!-- Uncomment below if you prefer to use an image logo -->
+	        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+	      </div>
+	      <nav class="nav-menu d-none d-lg-block">
+	        <ul>
+	          <li class="active"><a href="index.html">Home</a></li>
+	          <li><a href="#why-us1">Categorias</a></li>
+	          <li><a href="#why-us">Bodegas</a></li>
+	          <li><a href="#contact">Contactanos</a></li>
+	          <li class="book-a-table text-center"><a href="http://localhost:8080/Practica03EJB-JPA-JSF/login.xhtml">Iniciar Sesion</a></li>
+	        </ul>
+	      </nav><!-- .nav-menu -->
+	
+	    </div>
+	  </header>
+	
+	<section id="why-us1" class="why-us">
+      <div class="container">
+        <div class="section-title">
+          <h2><span>Productos</span></h2>
+        </div>
+        <div class="row">	
+		<ui:repeat value="#{listarProductosBean.listProductos}" var="producto" >
+			<div class="col-lg-4 mt-4 mt-lg-0">
+				<div class="box">
+					<h4>Nombre: #{producto.nombreProducto}</h4>
+					<p>Precio: #{producto.stockProducto}</p>
+					<p>Stock: #{producto.stockProducto}</p>
+					<h:form>
+						<h:commandButton value="Comprar" >
+						</h:commandButton>
+					</h:form>
+				</div>
+			</div>
+		</ui:repeat>
+        </div>
+      </div>
+    </section>
+	
+		
+
+	<footer id="footer">
+		    <div class="container">
+		      <h3>Distribuidora Los Angeles</h3>
+		      <p>Visitanos en nuestras Redes Sociales.</p>
+		      <div class="social-links">
+		        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+		        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+		        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+		        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+		        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+		      </div>
+		      <div class="copyright">
+		        &copy; Copyright All Rights Reserved
+		      </div>
+		      <div class="credits">
+		        <!-- All the links in the footer should remain intact. -->
+		        <!-- You can delete the links only if you purchased the pro version. -->
+		        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+		        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/delicious-free-restaurant-bootstrap-theme/ -->
+		        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+		      </div>
+		    </div>
+	 </footer><!-- End Footer -->
+
+<!-- Vendor JS Files -->
+	  <script src="vendor/jquery/jquery.min.js"></script>
+	  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	  <script src="vendor/jquery.easing/jquery.easing.min.js"></script>
+	  <script src="vendor/php-email-form/validate.js"></script>
+	  <script src="vendor/jquery-sticky/jquery.sticky.js"></script>
+	  <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	  <script src="vendor/venobox/venobox.min.js"></script>
+	  <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
+	
+	  <!-- Template Main JS File -->
+	  <script src="js/main.js"></script>
+</h:body>
+</html>
+

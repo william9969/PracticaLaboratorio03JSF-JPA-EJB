@@ -71,9 +71,9 @@ public class BodegaBean implements Serializable {
 		 * Datos de la Provincia
 		 
 		
-		Provincia prov1 = new Provincia(0, "Azuay");
-		Provincia prov2 = new Provincia(0, "Pichincha");
-		Provincia prov3 = new Provincia(0, "Guayas");
+		Provincia prov1 = new Provincia("Azuay");
+		Provincia prov2 = new Provincia("Pichincha");
+		Provincia prov3 = new Provincia("Guayas");
 		
 		ejbProvinciaFacade.create(prov1);
 		ejbProvinciaFacade.create(prov2);
