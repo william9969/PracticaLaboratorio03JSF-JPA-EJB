@@ -30,16 +30,18 @@ public class Persona implements Serializable {
 	private String contrasenia;
 	private char rolUsuario; //Para rol de Usuario 'A' administrador, 'E' empleado, 'C' cliente
 	private char estado;
+	@Transient
+    private boolean editable;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facturaCabecera" )
 	private Set<FacturaCabecera> facturas = new HashSet<FacturaCabecera>();
 	
 	
 	
-	public Persona(int idPersona, String cedula, String nombres, String direccion, String correo, String usuario,
+	public Persona( String cedula, String nombres, String direccion, String correo, String usuario,
 			String contrasenia, char rolUsuario, char estado) {
 		super();
-		this.idPersona = idPersona;
+		
 		this.cedula = cedula;
 		this.nombres = nombres;
 		this.direccion = direccion;
@@ -116,6 +118,15 @@ public class Persona implements Serializable {
 	public void setFacturas(Set<FacturaCabecera> facturas) {
 		this.facturas = facturas;
 	}
+	
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

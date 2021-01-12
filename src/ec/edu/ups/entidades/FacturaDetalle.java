@@ -23,6 +23,7 @@ public class FacturaDetalle implements Serializable {
 	private int cantidad;
 	private double total;
 	
+	
 	@ManyToOne
 	@JoinColumn
 	private FacturaCabecera facturaDetalleCabecera;
@@ -31,14 +32,17 @@ public class FacturaDetalle implements Serializable {
 	@JoinColumn
 	private Productos detProducto;
 	
+	@Transient
+    private boolean editable;
+	
 	public FacturaDetalle() {
 		super();
 	}
 
-	public FacturaDetalle(int idFacturaDetalle, int cantidad, double total, FacturaCabecera facturaDetalleCabecera,
+	public FacturaDetalle(int cantidad, double total, FacturaCabecera facturaDetalleCabecera,
 			Productos detProducto) {
 		super();
-		this.idFacturaDetalle = idFacturaDetalle;
+		
 		this.cantidad = cantidad;
 		this.total = total;
 		this.facturaDetalleCabecera = facturaDetalleCabecera;
@@ -83,6 +87,15 @@ public class FacturaDetalle implements Serializable {
 
 	public void setDetProducto(Productos detProducto) {
 		this.detProducto = detProducto;
+	}
+	
+	
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 	@Override

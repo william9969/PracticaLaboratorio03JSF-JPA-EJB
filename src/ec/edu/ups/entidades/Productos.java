@@ -47,10 +47,10 @@ public class Productos implements Serializable {
 	
 	
 
-	public Productos(int idProdcuto, String nombreProducto, double precioProducto, int stockProducto,
+	public Productos(String nombreProducto, double precioProducto, int stockProducto,
 			Categoria catProd) {
 		super();
-		this.idProdcuto = idProdcuto;
+		
 		this.nombreProducto = nombreProducto;
 		this.precioProducto = precioProducto;
 		this.stockProducto = stockProducto;

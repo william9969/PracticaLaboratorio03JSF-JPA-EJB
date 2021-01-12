@@ -23,6 +23,8 @@ public class Provincia implements Serializable {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "provincia")
 	private List<Bodega> bodegas = new ArrayList<Bodega>();
+	@Transient
+    private boolean editable;
 	
 	public Provincia() {
 		super();
@@ -64,6 +66,16 @@ public class Provincia implements Serializable {
 	public void setBodegas(List<Bodega> bodegas) {
 		this.bodegas = bodegas;
 	}
+	
+	public boolean isEditable() {
+		return editable;
+	}
+
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
 
 	@Override
 	public int hashCode() {

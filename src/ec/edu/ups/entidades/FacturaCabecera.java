@@ -34,6 +34,19 @@ public class FacturaCabecera implements Serializable {
 	public FacturaCabecera() {
 		super();
 	}
+	
+	
+	
+	public FacturaCabecera(double iva, double subtotal, double total, Persona facturaCabecera) {
+		super();
+	
+		this.iva = iva;
+		this.subtotal = subtotal;
+		this.total = total;
+		this.facturaCabecera = facturaCabecera;
+		
+	}
+
 
 
 	public int getIdFacturaCabecera() {
