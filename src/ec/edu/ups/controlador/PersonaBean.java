@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
@@ -41,6 +42,14 @@ public class PersonaBean implements Serializable {
 	
 	private List<Persona> list;
 	
+	@PostConstruct
+	public void init() {
+		ejbPersonaFacade.create(new Persona("0104568972", "William Ramiro Sinchi Morocho", "Arturo Cisneros", "wsinchi@est.ups.edu.ec",  "wsinchi123", 'A', true));
+		ejbPersonaFacade.create(new Persona("0106835762", "Jessica Maribel Guncay Carchipulla", "Av. Ricardo Duran", "gjessica@est.ups.edu.ec", "gjessica23", 'E', true));
+		ejbPersonaFacade.create(new Persona("0106835762", "Carmen Alexandra Bravo Valdiviezo", "Santa Isabel", "cbravo@est.ups.edu.ec", "cbravo23", 'C', true));
+
+		list = ejbPersonaFacade.findAll();
+	}
 	public String add() {
 		ejbPersonaFacade.create(new Persona(this.cedula, this.nombres, this.direccion, this.correo, this.contrasenia, this.rolUsuario, this.activo));
 		return null;
