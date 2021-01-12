@@ -7,7 +7,7 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head> 
-	<title>Inicio Administrador</title> 
+	<title>Inicio Empleado</title> 
 	<meta charset="utf-8"></meta>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
 	<meta content="" name="description"></meta>
@@ -25,12 +25,12 @@
 	<link href="vendor/venobox/venobox.css" rel="stylesheet"></link>
 	<link href="vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet"></link>
 	<link href="css/style.css" rel="stylesheet"></link>
+
 </h:head>
 
 <h:body>
 	<h:form>
-	<h1>Bienvenido </h1>
-	
+
 	<header id="header" class="fixed-top d-flex align-items-center header-transparent">
 	  	<div class="container d-flex align-items-center">
 	      <div class="logo mr-auto">
@@ -38,20 +38,27 @@
 	        <!-- Uncomment below if you prefer to use an image logo -->
 	        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 	      </div>
-	      <nav class="nav-menu d-none d-lg-block">
+	      <nav class="nav nav-tabs">
 	        <ul>
 	          <li class="active"><a href="index.html">Home</a></li>
-	          <li class="active"><a href="http://localhost:8080/Practica03EJB-JPA-JSF/login.xhtml">Bodega</a></li>
-	          <li class="active"><a href="http://localhost:8080/Practica03EJB-JPA-JSF/producto.xhtml">Productos</a></li>
-	          <li class="active"><a href="http://localhost:8080/Practica03EJB-JPA-JSF/producto.xhtml">Inventiario</a></li>
-	          <li class="active"><a href="#contact">Contactanos</a></li>
+	          <li class="active"><a href="http://localhost:8080/Practica03EJB-JPA-JSF/login.xhtml">Clientes</a></li>
+	          <li class="active"><a href="http://localhost:8080/Practica03EJB-JPA-JSF/producto.xhtml">Facturas</a></li>
+	           <li class="nav-item dropdown">
+				    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+				    <ul class="dropdown-menu">
+				      <li><a class="dropdown-item" href="#">Action</a></li>
+				      <li><a class="dropdown-item" href="#">Another action</a></li>
+				      <li><a class="dropdown-item" href="#">Something else here</a></li>
+				      <li><hr class="dropdown-divider"></hr></li>
+				      <li><a class="dropdown-item" href="#">Separated link</a></li>
+				    </ul>
+ 				 </li>
 	          <li class="active"><a href="http://localhost:8080/Practica03EJB-JPA-JSF/login.xhtml">Iniciar Sesion</a></li>
 	        </ul>
 	      </nav><!-- .nav-menu -->
 	
 	    </div>
 	  </header><!-- End Header -->
-		
 		
 	</h:form>
 	

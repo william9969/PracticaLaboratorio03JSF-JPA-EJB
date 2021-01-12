@@ -33,10 +33,24 @@ public class ProductosBean implements Serializable {
 	private Categoria catProd;
 	
 	public String add() {
-		ejbProductosFacade.create(new Productos(this.nombreProducto, this.precioProducto, this.stockProducto, this.catProd));
-		list = ejbProductosFacade.findAll();
+		if (this.catProd != null) {
+			Productos productos = new Productos();
+			productos.setNombreProducto(this.nombreProducto);
+			productos.setPrecioProducto(this.precioProducto);
+			productos.setStockProducto(this.stockProducto);
+			productos.setCatProd(this.catProd);
+			
+			ejbProductosFacade.create(productos);
+		} else {
+			System.out.println("Debe tener categoria ");
+		}
+		
+		//ejbProductosFacade.create(new Productos(this.nombreProducto, this.precioProducto, this.stockProducto, this.catProd));
+		this.list = ejbProductosFacade.findAll();
 		return null;
 	}
+	
+	
 	
 	public String delete(Productos productos) {
 		ejbProductosFacade.remove(productos);
@@ -110,4 +124,10 @@ public class ProductosBean implements Serializable {
 	public void setCatProd(Categoria catProd) {
 		this.catProd = catProd;
 	}
+	
+	 public void newProducto() {
+	        this.nombreProducto = null;
+	        this.precioProducto = 0.0;
+	        this.stockProducto = 0;
+	    }
 }
