@@ -170,10 +170,10 @@ public class PersonaBean implements Serializable {
 
                         switch (usuario.getRolUsuario()) {
                             case 'A':
-                                //System.out.println("admin");
-                                return "/admin.jsf";
+                                System.out.println("admin");
+                                return "/adminJSF.jsf";
                             case 'E':
-                                //ystem.out.println("empleado");
+                                System.out.println("empleado");
                                 return "/empleado.jsf";
                         }
                     } else {
@@ -181,11 +181,11 @@ public class PersonaBean implements Serializable {
                     }
 
                 } else{
-                    //System.out.println("Usuario no es correcto");
+                    System.out.println("Usuario no es correcto");
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Credenciales incorrectas"));
                 }
 
-                //System.out.println("Pass... " + password);
+                System.out.println("Pass... " + contrasenia);
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Todos los campos son obligatorios"));
             }
