@@ -36,5 +36,18 @@ public class PersonaFacade extends AbstractFacade<Persona>{
 		return persona;
 	}
 	
+	public Persona finByEmailAndPass(String correo, String contrasenia) {
+		try {
+			String sql = "From Persona p Where p.correo = ?1 AND p.contrasenia = ?2";
+			Query query = em.createQuery(sql);
+			query.setParameter(1, correo);
+			query.setParameter(2, contrasenia);
+			return (Persona) query.getSingleResult();
+		} catch (Exception e) {
+			 System.out.println("Error: "+e);
+	            return null;
+		}
+	}
+
 
 }

@@ -25,11 +25,10 @@ public class Persona implements Serializable {
 	private String direccion;
 	//@Column(name = "CORREO", unique = true)
 	private String correo;
-	//@Column(name = "USUARIO", unique = true)
-	private String usuario;
+	
 	private String contrasenia;
 	private char rolUsuario; //Para rol de Usuario 'A' administrador, 'E' empleado, 'C' cliente
-	private char estado;
+	private boolean activo;
 	@Transient
     private boolean editable;
 	
@@ -38,18 +37,17 @@ public class Persona implements Serializable {
 	
 	
 	
-	public Persona( String cedula, String nombres, String direccion, String correo, String usuario,
-			String contrasenia, char rolUsuario, char estado) {
+	public Persona( String cedula, String nombres, String direccion, String correo,
+			String contrasenia, char rolUsuario, boolean activo) {
 		super();
 		
 		this.cedula = cedula;
 		this.nombres = nombres;
 		this.direccion = direccion;
 		this.correo = correo;
-		this.usuario = usuario;
 		this.contrasenia = contrasenia;
 		this.rolUsuario = rolUsuario;
-		this.estado = estado;
+		this.activo = activo;
 	}
 	
 	public Persona() {
@@ -81,12 +79,7 @@ public class Persona implements Serializable {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public String getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
+	
 	public String getContrasenia() {
 		return contrasenia;
 	}
@@ -106,12 +99,15 @@ public class Persona implements Serializable {
 	public void setIdPersona(int idPersona) {
 		this.idPersona = idPersona;
 	}
-	public char getEstado() {
-		return estado;
+	
+	public boolean isActivo() {
+		return activo;
 	}
-	public void setEstado(char estado) {
-		this.estado = estado;
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
+
 	public Set<FacturaCabecera> getFacturas() {
 		return facturas;
 	}
@@ -137,7 +133,7 @@ public class Persona implements Serializable {
 		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
 		result = prime * result + ((nombres == null) ? 0 : nombres.hashCode());
 		result = prime * result + rolUsuario;
-		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
+		
 		return result;
 	}
 	@Override
@@ -176,20 +172,11 @@ public class Persona implements Serializable {
 			return false;
 		if (rolUsuario != other.rolUsuario)
 			return false;
-		if (usuario == null) {
-			if (other.usuario != null)
-				return false;
-		} else if (!usuario.equals(other.usuario))
-			return false;
+		
 		return true;
 	}
 	
-	@Override
-	public String toString() {
-		return "Persona [cedula=" + cedula + ", nombres=" + nombres + ", direccion=" + direccion + ", correo=" + correo
-				+ ", usuario=" + usuario + ", contrasenia=" + contrasenia + ", rolUsuario=" + rolUsuario + "]";
-	}
-
+	
 }
 
 
