@@ -180,10 +180,10 @@ public class PersonaBean implements Serializable {
                         switch (usuario.getRolUsuario()) {
                             case 'A':
                                 System.out.println("admin");
-                                return "/adminJSF.jsf";
+                                return "/private/admin/adminPrincipal.xhtml";
                             case 'E':
                                 System.out.println("empleado");
-                                return "/empleado.jsf";
+                                return "/private/empleado/empleadoJSF.xhtml";
                         }
                     } else {
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Su cuenta ah sido desactivada contacte con un administrador"));

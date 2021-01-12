@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<title>Login</title>
+	
+	<meta charset="utf-8"></meta>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+	<meta content="" name="description"></meta>
+	<meta content="" name="keywords"></meta>
+	<link rel="stylesheet" href="css/bootstrap-grid.css" ></link>
+    <link rel="stylesheet"  href="css/bootstrap.css" ></link>
+    <link rel="stylesheet" href="css/style.css" ></link>
+    <link rel="stylesheet" href="css/styleS.css" ></link>
+
+    <script src="js/main.js"></script>
+</h:head>
+<h:body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+	<header class ="float-right">
+            <ul class="nav justify-content-end">
+
+                <li class="nav-item">
+                	<a class="nav-link" href="/private/admin/adminPrincipal.xhtml">  Inicio</a>
+                </li>
+                <li class="nav-item">
+                	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion Bodegas</a>
+                	<div class="dropdown-menu">
+		                 <a class="dropdown-item" href="#">Bodega en General</a>
+	                </div>
+                </li>
+                
+                <li class="nav-item">
+		            <a class="nav-link" href="#">Gestion Productos</a>
+		            <div class="dropdown-menu">
+		            	<a class="dropdown-item" href="#">Listar Productos</a>
+		            	<a class="dropdown-item" href="#">Agregar Producto</a>
+		            	<a class="dropdown-item" href="#">Eliminar Producto</a>
+	                </div>
+                </li>
+                <li class="nav-item">
+		        	<a class="nav-link" href="#">Gestionar Productos Bodega</a>
+		            <div class="dropdown-menu">
+		            	<a class="dropdown-item" href="#">Listar Bodegas</a>
+		            	<a class="dropdown-item" href="#">Eliminar Bodega</a>
+	                </div>
+                </li>
+              <!--  <li class="nav-item">
+                	<form action="http://localhost:8080/Practica02/LogOut" method="get">
+	             		 <button type="submit" class="nav-link btn-danger">Salir</button>
+	             	</form>
+                </li>-->
+              </ul>
+            
+        </header>
+        
+       
+        <div class="section about_section layout_padding dash_bg">
+          <div class="container">
+             <div class="row">
+                <div class="col-md-12">
+                   <div class="full">
+                      <div class="heading_main text_align_center">
+                         <h2>Hola, #{personaBean.nombres} ¿Qué quieres hacer?</h2>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                   <div class="full feature_box">
+                       <div class="full icon">
+                          <a href=""><img class="default-block" src="" alt="#" /></a>
+                          <a href=""><img class="default-none" src="" alt="#" /></a>
+                       </div>
+                       <div class="full">
+                          <h4>Empresa: Los Angeles</h4>
+                       </div>
+                       <div class="full">
+                         <p>Datos importantes sobre nuestra empresa, además nuestros colaboradores.</p>
+                       </div>
+                   </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                   <div class="full feature_box">
+                       <div class="full icon">
+                          <a href=""><img class="default-block" src="" alt="#" /></a>
+                          <a href=""><img class="default-none" src="" alt="#" /></a>
+                       </div>
+                       <div class="full">
+                          <h4>Productos</h4>
+                       </div>
+                       <div class="full">
+                         <p>Puedes revisar los productos existentes en la empresa, por categoria y bodega además, listarlos.</p>
+                       </div>
+                   </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                   <div class="full feature_box">
+                       <div class="full icon">
+                          <a href=""><img class="default-block" src="" alt="#" /></a>
+                          <a href=""><img class="default-none" src="" alt="#" /></a>
+                       </div>
+                       <div class="full">
+                          <h4>Bedegas</h4>
+                       </div>
+                       <div class="full">
+                         <p>Puedes revisar el inventario general de la Empresa.</p>
+                       </div>
+                   </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                   <div class="full feature_box">
+                       <div class="full icon">
+                          <a href=""><img class="default-block" src="" alt="#" /></a>
+                          <a href=""><img class="default-none" src="" alt="#" /></a>
+                       </div>
+                       <div class="full">
+                          <h4>Gestion</h4>
+                       </div>
+                       <div class="full">
+                         <p>Prodrás gestionar los productos por bodega.</p>
+                       </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+
+
+      <footer id="footer">
+	    <div class="container">
+	      <h3>Distribuidora Los Angeles</h3>
+	      <p>Visitanos en nuestras Redes Sociales.</p>
+	      <div class="social-links">
+	        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+	        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+	        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+	        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+	        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+	      </div>
+	      <div class="copyright">
+	        &copy; Copyright All Rights Reserved
+	      </div>
+	      <div class="credits">
+	        <!-- All the links in the footer should remain intact. -->
+	        <!-- You can delete the links only if you purchased the pro version. -->
+	        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+	        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/delicious-free-restaurant-bootstrap-theme/ -->
+	        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+	      </div>
+	    </div>
+	  </footer><!-- End Footer -->
+	
+	  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    
+	  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+		
+	
+</h:body>
+</html>
