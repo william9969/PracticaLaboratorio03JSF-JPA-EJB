@@ -33,7 +33,7 @@ public class Persona implements Serializable {
 	@Transient
     private boolean editable;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facturaCabecera" )
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "personafacturaCabecera" )
 	private Set<FacturaCabecera> facturas = new HashSet<FacturaCabecera>();
 	
 	

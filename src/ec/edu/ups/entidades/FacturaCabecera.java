@@ -24,9 +24,11 @@ public class FacturaCabecera implements Serializable {
 	private double iva;
 	private double subtotal;
 	private double total;
+	@Transient
+	private boolean editable;
 	@ManyToOne
 	@JoinColumn
-	private Persona facturaCabecera;
+	private Persona personafacturaCabecera;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facturaDetalleCabecera")
 	private List<FacturaDetalle> listaFacturaDetalle;
@@ -37,13 +39,13 @@ public class FacturaCabecera implements Serializable {
 	
 	
 	
-	public FacturaCabecera(double iva, double subtotal, double total, Persona facturaCabecera) {
+	public FacturaCabecera(double iva, double subtotal, double total, Persona personafacturaCabecera) {
 		super();
 	
 		this.iva = iva;
 		this.subtotal = subtotal;
 		this.total = total;
-		this.facturaCabecera = facturaCabecera;
+		this.personafacturaCabecera = personafacturaCabecera;
 		
 	}
 
@@ -89,13 +91,26 @@ public class FacturaCabecera implements Serializable {
 	}
 
 	
-	public Persona getFacturaCabecera() {
-		return facturaCabecera;
+	
+	public boolean isEditable() {
+		return editable;
 	}
 
 
-	public void setFacturaCabecera(Persona facturaCabecera) {
-		this.facturaCabecera = facturaCabecera;
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+
+
+	public Persona getPersonaFacturaCabecera() {
+		return personafacturaCabecera;
+	}
+
+
+	public void setPersonaFacturaCabecera(Persona personafacturaCabecera) {
+		this.personafacturaCabecera = personafacturaCabecera;
 	}
 
 
@@ -112,7 +127,7 @@ public class FacturaCabecera implements Serializable {
 	@Override
 	public String toString() {
 		return "FacturaCabecera [idFacturaCabecera=" + idFacturaCabecera + ", iva=" + iva + ", subtotal=" + subtotal
-				+ ", total=" + total + ", facturaCabecera=" + facturaCabecera + ", listaFacturaDetalle="
+				+ ", total=" + total + ", facturaCabecera=" + personafacturaCabecera + ", listaFacturaDetalle="
 				+ listaFacturaDetalle + "]";
 	}
 
