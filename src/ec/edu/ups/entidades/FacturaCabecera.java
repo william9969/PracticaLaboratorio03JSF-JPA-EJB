@@ -131,4 +131,20 @@ public class FacturaCabecera implements Serializable {
 				+ listaFacturaDetalle + "]";
 	}
 
+
+
+	public void calcularSubtotal() {
+		double sum = 0;
+        for(FacturaDetalle fd : this.getListaFacturaDetalle())
+                sum += fd.getTotal();
+        this.subtotal = sum;
+	}
+
+
+
+	public void calcularTotal() {
+		this.total = Math.round(((this.subtotal*this.iva)+this.subtotal) * 100.0) / 100.0;
+		
+	}
+
 }
