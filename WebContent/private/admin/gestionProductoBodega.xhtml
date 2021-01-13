@@ -13,10 +13,9 @@
 	<meta content="" name="description"></meta>
 	<meta content="" name="keywords"></meta>
 	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/imagen/favicon.png" rel="icon"></link>
+	
 	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/imagen/apple-touch-icon.png" rel="apple-touch-icon"></link>
-
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet"></link>
-
 	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
 	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/icofont/icofont.min.css" rel="stylesheet"></link>
 	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"></link>
@@ -27,8 +26,7 @@
     <link rel="stylesheet"  href="http://localhost:8080/Practica03EJB-JPA-JSF/css/bootstrap.css" ></link>
     <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/style.css" ></link>
     <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/styleS.css" ></link>
-
-    <script src="http://localhost:8080/Practica03EJB-JPA-JSF/js/main.js"></script>
+    <script src="http://localhost:8080/Practica03EJB-JPA-JSF/s/main.js"></script>
 </h:head>
 <h:body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
 	<header class ="float-right">
@@ -68,81 +66,84 @@
             </ul>
           
       </header>
-        
-       
-        <div class="section about_section layout_padding dash_bg">
+      
+      
+      
+      <div class="section about_section layout_padding dash_bg">
           <div class="container">
              <div class="row">
                 <div class="col-md-12">
                    <div class="full">
-                      <div class="heading_main text_align_center">
-                         <h2>Hola, #{personaBean.usuario.nombres} ¿Qué quieres hacer?</h2>
-                      </div>
+                      <div class="section-title">
+				          <h2>Gestion Productos</h2>
+				        </div>
                    </div>
                 </div>
              </div>
              <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                   <div class="full feature_box">
-                       <div class="full icon">
-                          <a href=""><img class="default-block" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/bodegaMain.png" alt="#" /></a>
-                          <a href=""><img class="default-none" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/bodegaMain.png" alt="#" /></a>
-                       </div>
-                       <div class="full">
-                          <h4>Empresa: Los Angeles</h4>
-                       </div>
-                       <div class="full">
-                         <p>Datos importantes sobre nuestra empresa, además nuestros colaboradores.</p>
-                       </div>
-                   </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                   <div class="full feature_box">
-                       <div class="full icon">
-                          <a href=""><img class="default-block" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/productos.png" alt="#" /></a>
-                          <a href=""><img class="default-none" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/productos.png" alt="#" /></a>
-                       </div>
-                       <div class="full">
-                          <h4>Productos</h4>
-                       </div>
-                       <div class="full">
-                         <p>Resvisa los productos existentes en la empresa, por categoria y bodega.</p>
-                       </div>
-                   </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                   <div class="full feature_box">
-                       <div class="full icon">
-                          <a href=""><img class="default-block" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/gestion.png" alt="#" /></a>
-                          <a href=""><img class="default-none" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/gestion.png" alt="#" /></a>
-                       </div>
-                       <div class="full">
-                          <h4>Inventario</h4>
-                       </div>
-                       <div class="full">
-                         <p>Puedes revisar el inventario general de los productos de la Empresa.</p>
-                       </div>
-                   </div>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
-                   <div class="full feature_box">
-                       <div class="full icon">
-                          <a href=""><img class="default-block" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/bodegasSucur.png" alt="#" /></a>
-                          <a href=""><img class="default-none" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/bodegasSucur.png" alt="#" /></a>
-                       </div>
-                       <div class="full">
-                          <h4>Gestion Bodegas</h4>
-                       </div>
-                       <div class="full">
-                         <p>Prodrás gestionar los productos de la empresa agrupados por bodega.</p>
-                       </div>
-                   </div>
-                </div>
+	             <h:form>
+	             	<h:dataTable value="#{gestionProductosBodega.listProductos}" var="p" styleClass="tabla"
+						headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+						<h:column>
+							<f:facet  name="header">Codigo</f:facet>#{p.idProdcuto}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nombre Producto</f:facet>#{p.nombreProducto}
+						</h:column>			
+						<h:column>
+							<f:facet name="header">Precio Producto</f:facet>
+							<h:inputText value="#{p.precioProducto}" size="10"
+								rendered="#{p.editable}" />
+							<h:outputText value="#{p.precioProducto}" rendered="#{not p.editable}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Stock Producto</f:facet>
+							<h:inputText value="#{p.stockProducto}" size="10"
+								rendered="#{p.editable}" />
+							<h:outputText value="#{p.stockProducto}" rendered="#{not p.editable}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Accion</f:facet>
+							<h:commandLink value="Delete" action="#{gestionProductosBodega}" />
+						</h:column>
+					</h:dataTable>
+				 </h:form>
              </div>
-          </div>
-       </div>
-
-
+    	</div>
+	</div>
+	 
+	<div class="section about_section layout_padding dash_bg">
+		<div class="container-md">
+			<div class="row">
+		      <div class="container">
+		        <div class="section-title">
+		          <h2>Agregar Productos</h2>
+		        </div>
+		      </div>
+		      </div>
+		      <div class="row">
+		     <div class="container mt-5">
+			     <h:form headerClass="php-email-form">
+			        <div class="form-group">
+					         <h3>Seleccione Producto: </h3>
+					         <h:selectOneMenu value="#{gestionProductosBodega.nombreNoProducto}" style="margin-right: 5%;">
+					            <f:selectItems  value="#{gestionProductosBodega.listNoProductos}" var="p" itemValue="#{p.nombreProducto}" itemLabel="#{p.nombreProducto}" />
+					        </h:selectOneMenu>
+					        <!--  <h:selectOneMenu styleClass="btn btn-secondary dropdown-toggle" value="#{productosBean.nombreCategoria}" style="margin-right: 5%;">
+					            <f:selectItems  value="#{categoriaBean.listCategoria}" var="categoria" itemValue="#{categoria.nombre}" itemLabel="#{categoria.nombre}" pt:styleClass="dropdown-item"/>
+					        </h:selectOneMenu>  
+					        -->
+				     </div>
+			     	<div class="text-center"><h:commandButton value="Agregar Producto" action="#{gestionProductosBodega.agregarProductoBodega}">
+					</h:commandButton></div>
+			     </h:form>
+			</div>
+			</div>
+		</div>
+	</div>
+		
+		
+		
       <footer id="footer">
 	    <div class="container">
 	      <h3>Distribuidora Los Angeles</h3>

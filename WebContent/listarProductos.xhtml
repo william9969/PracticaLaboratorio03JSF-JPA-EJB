@@ -7,7 +7,6 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<title>Productos</title>
-	<meta charset="utf-8"></meta>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
 	<meta content="" name="description"></meta>
 	<meta content="" name="keywords"></meta>
@@ -26,6 +25,7 @@
 	<link href="css/style.css" rel="stylesheet"></link>
 </h:head>
 <h:body>
+
 	<header id="header" class="fixed-top d-flex align-items-center header-transparent">
 	  	<div class="container d-flex align-items-center">
 	      <div class="logo mr-auto">
@@ -46,7 +46,7 @@
 	    </div>
 	  </header>
 	
-	<section id="why-us1" class="why-us">
+	<section id="why-us" class="why-us">
       <div class="container">
         <div class="section-title">
           <h2><span>Productos</span></h2>
@@ -56,8 +56,8 @@
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
 				<div class="full feature_box">
 					<h4>Nombre: #{producto.nombreProducto}</h4>
-					<p>Precio: #{producto.stockProducto}</p>
-					<p>Stock: #{producto.stockProducto}</p>
+					<p>Precio: #{producto.precioProducto}</p>
+					
 					<h:form>
 						<h:commandButton value="Comprar" >
 						</h:commandButton>
@@ -94,7 +94,7 @@
 		      </div>
 		    </div>
 	 </footer><!-- End Footer -->
-
+	 
 <!-- Vendor JS Files -->
 	  <script src="vendor/jquery/jquery.min.js"></script>
 	  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -107,6 +107,6 @@
 	
 	  <!-- Template Main JS File -->
 	  <script src="js/main.js"></script>
-</h:body>
+	 </h:body>
 </html>
 

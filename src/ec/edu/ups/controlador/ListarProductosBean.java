@@ -31,7 +31,7 @@ public class ListarProductosBean implements Serializable{
 	private CategoriaFacade ejbCategoriaFacade;
 	private String nombreProducto;
 	private double precioProducto;
-	private int stockProducto;
+	//private int stockProducto;
 	private List<Productos> listProductos;
 	public String getNombreProducto() {
 		return nombreProducto;
@@ -45,12 +45,7 @@ public class ListarProductosBean implements Serializable{
 	public void setPrecioProducto(double precioProducto) {
 		this.precioProducto = precioProducto;
 	}
-	public int getStockProducto() {
-		return stockProducto;
-	}
-	public void setStockProducto(int stockProducto) {
-		this.stockProducto = stockProducto;
-	}
+	
 	public List<Productos> getListProductos() {
 		return listProductos;
 	}

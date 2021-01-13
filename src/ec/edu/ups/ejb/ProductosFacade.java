@@ -70,9 +70,34 @@ public class ProductosFacade extends AbstractFacade<Productos>{
 		return productos;
 	}
 	public List<Integer> idBodega(int id){
-		Query query = em.createNativeQuery("SELECT listProductos_IDPRODCUTO from bodega_productos where listBodega_IDBODEGA =" + id);
+		Query query = em.createNativeQuery("SELECT PRODUCTOS_IDPRODCUTO from  bodegaproductos where BODEGA_IDBODEGA =" + id);
         List<Integer> listIdProductos = query.getResultList();
         System.out.println("Lista de los Productos en Bodega"+listIdProductos);
+		return listIdProductos;
+	}
+	
+	public List<Productos> buscarNoProductosBodega(int idBodega){
+		List<Integer> idProductos= lisProductos(idBodega);
+		List<Productos> productos = new ArrayList<Productos>();
+		for(int i=0;i<idProductos.size();i++) {
+			int idpord=idProductos.get(i);
+			System.out.println("Id del Producto"+idpord);
+			CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+	        CriteriaQuery<Productos> productosCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
+	        Root<Productos> productosRoot = productosCriteriaQuery.from(Productos.class);
+	        Predicate predicate= criteriaBuilder.equal(productosRoot.get("idProdcuto"),idpord);
+			productosCriteriaQuery.select(productosRoot).where(predicate);
+			Productos producto=(Productos) em.createQuery(productosCriteriaQuery).getSingleResult(); 	
+			System.out.println("Producto --->"+producto);
+			productos.add(producto);
+		}
+		System.out.println("Total Productos");
+		return productos;
+	}
+	public List<Integer> lisProductos(int idBodega){
+		Query query = em.createNativeQuery("SELECT PRODUCTOS_IDPRODCUTO from bodegaproductos where BODEGA_IDBODEGA <>" + idBodega);
+        List<Integer> listIdProductos = query.getResultList();
+        System.out.println("Lista de los Productos que no estan en Bodega"+listIdProductos);
 		return listIdProductos;
 	}
 

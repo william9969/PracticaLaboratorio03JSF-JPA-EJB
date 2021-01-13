@@ -30,8 +30,10 @@ public class Bodega implements Serializable {
 	@JoinColumn
 	private Provincia provincia;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Productos> listProductos;
+	//@ManyToMany(cascade = CascadeType.ALL)
+	//private List<Productos> listProductos;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "bodega")
+	private List<BodegaProductos> listBodegaProductos;
 	
 	
 	public Bodega() {
@@ -47,8 +49,6 @@ public class Bodega implements Serializable {
 		this.direccion = direccion;
 		this.provincia = provincia;
 		
-		
-		listProductos = new ArrayList<Productos>();
 	}
 	
 	public int getIdBodega() {
@@ -91,9 +91,11 @@ public class Bodega implements Serializable {
 		this.direccion = direccion;
 	}
 
-
-	public List<Productos> getListProductos() {
-		return listProductos;
+	public List<BodegaProductos> getListBodegaProductos() {
+		return listBodegaProductos;
+	}
+	public void setListBodegaProductos(List<BodegaProductos> listBodegaProductos) {
+		this.listBodegaProductos = listBodegaProductos;
 	}
 	
 
@@ -103,14 +105,6 @@ public class Bodega implements Serializable {
 
 	public void setEditable(boolean editable) {
 		this.editable = editable;
-	}
-
-	public void setListProductos(List<Productos> listProductos) {
-		this.listProductos = listProductos;
-	}
-   
-	public void addProductos(Productos productos) {
-		this.listProductos.add(productos);
 	}
 
 	
@@ -129,7 +123,6 @@ public class Bodega implements Serializable {
 		result = prime * result + ((cuidad == null) ? 0 : cuidad.hashCode());
 		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
 		result = prime * result + idBodega;
-		result = prime * result + ((listProductos == null) ? 0 : listProductos.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((provincia == null) ? 0 : provincia.hashCode());
 		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
@@ -157,11 +150,7 @@ public class Bodega implements Serializable {
 			return false;
 		if (idBodega != other.idBodega)
 			return false;
-		if (listProductos == null) {
-			if (other.listProductos != null)
-				return false;
-		} else if (!listProductos.equals(other.listProductos))
-			return false;
+		
 		if (nombre == null) {
 			if (other.nombre != null)
 				return false;

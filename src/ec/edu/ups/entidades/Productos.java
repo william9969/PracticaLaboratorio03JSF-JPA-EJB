@@ -25,8 +25,10 @@ public class Productos implements Serializable {
 	
 	private String nombreProducto;
 	private double precioProducto;
-	private int stockProducto;
+	//private int stockProducto;
 	//private char estado;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="productos")
+	List<BodegaProductos> listBodegaProductos;
 	
 	@ManyToOne
 	@JoinColumn
@@ -38,20 +40,20 @@ public class Productos implements Serializable {
 	@Transient
 	private boolean editable;
 	
-	@ManyToMany(mappedBy = "listProductos")
-	private List<Bodega> listBodega;
+	//@ManyToMany(mappedBy = "listProductos")
+		//private List<Bodega> listBodega;
 	
 	public Productos() {
 		
 	}
 	
-	public Productos(String nombreProducto, double precioProducto, int stockProducto,
+	public Productos(String nombreProducto, double precioProducto, 
 			Categoria catProd) {
 		super();
 		
 		this.nombreProducto = nombreProducto;
 		this.precioProducto = precioProducto;
-		this.stockProducto = stockProducto;
+	//	this.stockProducto = stockProducto;
 		this.catProd = catProd;
 		
 	}
@@ -81,15 +83,6 @@ public class Productos implements Serializable {
 	public void setPrecioProducto(double precioProducto) {
 		this.precioProducto = precioProducto;
 	}
-
-	public int getStockProducto() {
-		return stockProducto;
-	}
-
-	public void setStockProducto(int stockProducto) {
-		this.stockProducto = stockProducto;
-	}
-
 	public boolean isEditable() {
 		return editable;
 	}
@@ -106,23 +99,6 @@ public class Productos implements Serializable {
 		this.catProd = catProd;
 	}
 
-	public List<Bodega> getListBodega() {
-		return listBodega;
-	}
-
-	public void addBodega(List<Bodega> listBodega) {
-		this.listBodega = listBodega;
-	}
-
-	
-	public void addBodega(Bodega bodega) {
-		 if(this.listBodega == null){
-	            this.listBodega = new ArrayList<>();
-	        }
-	        
-	        this.listBodega.add(bodega);
-	}
-	
 	public List<FacturaDetalle> getFacturaDetalles() {
 		return facturaDetalles;
 	}
@@ -134,7 +110,14 @@ public class Productos implements Serializable {
 	public void addFacturaDetalle(FacturaDetalle facDetalles) {
 		this.facturaDetalles.add(facDetalles);
 	}
+	
+	public List<BodegaProductos> getListBodegaProductos() {
+		return listBodegaProductos;
+	}
 
+	public void setListBodegaProductos(List<BodegaProductos> listBodegaProductos) {
+		this.listBodegaProductos = listBodegaProductos;
+	}
 
 
 	@Override
@@ -149,7 +132,7 @@ public class Productos implements Serializable {
 		long temp;
 		temp = Double.doubleToLongBits(precioProducto);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + stockProducto;
+		//result = prime * result + stockProducto;
 		return result;
 	}
 
@@ -185,8 +168,7 @@ public class Productos implements Serializable {
 			return false;
 		if (Double.doubleToLongBits(precioProducto) != Double.doubleToLongBits(other.precioProducto))
 			return false;
-		if (stockProducto != other.stockProducto)
-			return false;
+		
 		return true;
 	}
 

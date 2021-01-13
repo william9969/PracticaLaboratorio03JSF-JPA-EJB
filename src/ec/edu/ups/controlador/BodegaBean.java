@@ -39,72 +39,7 @@ public class BodegaBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		/*//ID=1
-		Categoria cat1 = ejbCategoriaFacade.find(1);
-		Productos pro1 =  new Productos("Crema", 4.75, 10, cat1);
-		Productos pro2 =  new Productos("Pasta Dental", 3.25, 10, cat1);
-		Productos pro3 =  new Productos("Shampoo para bebes", 5.10 , 10, cat1);
-		Productos pro4 =  new Productos("Jabon", 5.10 , 10, cat1);
-		
-		//ID=2
-		Categoria cat2 = ejbCategoriaFacade.find(2);
-		Productos pro5 =  new Productos("Suavitel", 3.60 , 5, cat2);
-		Productos pro6 =  new Productos("Detergente", 5.25 , 8, cat2);
-		Productos pro7 =  new Productos("Jabon Lava Todo", 4.30 , 4, cat2);
-		
-		//ID=3
-		Categoria cat3 = ejbCategoriaFacade.find(3);
-		Productos pro8 =  new Productos("mascarillas", 4.30 , 20, cat3);
-		Productos pro9 =  new Productos("guantes quirurjicos", 5.20 , 20, cat3);
-		
-		//ID=4
-		Categoria cat4 = ejbCategoriaFacade.find(4);
-		Productos pro10 =  new Productos("Dispensador de Jabon Liquido",12.50 , 13, cat4);
-		Productos pro11 =  new Productos("Dispensador de Toallas para manos",19.50 , 7, cat4);
-		
-		//ID=5
-		Categoria cat5 = ejbCategoriaFacade.find(5);
-		Productos pro12 =  new Productos("Escoba", 1.80 , 7, cat5);
-		Productos pro13 =  new Productos("Trapeador", 1.90 , 7, cat5);
-		
-		/**
-		 * Datos de la Provincia
-		 
-		
-		Provincia prov1 = new Provincia("Azuay");
-		Provincia prov2 = new Provincia("Pichincha");
-		Provincia prov3 = new Provincia("Guayas");
-		
-		ejbProvinciaFacade.create(prov1);
-		ejbProvinciaFacade.create(prov2);
-		ejbProvinciaFacade.create(prov3);
-		
-		/**
-		 * Datos de Bodegas
-		 
-		Bodega bodegaDis = new Bodega("Bodega Dismero", "2408321", "Cuenca", "Av. Americas",prov1 );
-		Bodega bodegaEcu = new Bodega("Bodega Ecua", "8652133", "Quito", "Av. Amazonas", prov2);
-		Bodega bodegaLim = new Bodega("Bodega LIMPIA", "8652133", "Guayaquil", "Av. Amazonas",prov3);
-		
-		bodegaDis.addProductos(pro1);
-		bodegaDis.addProductos(pro2);
-		bodegaDis.addProductos(pro3);
-		bodegaDis.addProductos(pro4);
-		
-		bodegaEcu.addProductos(pro5);
-		bodegaEcu.addProductos(pro6);
-		bodegaEcu.addProductos(pro7);
-		bodegaEcu.addProductos(pro8);
-		bodegaEcu.addProductos(pro9);
-		
-		bodegaLim.addProductos(pro10);
-		bodegaLim.addProductos(pro11);
-		bodegaLim.addProductos(pro12);
-		bodegaLim.addProductos(pro13);
-		
-		ejbBodegaFacade.create(bodegaDis);
-		ejbBodegaFacade.create(bodegaEcu);
-		ejbBodegaFacade.create(bodegaLim);*/
+	
 		listBodega=ejbBodegaFacade.findAll();
 	}
 	
@@ -169,6 +104,87 @@ public class BodegaBean implements Serializable {
 		return null;
 	}
 	
+
+
 	
 	
+	/*
+	
+	public void agregarBodegas() {
+		//ID=1
+				Categoria cat1 = ejbCategoriaFacade.find(1);
+				Productos pro1 =  new Productos("Crema", 4.75,  cat1);
+				Productos pro2 =  new Productos("Pasta Dental", 3.25,  cat1);
+				Productos pro3 =  new Productos("Shampoo para bebes", 5.10 ,  cat1);
+				Productos pro4 =  new Productos("Jabon", 5.10 ,  cat1);
+				
+				//ID=2
+				Categoria cat2 = ejbCategoriaFacade.find(2);
+				Productos pro5 =  new Productos("Suavitel", 3.60 , cat2);
+				Productos pro6 =  new Productos("Detergente", 5.25 , cat2);
+				Productos pro7 =  new Productos("Jabon Lava Todo", 4.30 , cat2);
+				
+				//ID=3
+				Categoria cat3 = ejbCategoriaFacade.find(3);
+				Productos pro8 =  new Productos("mascarillas", 4.30 , cat3);
+				Productos pro9 =  new Productos("guantes quirurjicos", 5.20 ,  cat3);
+				
+				//ID=4
+				Categoria cat4 = ejbCategoriaFacade.find(4);
+				Productos pro10 =  new Productos("Dispensador de Jabon Liquido",12.50 ,  cat4);
+				Productos pro11 =  new Productos("Dispensador de Toallas para manos",19.50 , cat4);
+				
+				//ID=5
+				Categoria cat5 = ejbCategoriaFacade.find(5);
+				Productos pro12 =  new Productos("Escoba", 1.80 , cat5);
+				Productos pro13 =  new Productos("Trapeador", 1.90 , cat5);
+				
+				ejbProductosFacade.create(pro1);
+				ejbProductosFacade.create(pro2);
+				ejbProductosFacade.create(pro3);
+				ejbProductosFacade.create(pro4);
+				ejbProductosFacade.create(pro5);
+				ejbProductosFacade.create(pro6);
+				ejbProductosFacade.create(pro7);
+				ejbProductosFacade.create(pro8);
+				ejbProductosFacade.create(pro9);
+				ejbProductosFacade.create(pro10);
+				ejbProductosFacade.create(pro11);
+				ejbProductosFacade.create(pro12);
+				ejbProductosFacade.create(pro13);
+				
+				Provincia prov1 = new Provincia("Azuay");
+				Provincia prov2 = new Provincia("Pichincha");
+				Provincia prov3 = new Provincia("Guayas");
+				
+				ejbProvinciaFacade.create(prov1);
+				ejbProvinciaFacade.create(prov2);
+				ejbProvinciaFacade.create(prov3);
+
+				Bodega bodegaDis = new Bodega("Bodega Dismero", "2408321", "Cuenca", "Av. Americas",prov1 );
+				Bodega bodegaEcu = new Bodega("Bodega Ecua", "8652133", "Quito", "Av. Amazonas", prov2);
+				Bodega bodegaLim = new Bodega("Bodega LIMPIA", "8652133", "Guayaquil", "Av. Amazonas",prov3);
+				
+				
+				
+				
+				
+				ejbBodegaFacade.create(bodegaDis);
+				ejbBodegaFacade.create(bodegaEcu);
+				ejbBodegaFacade.create(bodegaLim);
+				
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaDis, pro1, 20));
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaDis, pro2, 25));
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaDis, pro3, 12));
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaDis, pro4, 30));
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaEcu, pro5, 28));
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaEcu, pro6, 67));
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaEcu, pro7, 13));
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaEcu, pro8, 25));
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaEcu, pro9, 22));
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaLim, pro10, 15));
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaLim, pro11, 8));
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaLim, pro12, 90));
+				ejbBodegaProductosFacade.create(new BodegaProductos(bodegaLim, pro13, 8));
+	}*/
 }

@@ -3,12 +3,15 @@ package ec.edu.ups.controlador;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
+import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.ejb.ProductosFacade;
+import ec.edu.ups.entidades.Bodega;
 import ec.edu.ups.entidades.Categoria;
 import ec.edu.ups.entidades.Productos;
 
@@ -21,40 +24,41 @@ public class ProductosBean implements Serializable {
 	
 	@EJB
 	private ProductosFacade ejbProductosFacade;
+	@EJB
+	private CategoriaFacade ejbCategoriaFacade;
 	
-	private List<Productos> list;
+	private List<Productos> listProductos;
+	private String nombreCategoria;
 	
 	private int idProdcuto;
 	
 	private String nombreProducto;
 	private double precioProducto;
-	private int stockProducto;
-	
+	//private int stockProducto;
+	private List<Bodega> listbodegaProd;
 	private Categoria catProd;
 	
+	@PostConstruct
+	public void init() {
+
+		listProductos=ejbProductosFacade.findAll();
+	}
+	
 	public String add() {
-		if (this.catProd != null) {
-			Productos productos = new Productos();
-			productos.setNombreProducto(this.nombreProducto);
-			productos.setPrecioProducto(this.precioProducto);
-			productos.setStockProducto(this.stockProducto);
-			productos.setCatProd(this.catProd);
-			
-			ejbProductosFacade.create(productos);
-		} else {
-			System.out.println("Debe tener categoria ");
-		}
-		
-		//ejbProductosFacade.create(new Productos(this.nombreProducto, this.precioProducto, this.stockProducto, this.catProd));
-		this.list = ejbProductosFacade.findAll();
+		catProd =ejbCategoriaFacade.buscarCategoriaPorNombre(nombreCategoria);
+		Productos producto = new Productos(nombreProducto,precioProducto,catProd);
+		ejbProductosFacade.create(producto);
+		this.listProductos = ejbProductosFacade.findAll();
+		nombreProducto=null;
+		precioProducto=0.0;
+		//stockProducto=0;
+		catProd=null;
 		return null;
 	}
 	
-	
-	
 	public String delete(Productos productos) {
 		ejbProductosFacade.remove(productos);
-		list = ejbProductosFacade.findAll();
+		listProductos = ejbProductosFacade.findAll();
 		return null;
 	}
 	
@@ -77,12 +81,12 @@ public class ProductosBean implements Serializable {
 		this.ejbProductosFacade = ejbProductosFacade;
 	}
 
-	public List<Productos> getList() {
-		return list;
+	public List<Productos> getListProductos() {
+		return listProductos;
 	}
 
-	public void setList(List<Productos> list) {
-		this.list = list;
+	public void setListProductos(List<Productos> listProductos) {
+		this.listProductos = listProductos;
 	}
 
 	public int getIdProdcuto() {
@@ -109,13 +113,13 @@ public class ProductosBean implements Serializable {
 		this.precioProducto = precioProducto;
 	}
 
-	public int getStockProducto() {
+	/*public int getStockProducto() {
 		return stockProducto;
 	}
 
 	public void setStockProducto(int stockProducto) {
 		this.stockProducto = stockProducto;
-	}
+	}*/
 
 	public Categoria getCatProd() {
 		return catProd;
@@ -124,10 +128,25 @@ public class ProductosBean implements Serializable {
 	public void setCatProd(Categoria catProd) {
 		this.catProd = catProd;
 	}
-	
+	public String getNombreCategoria() {
+		return nombreCategoria;
+	}
+
+
+	public void setNombreCategoria(String nombreCategoria) {
+		this.nombreCategoria = nombreCategoria;
+	}
+
+
+	public List<Bodega> getListbodegaProd() {
+		return listbodegaProd;
+	}
+	public void setListbodegaProd(List<Bodega> listbodegaProd) {
+		this.listbodegaProd = listbodegaProd;
+	}
 	 public void newProducto() {
 	        this.nombreProducto = null;
 	        this.precioProducto = 0.0;
-	        this.stockProducto = 0;
+	        //this.stockProducto = 0;
 	    }
 }
