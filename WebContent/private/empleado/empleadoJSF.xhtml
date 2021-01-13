@@ -6,7 +6,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
-	<title>Inicio Empleado</title>
+	<title>Login</title>
 	
 	<meta charset="utf-8"></meta>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
@@ -30,9 +30,9 @@
                 <li class="nav-item">
 		            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cliente</a>
 		            <div class="dropdown-menu">
-		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/cliente.xhtml">Agregar Cliente</a>
-		            	<a class="dropdown-item" href="#">Editar Cliente</a>
-		            	<a class="dropdown-item" href="#">Eliminar Cliente</a>
+		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/AgregarCliente.xhtml">Agregar Cliente</a>
+		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/EditarCliente.xhtml">Editar Cliente</a>
+		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/EliminarCliente.xhtml">Eliminar Cliente</a>
 	                </div>
                 </li>
                 <li class="nav-item">
@@ -51,52 +51,81 @@
               </ul>
             
         </header>
-      
-  <!--CREAR FORMULARIO DE REGISTRO-->
+        
        
-    <div class="section about_section layout_padding dash_bg ">  
-        <div class="text-center bg-light ">
-            <img src="" class="rounded" alt="..."/>
-            <div class="heading_main text_align_center bg-light">
-                <h2>Registro de Productos</h2>
-            </div>
-        </div>
-        <div class="container bg-secondary">
-            <form >
-               
-                <div class="form-row">
-                    <div class="col">
-                        <label for="exampleFormControlInput1 " class ="text-white">Cedula: </label>
-                        <input type="text" class="form-control" name="nomProdR" placeholder="Ingresar Numero de Cedula .." />
-                    </div>
-                    
-                  </div>
-                <br></br>
-                <div class="form-group ">
-                    <label for="exampleFormControlInput1 " class= "text-white" >Nombres: </label>
-                    <input type="text" class="form-control"  name="canProR" placeholder="Ingresar los nombres"/>
+        <div class="section about_section layout_padding dash_bg">
+          <div class="container">
+             <div class="row">
+                <div class="col-md-12">
+                   <div class="full">
+                      <div class="heading_main text_align_center">
+                         <h2>Hola, #{personaBean.nombres} ¿Qué quieres hacer?</h2>
+                      </div>
+                   </div>
                 </div>
-                <div class="form-row">
-                    <div class="col">
-         
-	                    <label for="exampleFormControlInput1 " class= "text-white" >Dirección: </label>
-	                    <input type="text" class="form-control"  name="canProR" placeholder="Ingresar direccion"/>
-               		</div>
+             </div>
+             <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                   <div class="full feature_box">
+                       <div class="full icon">
+                          <a href=""><img class="default-block" src="" alt="#" /></a>
+                          <a href=""><img class="default-none" src="" alt="#" /></a>
+                       </div>
+                       <div class="full">
+                          <h4>Empresa: Los Angeles</h4>
+                       </div>
+                       <div class="full">
+                         <p>Datos importantes sobre nuestra empresa, además nuestros colaboradores.</p>
+                       </div>
+                   </div>
                 </div>
-                    </div>
-                    <div class="col">
-                    	<label for="exampleFormControlInput1 " class="text-white" data-toggle="popover" data-placement="bottom"  data-content="" >Categoria</label>
-                        <input type="text" class="form-control" />
-                    </div>
-                  </div>
-                  <br></br>
-                  <button type="submit" class="btn btn-primary">Registrar</button>
-               
-            </form>
-               <br></br>
-        </div> 
-    </div>
-    
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                   <div class="full feature_box">
+                       <div class="full icon">
+                          <a href=""><img class="default-block" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/prodIC.png" alt="#" /></a>
+                          <a href=""><img class="default-none" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/prodIC.png"  alt="#" /></a>
+                       </div>
+                       <div class="full">
+                          <h4>Productos</h4>
+                       </div>
+                       <div class="full">
+                         <p>Puedes revisar los productos existentes en la empresa, por categoria y bodega además, listarlos.</p>
+                       </div>
+                   </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                   <div class="full feature_box">
+                       <div class="full icon">
+                          <a href=""><img class="default-block" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/usuIC.png" alt="#" /></a>
+                          <a href=""><img class="default-none" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/usuIC.png" alt="#" /></a>
+                       </div>
+                       <div class="full">
+                          <h4>Facturas</h4>
+                       </div>
+                       <div class="full">
+                         <p>Puedes gestionar las facturas </p>
+                       </div>
+                   </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                   <div class="full feature_box">
+                       <div class="full icon">
+                          <a href=""><img class="default-block" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/factura.png" alt="#" /></a>
+                          <a href=""><img class="default-none" src="http://localhost:8080/Practica03EJB-JPA-JSF/images/factura.png" alt="#" /></a>
+                       </div>
+                       <div class="full">
+                          <h4>Gestion</h4>
+                       </div>
+                       <div class="full">
+                         <p>Prodrás gestionar los clientes que desees adquirir los productos.</p>
+                       </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+
+
       <footer id="footer">
 	    <div class="container">
 	      <h3>Distribuidora Los Angeles</h3>

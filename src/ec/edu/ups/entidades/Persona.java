@@ -51,8 +51,9 @@ public class Persona implements Serializable {
 	}
 	
 	public Persona() {
-		super();
-		// TODO Auto-generated constructor stub
+		this.rolUsuario = 'C';
+		this.contrasenia = "cliente";
+		this.activo = true;
 	}
 
 	public String getCedula() {
