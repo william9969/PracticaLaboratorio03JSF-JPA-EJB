@@ -99,9 +99,15 @@ public class ProductosFacade extends AbstractFacade<Productos>{
         System.out.println("Lista de los Productos que no estan en Bodega"+listIdProductos);
 		return listIdProductos;
 	}
-	public List<Productos> finByName(String proNombre) {
-		String sql = "SELECT PRODUCTOS p WHERE LOWER(p.NOMBREPRODUCTO) LIKE LOWER('%" +proNombre+"%')";
-		return (List<Productos>) em.createQuery(sql).getResultList();
+	public List<Productos> finByName(String nombre) {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Productos> productoCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
+        Root<Productos> productoRoot = productoCriteriaQuery.from(Productos.class);
+        Predicate predicate= criteriaBuilder.equal(productoRoot.get("nombreProducto"),nombre);
+        productoCriteriaQuery.select(productoRoot).where(predicate);
+		
+        return (List<Productos>) em.createQuery(productoCriteriaQuery).getSingleResult();
+		
 		
 	}
 	

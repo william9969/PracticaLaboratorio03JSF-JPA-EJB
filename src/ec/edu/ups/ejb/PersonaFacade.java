@@ -26,16 +26,18 @@ public class PersonaFacade extends AbstractFacade<Persona>{
 	}
 	
 	public Persona buscarPersonaCedula(String cedula) {
-		Persona persona=null;
-		String queryFindPRoductos="SELECT p FROM Persona p WHERE p.cedula=:ced";
+		
+		String queryFind="SELECT p FROM Persona p WHERE p.cedula=:"+cedula+" AND p.rolUsuario=''";
 		try {
-			persona = (Persona) em.createQuery(queryFindPRoductos).setParameter("ced",cedula ).getSingleResult();
+			Persona persona = (Persona) em.createQuery(queryFind).getSingleResult();
 			em.close();
+			return persona;
 		}catch(Exception e) {
 			System.out.println("Error al buscar la Persona");
+			return null;
 		}
 		
-		return persona;
+		
 	}
 	
 	public Persona finByEmailAndPass(String correo, String contrasenia) {

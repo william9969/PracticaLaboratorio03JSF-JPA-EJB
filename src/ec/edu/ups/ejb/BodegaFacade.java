@@ -23,5 +23,16 @@ public class BodegaFacade extends AbstractFacade<Bodega>{
 		// TODO Auto-generated method stub
 		return em;
 	}
-
+	public Bodega buscarBodega (String nombre) {
+		try {
+			String jpql = "SELECT b FROM Bodega b WHERE b.nombre='" + nombre + "'";
+			Bodega bod = (Bodega) em.createQuery(jpql).getSingleResult();
+			return bod;
+			
+		} catch (Exception e) {
+			return null;
+		}
+		
+	}
+	
 }
