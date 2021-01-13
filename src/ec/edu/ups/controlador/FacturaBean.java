@@ -1,6 +1,8 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +12,13 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
+import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.BodegaProductosFacade;
 import ec.edu.ups.ejb.FacturaCabeceraFacade;
+import ec.edu.ups.ejb.FacturaDetalleFacade;
 import ec.edu.ups.ejb.PersonaFacade;
 import ec.edu.ups.ejb.ProductosFacade;
+import ec.edu.ups.entidades.Bodega;
 import ec.edu.ups.entidades.BodegaProductos;
 import ec.edu.ups.entidades.FacturaCabecera;
 import ec.edu.ups.entidades.FacturaDetalle;
@@ -21,7 +26,7 @@ import ec.edu.ups.entidades.Persona;
 import ec.edu.ups.entidades.Productos;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
-@Named(value = "nuevaFacturaBean")
+@Named(value = "FacturaBean")
 @SessionScoped
 
 public class FacturaBean implements Serializable {
@@ -35,16 +40,28 @@ public class FacturaBean implements Serializable {
 	@EJB
 	private FacturaCabeceraFacade ejbCabeceraFacade;
 	@EJB
+	private FacturaDetalleFacade ejbFacturaDetalleFacade;
+	@EJB
 	private BodegaProductosFacade ejbpBodegaProductosFacade;
+	@EJB
+	private BodegaFacade ejbBodegaFacade;
+	
 	private String cedula;
+	private String nombres;
+	private String direccion;
+	private String correo;
 	private String proNombre;
 	private Persona persona;
 	private List<FacturaDetalle> facturaDetalles;
-	private List<Productos> productos;
+	private List<Productos> productos = new ArrayList<Productos>();
 	private Productos producto;
 	private FacturaCabecera facturaCabecera;
 	private List<BodegaProductos> inventarios;
 	private BodegaProductos inventario;
+	private String bodega="";
+	private List<Bodega> listBodega = new ArrayList<Bodega>();
+	private List<Bodega> bodegas = new ArrayList<Bodega>();
+	private String productoBuscar="";
 	
 	public FacturaBean() {
 		// TODO Auto-generated constructor stub
@@ -54,6 +71,10 @@ public class FacturaBean implements Serializable {
 	private void init() {
 		facturaDetalles = new ArrayList<>();
 		facturaCabecera =  new FacturaCabecera();
+		
+		listBodega = ejbBodegaFacade.findAll();
+		
+		productos = ejbProductosFacade.findAll();
 	}
 
 	public PersonaFacade getEjbPersonaFacade() {
@@ -151,20 +172,106 @@ public class FacturaBean implements Serializable {
 	public void setInventario(BodegaProductos inventario) {
 		this.inventario = inventario;
 	}
+	
+
+	public String getNombres() {
+		return nombres;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public BodegaProductosFacade getEjbpBodegaProductosFacade() {
+		return ejbpBodegaProductosFacade;
+	}
+
+	public void setEjbpBodegaProductosFacade(BodegaProductosFacade ejbpBodegaProductosFacade) {
+		this.ejbpBodegaProductosFacade = ejbpBodegaProductosFacade;
+	}
+
+	public String getBodega() {
+		return bodega;
+	}
+
+	public void setBodega(String bodega) {
+		this.bodega = bodega;
+	}
+
+	
+
+	public List<Bodega> getListBodega() {
+		return listBodega;
+	}
+
+	public void setListBodega(List<Bodega> listBodega) {
+		this.listBodega = listBodega;
+	}
+
+	public String getProductoBuscar() {
+		return productoBuscar;
+	}
+
+	public void setProductoBuscar(String productoBuscar) {
+		this.productoBuscar = productoBuscar;
+	}
+
+	public List<Bodega> getBodegas() {
+		return bodegas;
+	}
+
+	public void setBodegas(List<Bodega> bodegas) {
+		this.bodegas = bodegas;
+	}
 
 	/**
 	 * Metodo Buscar Usuario
 	 * */
 	public void buscarPersona() {
-		try {
-			this.persona = ejbPersonaFacade.find(this.cedula);
-		} catch (Exception e) {
-			// TODO: handle exception
+		System.out.println("Entr");
+		persona = ejbPersonaFacade.buscarPersonaCedula(cedula);
+		this.setCedula(persona.getCedula());
+		this.setNombres(persona.getNombres());
+		
+		this.setDireccion(persona.getDireccion());
+		this.setCorreo(persona.getCorreo());
+		
+	}
+	/**
+	 * Metodo Filtrar
+	 * */
+	public void filtrar() {
+		if (inventarios.equals("")) {
+			inventarios = ejbBodegaFacade.buscarBodega(bodega).getListBodegaProductos();
+		}else {
+			List<Productos> pr= ejbProductosFacade.finByName(productoBuscar);
+			productos = new ArrayList<Productos>();
+			for (int i=0; i< pr.size();i++) {
+				if (pr.get(i).getListBodegaProductos().get(0).getBodega().getNombre().equals(bodega)) {
+					productos.add(pr.get(i));
+				}
+			}
 		}
 	}
-	
 	public void buscarProducto() {
-		this.productos = ejbProductosFacade.finByName(this.proNombre);
+		//this.productos = ejbProductosFacade.finByName(this.proNombre);
+		this.producto = ejbProductosFacade.buscarProductoPorNombre(this.proNombre);
 	}
 	
 	public void limpiar() {
@@ -172,8 +279,8 @@ public class FacturaBean implements Serializable {
 		this.productos = new ArrayList<>();
 	}
 	
-	public String addProducto(BodegaProductos inventario) {
-		this.inventario = inventario;
+	public String addProducto(Productos inventario) {
+		this.producto = inventario;
 		FacturaDetalle fd = new FacturaDetalle();
 		fd.setCantidad(1);
 		fd.setDetProducto(producto);
@@ -252,5 +359,34 @@ public class FacturaBean implements Serializable {
 		persona = null;
 		facturaDetalles = new ArrayList<>();
 		productos = null;
+	}
+	
+	public void agregarDetalle(Productos productoDetalle) {
+		try {
+			
+			
+			
+			
+			DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
+			separadoresPersonalizados.setDecimalSeparator('.');
+			DecimalFormat formato1 = new DecimalFormat("#.00", separadoresPersonalizados);
+			
+			
+			Productos producto = ejbProductosFacade.find(productoDetalle.getIdProdcuto());
+			if(producto.getStock()>=productoDetalle.getStock()) {
+				FacturaDetalle det = new FacturaDetalle(productoDetalle.getStock(), producto.getPrecioProducto()*productoDetalle.getStock(), facturaCabecera, producto);
+				
+				facturaCabecera.setSubtotal(facturaCabecera.getSubtotal()+producto.getPrecioProducto()*productoDetalle.getStock());
+				facturaCabecera.setIva(Float.parseFloat(formato1.format(facturaCabecera.getSubtotal()*(float)0.12)));
+				facturaCabecera.setTotal(facturaCabecera.getIva()+facturaCabecera.getSubtotal());
+				facturaDetalles.add(det);
+			}else {
+				System.out.println("no entra a la condicion");
+			}
+		} catch (Exception e) {
+			System.out.println("Falta introducir un cliente");
+		}
+			
+		
 	}
 }
