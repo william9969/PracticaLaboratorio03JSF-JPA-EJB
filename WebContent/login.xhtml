@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -8,62 +9,81 @@
 <h:head>
 	<title>Login</title>
 	
-	<meta charset="utf-8"></meta>
-	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
-	<meta content="" name="description"></meta>
-	<meta content="" name="keywords"></meta>
+   
+	<!--Bootsrap 4 CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    
+    <!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
+
+	<!--Custom styles-->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/stylesSS.css"/>
 	
-	<link href="imagen/favicon.png" rel="icon"></link>
-	<link href="imagen/apple-touch-icon.png" rel="apple-touch-icon"></link>
-
-	<link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet"></link>
-
-	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
-	<link href="vendor/icofont/icofont.min.css" rel="stylesheet"></link>
-	<link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet"></link>
-	<link href="vendor/animate.css/animate.min.css" rel="stylesheet"></link>
-	<link href="vendor/venobox/venobox.css" rel="stylesheet"></link>
-	<link href="vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet"></link>
-	<link href="css/style.css" rel="stylesheet"></link>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+	
+	
 </h:head>
-<h:body>
-<li><h:commandLink action="login">
-								<span class="fa fa-unlock-alt" aria-hidden="true"></span> Iniciar
-							Sesion
-					</h:commandLink></li>
-	<h:form id="form">
+<h:body >
+
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Login</h3>
+				<div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+					<span><i class="fab fa-twitter-square"></i></span>
+				</div>
+			</div>
+			<div class="card-body">
+				<h:form id="form">
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<h:inputText id="usuario" class="form-control" placeholder="usuario" value="#{personaBean.correo}" required="true"
+					requiredMessage="Campo Obligatorio" redisplay="true">
+					<f:ajax event="blur" render="messageForUser" />   
+					</h:inputText>
+					<h:message id="messageForUser"
+					for=""
+					style="color:red;font-size: 17px;margin-left: 36%" />	
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
 						
-
-						<ul>
-							<li class="user">Usuario: <h:inputText id="usuario"
-									size="50" value="#{personaBean.correo}" required="true"
-									requiredMessage="Campo Obligatorio" redisplay="true">
-									<f:ajax event="blur" render="messageForUser" />   
-									</h:inputText>
-									
-									<h:message id="messageForUser"
-									for=""
-									style="color:red;font-size: 17px;margin-left: 36%" />
-							</li>
-
-							<li class="password">Contraseña: <h:inputSecret size="50"
-									value="#{personaBean.contrasenia}" id="contrasenia" required="true"
-									requiredMessage="Campo Obligatorio" redisplay="true">
-									<f:ajax event="blur" render="messageForPasswd" />   
-
-								</h:inputSecret> 
-								
-								<h:message id="messageForPasswd" for=""
-									style="color:red;font-size: 17px;margin-left: 36%" />
-							</li>
-						</ul>
-						<h:message for="form" style="color:red" /><br>
-						</br>
-
-						<h:commandButton class="login" value="Iniciar Sesion" type="submit"
+						<h:inputSecret class="form-control" placeholder="password"
+					value="#{personaBean.contrasenia}" id="contrasenia" required="true"
+					requiredMessage="Campo Obligatorio" redisplay="true">
+					<f:ajax event="blur" render="messageForPasswd" />
+					</h:inputSecret> 
+					<h:message id="messageForPasswd" for=""
+					style="color:red;font-size: 17px;margin-left: 36%" />
+					</div>
+					
+					<div class="form-group">
+						<h:commandButton class="login btn float-right login_btn" value="Iniciar" type="submit"
 							action="#{personaBean.login()}" />
+						
+					</div>
+				</h:form>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					Don't have an account?<a href="#">Sign Up</a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a href="#">Forgot your password?</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-					</h:form>
-
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </h:body>
 </html>

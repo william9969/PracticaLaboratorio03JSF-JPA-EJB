@@ -41,6 +41,8 @@ public class PersonaBean implements Serializable {
 	private boolean activo;
 	
 	private List<Persona> list;
+	private List<Persona> listClientes;
+	
 	
 	@PostConstruct
 	public void init() {
@@ -51,12 +53,13 @@ public class PersonaBean implements Serializable {
 		list = ejbPersonaFacade.findAll();
 	}
 	public String add() {
-		ejbPersonaFacade.create(new Persona(this.cedula, this.nombres, this.direccion, this.correo, this.contrasenia, this.rolUsuario, this.activo));
+		ejbPersonaFacade.create(new Persona(this.cedula, this.nombres, this.direccion, this.correo, this.contrasenia="123", this.rolUsuario='C', this.activo=true));
 		return null;
 	}
 	
 	public String delete(Persona persona) {
 		ejbPersonaFacade.remove(persona);
+		list = ejbPersonaFacade.findAll();
 		return null;
 	}
 	
@@ -162,6 +165,14 @@ public class PersonaBean implements Serializable {
 		this.list = list;
 	}
 	
+	
+	
+	public List<Persona> getListClientes() {
+		return listClientes;
+	}
+	public void setListClientes(List<Persona> listClientes) {
+		this.listClientes = listClientes;
+	}
 	/**
 	 * Metodo Iniciar Seccion
 	 * */
@@ -206,4 +217,8 @@ public class PersonaBean implements Serializable {
         return "/login.xhtml";
 	}
 
+	public void listarClientes() {
+		this.list = ejbPersonaFacade.findClientes();
+		cedula = null;
+	}
 }

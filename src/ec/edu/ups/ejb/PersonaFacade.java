@@ -1,5 +1,7 @@
 package ec.edu.ups.ejb;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -47,6 +49,13 @@ public class PersonaFacade extends AbstractFacade<Persona>{
 			 System.out.println("Error: "+e);
 	            return null;
 		}
+	}
+
+	public List<Persona> findClientes() {
+		
+		String sql = "SELECT p FROM Persona p WHERE p.rolUsuario='C' ";
+	
+		return (List<Persona>) em.createQuery(sql).getResultList();
 	}
 
 
