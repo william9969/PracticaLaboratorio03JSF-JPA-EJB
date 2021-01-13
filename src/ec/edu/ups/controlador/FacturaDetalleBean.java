@@ -81,30 +81,6 @@ public class FacturaDetalleBean implements Serializable{
 		this.producto = producto;
 	}
 
-	public FacturaDetalleFacade getEjbFacturaDetalleFacade() {
-		return ejbFacturaDetalleFacade;
-	}
-	public void setEjbFacturaDetalleFacade(FacturaDetalleFacade ejbFacturaDetalleFacade) {
-		this.ejbFacturaDetalleFacade = ejbFacturaDetalleFacade;
-	}
-	public FacturaCabeceraFacade getEjbFacturaCabecera() {
-		return ejbFacturaCabecera;
-	}
-	public void setEjbFacturaCabecera(FacturaCabeceraFacade ejbFacturaCabecera) {
-		this.ejbFacturaCabecera = ejbFacturaCabecera;
-	}
-	public ProductosFacade getEjbProductosFacade() {
-		return ejbProductosFacade;
-	}
-	public void setEjbProductosFacade(ProductosFacade ejbProductosFacade) {
-		this.ejbProductosFacade = ejbProductosFacade;
-	}
-	public Persona getPersona() {
-		return persona;
-	}
-	public void setPersona(Persona persona) {
-		this.persona = persona;
-	}
 	public String add() {
 
 		ejbFacturaDetalleFacade.create(new FacturaDetalle(this.cantidad,this.total,this.facCab, this.producto));

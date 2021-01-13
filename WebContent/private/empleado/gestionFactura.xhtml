@@ -5,10 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head> 
 	<meta charset="utf-8"></meta>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
@@ -30,7 +27,6 @@
   
 </h:head>
 
-<h:body>
 
 	<header class ="float-right">
             <ul class="nav mt-2 justify-content-end">
@@ -63,45 +59,48 @@
               </ul>
             
         </header>
- <div class="section about_section layout_padding dash_bg "> 
- <div class="breadcrumbs-inner">
-                <div class="row m-0 d-flex justify-content-between">
-                    <div class="col-sm-4">
-                        <div class="page-header float-left">
-                            <div class="page-title">
-                                <h1>Nueva Factura</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex">
+	
+	  <div class="section about_section layout_padding dash_bg "> 
+		<div class="container">
+    <div class="row mt-4">
+      <div class="col-md">
 
-                        <div class="col-sm-12">
-                            <div class="page-header float-left">
-                                <div class="page-title">
-                                    <h:form id="f-buscar" class="d-flex align-items-center">
-                                        <div class="form-group mr-3 d-flex align-items-center">
-                                            <label for="input-search" class="sr-only">Buscar cliente</label>
-                                            <h:inputText class="form-control" id="input-search" a:placeholder="Buscar cliente"
+        <div class="form-group row">
+          <label for="CodigoFactura" class="col-lg-3 col-form-label">Número de factura:</label>
+          <div class="col-lg-3">
+            <input type="text"  class="form-control" id="CodigoFactura" />
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <label for="Fecha" class="col-lg-3 col-form-label">Fecha de emisión:</label>
+          <div class="col-lg-3">
+            <input type="date" class="form-control" id="Fecha" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="CodigoCliente" class="col-lg-3 col-form-label">Buscar Cliente:</label>
+          <div class="col-lg-3">
+         
+           
+            <h:inputText class="form-control" id="input-search" placeholder="Buscar cliente"
                                                          value="#{FacturaBean.cedula}"
                                                          />
-                                        </div>
-                                        <h:commandButton class="btn btn-primary" value="Buscar"
-                                                         action="#{FacturaBean.buscarPersona}"
-                                                         /> 
-                                    </h:form>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        
+            <p>
+                <h:commandButton class="btn btn-primary" value="Buscar"
+                                                         action="#{FacturaBean.buscarUsuario}"
+                                                         />
+            </p>
+          </div>
+        </div>
 
 
+      </div>
+    </div>
 
-        <div class="content">
+	        <div class="content">
             <div class="animated fadeIn">
                 <div class="row">
 
@@ -116,20 +115,30 @@
 
                                         <p> 
                                             <h:outputText value="Cedula:"/>
-                                            <span class="font-weight-bold" ><h:outputText value="#{FacturaBean.persona.cedula}"/></span>
+                                            <span class="font-weight-bold" ><h:outputText value="#{nuevaFacturaBean.usuario.cedula}"/></span>
                                         </p>
                                         <p> 
                                             <h:outputText value="Nombre:"/>
-                                            <span class="font-weight-bold" ><h:outputText value="#{FacturaBean.persona.nombres}"/></span>
+                                            <span class="font-weight-bold" ><h:outputText value="#{nuevaFacturaBean.usuario.nombre}"/></span>
                                         </p>
-                                        
+                                        <p> 
+                                            <h:outputText value="Apellido:"/>
+                                            <span class="font-weight-bold" ><h:outputText value="#{nuevaFacturaBean.usuario.apellido}"/></span>
+                                        </p>
                                         <p> 
                                             <h:outputText value="Correo:"/>
-                                            <span class="font-weight-bold" ><h:outputText value="#{FacturaBean.persona.correo}"/></span>
+                                            <span class="font-weight-bold" ><h:outputText value="#{nuevaFacturaBean.usuario.correo}"/></span>
                                         </p>
                                         <p> 
-                                           <h:outputText value="Direccion"/>
-                                            <span class="font-weight-bold" ><h:outputText value="#{FacturaBean.persona.direccion}"/></span>
+                                            <h:form> 
+                                                <h:outputText value="Direccion:"/>
+                                                <h:selectOneMenu class="form-control" id="usuario-direccion" converter="selectOneMenuConverter" value="#{nuevaFacturaBean.localidad}">
+                                                    <f:selectItem  itemLabel="Seleccione..." itemValue="#{null}" noSelectionOption="true"  />
+                                                    <f:selectItems  value="#{nuevaFacturaBean.usuario.localidades}" var="localidad" 
+                                                                    itemLabel="#{localidad.pais}-#{localidad.provincia}-#{localidad.ciudad}-#{localidad.direccion}" itemValue="#{localidad}"/>
+                                                    <f:ajax execute="usuario-direccion" />
+                                                </h:selectOneMenu>
+                                            </h:form>
                                         </p>
                                     </div>
 
@@ -150,50 +159,59 @@
                             </div>
                             <div class="card-body">
                                 <h:form class="d-flex justify-content-between">
-                                <label class="form-control-label">Bodegas: </label>
-							    	<h:selectOneMenu class="form-control" value="#{FacturaBean.bodega}" id="producto">
-							    		<f:selectItems value="#{FacturaBean.listBodega}" var="bodega" itemValue="#{bodega.nombre}" itemLabel="#{bodega.nombre}"/>
-							    	</h:selectOneMenu>
-                                    
-                                   
+                                    <h:inputText class="form-control w-50" id="buscar-producto" value="#{nuevaFacturaBean.productoNombre}" required="true" 
+                                                 a:placeholder="Buscar productos"
+                                                 />
+                                    <h:commandButton class="btn btn-primary" value="Buscar producto" action="#{nuevaFacturaBean.buscarProducto()}" />
+                                    <h:commandButton class="btn btn-danger" value="Limpiar tabla" action="#{nuevaFacturaBean.limpiarProductos()}" />
                                 </h:form>
                             </div>
 
-                            
-
-                        </div>
-                    </div>
-                </div>
-                <div class="table-stats order-table ov-h">
+                            <div class="table-stats order-table ov-h">
 
                                 <h:form>
-                                    <h:dataTable value="#{FacturaBean.productos}" var="p" styleClass="tabla w-100"
+                                    <h:dataTable value="#{nuevaFacturaBean.productos}" var="p" styleClass="tabla w-100"
                                                  headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-                                       
                                         <h:column>
-							<f:facet  name="header">Codigo</f:facet>#{p.idProdcuto}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Nombre Producto</f:facet>#{p.nombreProducto}
-						</h:column>			
-						<h:column>
-							<f:facet name="header">Precio Producto</f:facet>#{p.precioProducto}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Stock Producto</f:facet>#{p.stock}
-							
-						</h:column>
-						
-						<h:column>
-							<f:facet name="header">Accion</f:facet>
-							<h:commandLink value="Agregar" action="#{FacturaBean.addProducto(p)}" update="list:listaProductos"
-								/>
-							
-						</h:column>
+                                            <f:facet name="header">Imagen</f:facet>
+                                            <h:outputText value="#{p.imagen}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Nombre</f:facet>
+                                            <h:outputText value="#{p.nombre}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Categoria</f:facet>
+                                            <h:outputText value="#{p.categoria.nombre}" />
+                                        </h:column>   
+                                        <h:column>
+                                            <f:facet name="header">Precio</f:facet>
+                                            <h:outputText value="#{p.precio}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">En Inventario</f:facet>
+                                            <h:outputText value="#{nuevaFacturaBean.contarProductos(p.codigo)}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Bodegas</f:facet>
+                                            <h:commandButton id="btn-listar-bodegas"
+                                                             class="btn btn-primary" 
+                                                             a:data-toggle="modal" 
+                                                             a:data-target="#modalInventarios"
+                                                             value="Ver bodegas" 
+                                                             action="#{nuevaFacturaBean.listarInventarios(p)}">
+                                                <f:ajax execute="btn-listar-bodegas" 
+                                                        render="modalInventarios txt-producto-nombre table-inventarios" />
+                                            </h:commandButton>
+                                        </h:column>  
 
                                     </h:dataTable>
                                 </h:form>
                             </div> <!-- /.table-stats -->
+
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="card">
@@ -204,18 +222,18 @@
                             <div class="table-stats order-table ov-h">
                                 <h:form id="table-detalles">
                                     <h:dataTable 
-                                        value="#{FacturaBean.facturaDetalles}" 
+                                        value="#{nuevaFacturaBean.facturaDetalles}" 
                                         var="detalle" 
                                         styleClass="tabla w-100"
                                         headerClass="cabeceraTabla" 
                                         rowClasses="filaPar,filaImpar">
                                         <h:column>
                                             <f:facet name="header">Nombre</f:facet>
-                                            <h:outputText value="#{detalle.detProducto.nombreProducto}" />
+                                            <h:outputText value="#{detalle.producto.nombre}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">Precio unitario</f:facet>
-                                            <h:outputText value="#{detalle.detProducto.precioProducto}" />
+                                            <h:outputText value="#{detalle.producto.precio}" />
                                         </h:column>
                                         <h:column>
 
@@ -223,7 +241,7 @@
                                             <h:commandButton id="btn-add"
                                                              class="btn-primary mr-2"
                                                              value="-" 
-                                                             action="#{FacturaBean.deleteCantidad(detalle)}">
+                                                             action="#{nuevaFacturaBean.deleteCantidad(detalle)}">
                                                 <f:ajax execute="btn-add" 
                                                         render="table-detalles subTotal total" />
                                             </h:commandButton>
@@ -233,7 +251,7 @@
                                             <h:commandButton id="btn-delete"
                                                              class="btn-primary ml-2"
                                                              value="+" 
-                                                             action="#{FacturaBean.addCantidad(detalle)}">
+                                                             action="#{nuevaFacturaBean.addCantidad(detalle)}">
                                                 <f:ajax execute="btn-delete" 
                                                         render="table-detalles subTotal total" />
                                             </h:commandButton>
@@ -241,7 +259,7 @@
                                         </h:column>               
                                         <h:column>
                                             <f:facet name="header">Sub Total</f:facet>
-                                            <h:outputText id="txt-subtotal" value="#{detalle.total}" />
+                                            <h:outputText id="txt-subtotal" value="#{detalle.subtotal}" />
                                         </h:column>
 
                                     </h:dataTable>
@@ -265,32 +283,32 @@
                                         <h:outputText value="Sub Total:"/>
                                         <span class="font-weight-bold" ><h:outputText 
                                                 id="subTotal" 
-                                                value="#{FacturaBean.facturaCabecera.subtotal}"/></span>
+                                                value="#{nuevaFacturaBean.facturaCabecera.subTotal}"/></span>
                                     </p>
                                     <p> 
                                         <h:outputText value="Iva:"/>
                                         <span class="font-weight-bold" ><h:outputText 
                                                 id="iva" 
-                                                value="#{FacturaBean.facturaCabecera.iva*100} %"/></span>
+                                                value="#{nuevaFacturaBean.facturaCabecera.iva*100} %"/></span>
                                     </p>
                                     <p> 
                                         <h:outputText value="Total:"/>
                                         <span class="font-weight-bold" ><h:outputText 
                                                 id="total" 
-                                                value="#{FacturaBean.facturaCabecera.total}"/></span>
+                                                value="#{nuevaFacturaBean.facturaCabecera.total}"/></span>
                                     </p>
                                 </div>
                                 <h:form class="text-right">
 
 
-                                    <c:if test="${FacturaBean.persona != null}">
+                                    <c:if test="${nuevaFacturaBean.usuario != null}">
 
                                         <h:commandLink class="btn btn-danger mr-2" value="Cancelar"
-                                                       action="#{FacturaBean.cancelarFactura()}"
+                                                       action="#{nuevaFacturaBean.cancelarFactura()}"
                                                        /> 
 
                                         <h:commandButton class="btn btn-primary" value="Guardar"
-                                                         action="#{FacturaBean.generarFactura()}"
+                                                         action="#{nuevaFacturaBean.generarFactura()}"
                                                          /> 
 
                                     </c:if>
@@ -303,70 +321,141 @@
                 </div>
             </div><!-- .animated -->
         </div>
+	
+	
+    <div class="row mt-4">
+      <div class="col-md">
+        
+				<div class="modal-body">
 
-
-        <!-- Modal inventario-->
-        <div class="modal fade" id="modalInventarios" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="mediumModalLabel">Inventario - <h:outputText id="txt-producto-nombre" value="#{FacturaBean.producto.nombreProducto}"/> </h5>
-                    </div>
-
-
-                    <div class="modal-body">
-                        <h:form id="table-inventarios"> 
-                            <h:dataTable  value="#{FacturaBean.inventarios}" var="i" styleClass="tabla w-100"
-                                          headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Codigo</f:facet>
-                                    <h:outputText value="#{i.codigo}"/>
+                            <h:dataTable  styleClass="table w-100"  value="#{facturasBean.detalles}" var="d"
+                                          headerClass="cabeceraTabla" rowClasses="filaPar,filaImparar">
+                                <h:column>
+                                    <f:facet name="header">Producto</f:facet> 
+                                    <h:outputText value="#{d.producto.nombre}"/>               
                                 </h:column>
 
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Bodega</f:facet>
-                                    <h:outputText value="#{i.bodega.nombre}"/>
-                                </h:column>
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Pais</f:facet>
-                                    <h:outputText value="#{i.bodega.localidad.pais}"/>
-                                </h:column>
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Provincia</f:facet>
-                                    <h:outputText value="#{i.bodega.localidad.provincia}"/>
-                                </h:column>
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Ciudad</f:facet>
-                                    <h:outputText value="#{i.bodega.localidad.ciudad}"/>
-                                </h:column>
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Direccion</f:facet>
-                                    <h:outputText value="#{i.bodega.localidad.direccion}"/>
-                                </h:column>
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Telefono</f:facet>
-                                    <h:outputText value="#{i.bodega.localidad.telefono}"/>
-                                </h:column>
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Cantidad</f:facet>
-                                    <h:outputText value="#{i.cantidad}"/>
+                                <h:column>
+                                    <f:facet name="header">Precio Unitario</f:facet> 
+                                    <h:outputText value="#{d.producto.precio}"/>
                                 </h:column>
 
-                                
+                                <h:column>
+                                    <f:facet name="header">Categoria</f:facet> 
+                                    <h:outputText value="#{d.producto.categoria.nombre}"/>      
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">Cantidad</f:facet> 
+                                    <h:outputText value="#{d.cantidad}"/>    
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">Subtotal</f:facet> 
+                                    <h:outputText value="#{d.subtotal}"/>   
+                                </h:column>
 
                             </h:dataTable>
-                        </h:form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
+
+                        </div>
+          
+        <button type="button" id="btnAgregarProducto" class="btn btn-success">Agregar Producto</button>
+        <button type="button" id="btnTerminarFactura" class="btn btn-success">Terminar Factura</button>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!-- ModalProducto(Agregar) -->
+  <div class="modal fade" id="ModalProducto" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
-        <!-- END Modal -->
- </div>  
-  
-</h:body>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label>Producto:</label>
+            <select class="form-control" id="CodigoProducto">
+              seleccionar
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label>Cantidad:</label>
+              <input type="number" id="Cantidad" class="form-control" placeholder="" min="1"/>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="btnConfirmarAgregarProducto" class="btn btn-success">Agregar a la factura</button>
+          <button type="button" data-dismiss="modal" class="btn btn-success">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ModalFinFactura -->
+  <div class="modal fade" id="ModalFinFactura" tabindex="-1" role="dialog">
+    <div class="modal-dialog" style="max-width: 600px" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Acciones</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="btnConfirmarFactura" class="btn btn-success">Confirmar Factura</button>
+          <button type="button" id="btnConfirmarImprimirFactura" class="btn btn-success">Confirmar e Imprimir Factura</button>
+          <button type="button" id="btnConfirmarDescartarFactura" class="btn btn-success">Descartar la Factura</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ModalConfirmarBorrar -->
+  <div class="modal fade" id="ModalConfirmarBorrar" tabindex="-1" role="dialog">
+    <div class="modal-dialog" style="max-width: 600px" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>¿Realmente quiere borrarlo?</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="btnConfirmarBorrado" class="btn btn-success">Confirmar</button>
+          <button type="button" data-dismiss="modal" class="btn btn-success">Cancelar</button>
+        	
+        </div>
+      </div>
+    </div>
+   
+  </div>
+ <div class="col-xs-6 text-right">
+		<div class="col-xs-3 col-xs-offset-7 text-right" ><strong>
+		   <h5>Sub Total:</h5>
+		   <h5>Impuestos (IVA 21%):</h5>
+		   <h5>Total:</h5>
+		
+		
+		</strong></div>
+		
+    </div>
+ </div> 
+  <!-- ModalPago -->
+
 
 </html>
