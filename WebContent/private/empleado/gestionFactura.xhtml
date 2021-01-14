@@ -81,13 +81,14 @@
                                     <h:form id="f-buscar" class="d-flex align-items-center">
                                         <div class="form-group mr-3 d-flex align-items-center">
                                             <label for="input-search" class="sr-only">Buscar cliente</label>
-                                            <h:inputText class="form-control" id="input-search" a:placeholder="Buscar cliente"
+                                            <h:inputText class="form-control" id="ced" a:placeholder="Buscar cliente"
                                                          value="#{FacturaBean.cedula}"
                                                          />
                                         </div>
                                         <h:commandButton class="btn btn-primary" value="Buscar"
                                                          action="#{FacturaBean.buscarPersona}"
-                                                         /> 
+                                                         > <f:ajax render="cedulah nombrecli direccioncli correocli" execute="ced" />
+									    			</h:commandButton>
                                     </h:form>
                                 </div>
                             </div>
@@ -111,32 +112,29 @@
                                 <strong class="card-title">Cliente</strong>
                             </div>
                             <div class="card-body">
-                                <c:if test="${FacturaBean.persona != null}">
+                                
                                     <div>
 
                                         <p> 
-                                            <h:outputText value="Cedula:"/>
+                                            <h:outputText id="cedulah" value="Cedula:"/>
                                             <span class="font-weight-bold" ><h:outputText value="#{FacturaBean.persona.cedula}"/></span>
                                         </p>
                                         <p> 
-                                            <h:outputText value="Nombre:"/>
+                                            <h:outputText id = "nombrecli" value="Nombre:"/>
                                             <span class="font-weight-bold" ><h:outputText value="#{FacturaBean.persona.nombres}"/></span>
                                         </p>
                                         
                                         <p> 
-                                            <h:outputText value="Correo:"/>
+                                            <h:outputText id = "correocli" value="Correo:"/>
                                             <span class="font-weight-bold" ><h:outputText value="#{FacturaBean.persona.correo}"/></span>
                                         </p>
                                         <p> 
-                                           <h:outputText value="Direccion"/>
+                                           <h:outputText id = "direccioncli" value="Direccion"/>
                                             <span class="font-weight-bold" ><h:outputText value="#{FacturaBean.persona.direccion}"/></span>
                                         </p>
                                     </div>
 
-                                </c:if>
-                                <c:otherwise>
-                                    <p>Seleccione un cliente</p>
-                                </c:otherwise>
+                                
                             </div>
 
                         </div>
@@ -365,7 +363,33 @@
             </div>
         </div>
         <!-- END Modal -->
+ 
+ 	<h2>Anular</h2>
+ 	<div class="container-md">
+	<h:form>
+		<h:dataTable value="#{FacturaDetalleBean.list}" var="p" styleClass="tabla"
+			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+			<h:column>
+				<f:facet name="header">Cedula</f:facet>#{p.iva}</h:column>
+				<h:column>
+				<f:facet name="header">Nombres</f:facet>#{p.subtotal}</h:column>
+				<h:column>
+				<f:facet name="header">Direccion</f:facet>#{p.cedulaPersona}</h:column>
+				<h:column>
+				<f:facet name="header">Correo</f:facet>#{p.correo}</h:column>
+				
+					
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Delete" action="#{personaBean.delete(p)}" />
+			</h:column>
+			
+		</h:dataTable>
+		
+	</h:form>
+	</div>
  </div>  
+ 
   
 </h:body>
 
