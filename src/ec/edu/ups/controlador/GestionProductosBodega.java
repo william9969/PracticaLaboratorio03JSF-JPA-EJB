@@ -1,6 +1,8 @@
 package ec.edu.ups.controlador;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,9 +14,13 @@ import javax.inject.Named;
 import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.ejb.ProductosFacade;
+import ec.edu.ups.ejb.ProvinciaFacade;
 import ec.edu.ups.ejb.BodegaProductosFacade;
+import ec.edu.ups.entidades.Bodega;
+import ec.edu.ups.entidades.BodegaProductos;
 import ec.edu.ups.entidades.Categoria;
 import ec.edu.ups.entidades.Productos;
+import ec.edu.ups.entidades.Provincia;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -29,15 +35,19 @@ public class GestionProductosBodega implements Serializable{
 	private CategoriaFacade ejbCategoriaFacade;
 	@EJB
 	private BodegaProductosFacade ejbBodegaProductos;
-	
+	@EJB
+	private ProvinciaFacade ejbProvinciaFacade;
 	
 	private String nombreProducto;
 	private double precioProducto;
-	private int stockProducto;
+	private int stock;
+	private int idBodega;
 	private String nombreNoProducto;
+	private List<BodegaProductos> listaBodegaProductos;
 	private List<Productos> listNoProductos;
 	private List<Productos> listProductosTotal;
 	private List<Productos> listProductos;
+	private Productos productos;
 	
 	
 	public String getNombreProducto() {
@@ -46,17 +56,23 @@ public class GestionProductosBodega implements Serializable{
 	public void setNombreProducto(String nombreProducto) {
 		this.nombreProducto = nombreProducto;
 	}
+	public int getIdBodega() {
+		return idBodega;
+	}
+	public void setIdBodega(int idBodega) {
+		this.idBodega = idBodega;
+	}
 	public double getPrecioProducto() {
 		return precioProducto;
 	}
 	public void setPrecioProducto(double precioProducto) {
 		this.precioProducto = precioProducto;
 	}
-	public int getStockProducto() {
-		return stockProducto;
+	public int getStock() {
+		return stock;
 	}
-	public void setStockProducto(int stockProducto) {
-		this.stockProducto = stockProducto;
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 	public List<Productos> getListProductos() {
 		return listProductos;
@@ -77,17 +93,44 @@ public class GestionProductosBodega implements Serializable{
 	public void setListNoProductos(List<Productos> listNoProductos) {
 		this.listNoProductos = listNoProductos;
 	}
+	
+	public List<BodegaProductos> getListaBodegaProductos() {
+		return listaBodegaProductos;
+	}
+	public void setListaBodegaProductos(List<BodegaProductos> listaBodegaProductos) {
+		this.listaBodegaProductos = listaBodegaProductos;
+	}
+	
+	public Productos getProductos() {
+		return productos;
+	}
+	public void setProductos(Productos productos) {
+		this.productos = productos;
+	}
 	public String method(String nombre) {
 		
 		return nombre;
 	}
 	
-	public String listadoBodegaGeneral(int idBodega) {
-		System.out.println("Id de la Bodega"+idBodega);
-		listProductos=ejbProductosFacade.buscarProductosBodega(idBodega);
-		listNoProductos=ejbProductosFacade.buscarNoProductosBodega(idBodega);
-		return "/private/admin/gestionProductoBodega.xhtml";
+	
+	public String listadoBodega(int idBodega) {
+		this.idBodega=idBodega;
+		List<Object[]> result = (List<Object[]>)ejbBodegaProductos.listaProductosPorBodega(idBodega); 
+		System.out.println("Imprimir longitud"+result.size());
+		for(int i=0;i<result.size();i++) {
+			Object[] bp=result.get(i);
+			int stockTomado= Integer.parseInt(String.valueOf(bp[1]));
+			int idProducto= Integer.parseInt(String.valueOf(bp[3]));
+			Productos producto = ejbProductosFacade.find(idProducto);
+			producto.setStock(stockTomado);
+			listProductos.add(producto);
+		}
 		
+		//listProductos=ejbProductosFacade.buscarProductosBodega(idBodega);
+		listNoProductos=ejbProductosFacade.buscarNoProductosBodega(idBodega);
+		//System.out.println("La lista de bodegas Productos" +listaBodegaProductos);
+		return "/private/admin/gestionarBodega.xhtml";
+
 	}
 	
 	
@@ -99,6 +142,16 @@ public class GestionProductosBodega implements Serializable{
 	public String agregarProductoBodega() {
 		
 		
+		return null;
+	}
+	public String editProductoBodega(Productos productos) {
+		productos.setEditable(true);
+		return null;
+	}
+	
+	public String saveProductoBodega(Productos productos) {
+		ejbProductosFacade.edit(productos);
+		productos.setEditable(false);
 		return null;
 	}
 }

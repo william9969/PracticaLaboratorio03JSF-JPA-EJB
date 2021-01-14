@@ -55,7 +55,7 @@ public class ProductosFacade extends AbstractFacade<Productos>{
 		List<Productos> productos = new ArrayList<Productos>();
 		for(int i=0;i<idProductos.size();i++) {
 			int idpord=idProductos.get(i);
-			System.out.println("Id del Producto"+idpord);
+			//System.out.println("Id del Producto"+idpord);
 			
 			CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 	        CriteriaQuery<Productos> productosCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
@@ -81,7 +81,7 @@ public class ProductosFacade extends AbstractFacade<Productos>{
 		List<Productos> productos = new ArrayList<Productos>();
 		for(int i=0;i<idProductos.size();i++) {
 			int idpord=idProductos.get(i);
-			System.out.println("Id del Producto"+idpord);
+			//System.out.println("Id del Producto"+idpord);
 			CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 	        CriteriaQuery<Productos> productosCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
 	        Root<Productos> productosRoot = productosCriteriaQuery.from(Productos.class);

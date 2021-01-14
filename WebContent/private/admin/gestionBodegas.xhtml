@@ -27,7 +27,7 @@
     <link rel="stylesheet"  href="http://localhost:8080/Practica03EJB-JPA-JSF/css/bootstrap.css" ></link>
     <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/style.css" ></link>
     <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/styleS.css" ></link>
-
+	<script src="http://localhost:8080/Practica03EJB-JPA-JSF/js/main.js"></script>
 </h:head>
 <h:body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
 	<header class ="float-right">
@@ -88,7 +88,7 @@
 					<h4>Bodega: #{bodega.nombre}</h4>
 						<p>Ubicacion:#{bodega.provincia.nombre},#{bodega.cuidad},#{bodega.direccion}</p>
 					<h:form>
-						<h:commandButton value="Visualizar" action="#{listarProductosBean.listadoProductosBodega(bodega.idBodega)}">
+						<h:commandButton value="Visualizar Productos" action="#{gestionProductosBodega.listadoBodega(bodega.idBodega)}">
 						</h:commandButton>
 					</h:form>
 				</div>
@@ -98,34 +98,57 @@
         </div>
 	</div>
 	</div>
-<!-- 
-	 <div class="section about_section layout_padding dash_bg">  
-
-	       <div class="container">
 	
-	        <div class="section-title">
-	          <h2><span>Bodegas</span></h2>
-	          <p>Gestiona las bodegas.</p>
-	        </div>
-	
-	        <div class="row">
-			<ui:repeat value="#{bodegaBean.listBodega}" var="bodega" >
-				<div class="col-lg-4 mt-4 mt-lg-0">
-					<div class="box">
-						<h4>Bodega: #{bodega.nombre}</h4>
-						<p>Ubicacion:#{bodega.provincia.nombre},#{bodega.cuidad},#{bodega.direccion}</p>
-						<h:form>
-							<h:commandButton value="Gestionar Bodega" action="#{gestionProductosBodega.listadoBodegaGeneral(bodega.idBodega)}">
-							</h:commandButton>
-						</h:form>
-					</div>
-				</div>
-			</ui:repeat>	
-	        </div>
-	      </div>      
-
-	</div>
- -->
+	<div class="section about_section layout_padding dash_bg">
+		<div class="container-md">
+			<div class="row">
+		      <div class="container">
+		        <div class="section-title">
+		          <h2><span>Agregar Bodega</span></h2>
+		        </div>
+		      </div>
+		      </div>
+		      <div class="row">
+		      <div class="container mt-5">
+		     <h:form headerClass="php-email-form">
+		          
+		        <div class="form-row">
+		          <div class="col-md-6 form-group">
+			            <h4>Nombre:</h4><h:inputText headerClass="form-control" value="#{bodegaBean.nombre}"/>
+			            <div class="validate"></div>
+		          </div>
+		             <div class="col-md-6 form-group">
+			           <h4>Telefono:</h4><h:inputText headerClass="form-control"  value="#{bodegaBean.telefono}"/>
+			           <div class="validate"></div>
+		          </div>
+		          </div>
+		          <div class="form-row">
+			          <div class="col-md-6 form-group">
+				            <h4>Ciudad:</h4><h:inputText headerClass="form-control" value="#{bodegaBean.cuidad}"/>
+				            <div class="validate"></div>
+			          </div>
+			             <div class="col-md-6 form-group">
+				           <h4>Direccion:</h4><h:inputText headerClass="form-control"  value="#{bodegaBean.direccion}"/>
+				           <div class="validate"></div>
+			          </div>
+		          </div>
+		        <div class="form-group">
+				         <h3>Seleccione Provicia: </h3>
+				         <h:selectOneMenu value="#{bodegaBean.nombreProvincia}" style="margin-right: 5%;">
+				            <f:selectItems  value="#{bodegaBean.listProvincias}" var="provincia" itemValue="#{provincia.nombre}" itemLabel="#{provincia.nombre}" />
+				        </h:selectOneMenu>
+				        <!--  <h:selectOneMenu styleClass="btn btn-secondary dropdown-toggle" value="#{productosBean.nombreCategoria}" style="margin-right: 5%;">
+				            <f:selectItems  value="#{categoriaBean.listCategoria}" var="categoria" itemValue="#{categoria.nombre}" itemLabel="#{categoria.nombre}" pt:styleClass="dropdown-item"/>
+				        </h:selectOneMenu>  
+				        -->
+			     </div>
+		     	<div class="text-center"><h:commandButton value="Agregar Bodega" action="#{bodegaBean.addBodega}">
+				</h:commandButton></div>
+		     </h:form>
+			</div>
+			</div>
+		</div>
+		</div>
 
       <footer id="footer">
 	    <div class="container">

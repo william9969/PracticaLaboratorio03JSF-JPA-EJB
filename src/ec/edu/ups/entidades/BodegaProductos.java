@@ -24,6 +24,9 @@ public class BodegaProductos {
 	
     private int stock;
     
+	@Transient
+	private boolean editable;
+    
     public BodegaProductos() {
     	super();
     }    

@@ -40,6 +40,9 @@ public class Productos implements Serializable {
 	@Transient
 	private boolean editable;
 	
+	@Transient 
+	private int stock;
+	
 	//@ManyToMany(mappedBy = "listProductos")
 		//private List<Bodega> listBodega;
 	
@@ -101,6 +104,15 @@ public class Productos implements Serializable {
 
 	public List<FacturaDetalle> getFacturaDetalles() {
 		return facturaDetalles;
+	}
+	
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 	public void setFacturaDetalles(List<FacturaDetalle> facturaDetalles) {

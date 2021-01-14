@@ -34,12 +34,14 @@ public class BodegaBean implements Serializable {
 	private String cuidad;
 	private String direccion;
 	private Provincia provincia;
+	private String nombreProvincia;
 	private List<Bodega> listBodega;
 	private List<Productos> listProductos;
+	private List<Provincia> listProvincias;
 	
 	@PostConstruct
 	public void init() {
-	
+		listProvincias=ejbProvinciaFacade.findAll();
 		listBodega=ejbBodegaFacade.findAll();
 	}
 	
@@ -80,10 +82,35 @@ public class BodegaBean implements Serializable {
 	public void setListProductos(List<Productos> listProductos) {
 		this.listProductos = listProductos;
 	}
-	
+	public Provincia getProvincia() {
+		return provincia;
+	}
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
+	public String getNombreProvincia() {
+		return nombreProvincia;
+	}
+	public void setNombreProvincia(String nombreProvincia) {
+		this.nombreProvincia = nombreProvincia;
+	}
+	public List<Provincia> getListProvincias() {
+		return listProvincias;
+	}
+	public void setListProvincias(List<Provincia> listProvincias) {
+		this.listProvincias = listProvincias;
+	}
+
+///////////////////////////////////////////////////////////////////////////
 	public String addBodega() {
+		provincia=ejbProvinciaFacade.buscarProvinciaPorNombre(this.nombreProvincia);
 		ejbBodegaFacade.create(new Bodega(this.nombre, this.telefono, this.cuidad, this.direccion, this.provincia));
 		listBodega=ejbBodegaFacade.findAll();
+		provincia=null;
+		nombre="";
+		telefono="";
+		cuidad="";
+		direccion="";
 		return null;
 	}
 	
