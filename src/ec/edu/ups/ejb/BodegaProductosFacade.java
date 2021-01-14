@@ -42,4 +42,12 @@ public class BodegaProductosFacade extends AbstractFacade<BodegaProductos>{
 		return stockProductos;
 	}
 	
+	public int buscarIDPorBodegayProducto(int idProducto,int idBodega) {
+		Query query = em.createNativeQuery("SELECT IDBODEGAPRODUCTOS from bodegaproductos where BODEGA_IDBODEGA =" + idBodega + " AND PRODUCTOS_IDPRODCUTO="+ idProducto);
+		int idbodProd=Integer.parseInt(String.valueOf(query.getSingleResult()));
+       // System.out.println("Stock de Cada Producto"+stockProductos);
+
+		return idbodProd;
+	}
+	
 }

@@ -114,6 +114,7 @@ public class GestionProductosBodega implements Serializable{
 	
 	
 	public String listadoBodega(int idBodega) {
+		this.idBodega=idBodega;
 		listProductos = ejbProductosFacade.buscarProductosBodega(idBodega);
 		for(int i=0;i<listProductos.size();i++) {
 			int stock= ejbBodegaProductos.devolverStock(listProductos.get(i).getIdProdcuto(), idBodega);
@@ -143,7 +144,10 @@ public class GestionProductosBodega implements Serializable{
 	}
 	
 	public String saveProductoBodega(Productos productos) {
-		ejbProductosFacade.edit(productos);
+		int idbp=ejbBodegaProductos.buscarIDPorBodegayProducto(productos.getIdProdcuto(), this.idBodega);
+		BodegaProductos bp=ejbBodegaProductos.find(idbp);
+		bp.setStock(productos.getStock());
+		ejbBodegaProductos.edit(bp);
 		productos.setEditable(false);
 		return null;
 	}
