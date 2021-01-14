@@ -1,6 +1,7 @@
 package ec.edu.ups.controlador;
 
 import java.io.IOException;
+
 import java.io.Serializable;
 
 import java.util.List;
@@ -53,10 +54,20 @@ public class PersonaBean implements Serializable {
 		ejbPersonaFacade.create(new Persona("0106835762", "Carmen Alexandra Bravo Valdiviezo", "Santa Isabel", "cbravo@est.ups.edu.ec", "cbravo23", 'C', true));
 */
 		list = ejbPersonaFacade.findAll();
+		listClientes = ejbPersonaFacade.findClientes();
 	}
 	public String add() {
 		ejbPersonaFacade.create(new Persona(this.cedula, this.nombres, this.direccion, this.correo, this.contrasenia="123", this.rolUsuario='C', this.activo=true));
+		listClientes = ejbPersonaFacade.findClientes();
+		cedula = "";
+		nombres = "";
+		direccion = "";
+		correo = "";
+		contrasenia="";
+		
+		
 		return null;
+		
 	}
 	
 	public String delete(Persona persona) {
@@ -221,7 +232,7 @@ public class PersonaBean implements Serializable {
 	}
 
 	public void listarClientes() {
-		this.list = ejbPersonaFacade.findClientes();
+		this.listClientes = ejbPersonaFacade.findClientes();
 		cedula = null;
 	}
 	

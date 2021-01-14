@@ -6,6 +6,10 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import ec.edu.ups.entidades.Persona;
 
@@ -54,10 +58,30 @@ public class PersonaFacade extends AbstractFacade<Persona>{
 
 	public List<Persona> findClientes() {
 		
-		String sql = "SELECT p FROM Persona p WHERE p.rolUsuario='C' ";
-	
-		return (List<Persona>) em.createQuery(sql).getResultList();
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Persona> categoriaCriteriaQuery = criteriaBuilder.createQuery(Persona.class);
+        Root<Persona> categoriaRoot = categoriaCriteriaQuery.from(Persona.class);
+        Predicate predicate= criteriaBuilder.equal(categoriaRoot.get("rolUsuario"),'C');
+        categoriaCriteriaQuery.select(categoriaRoot).where(predicate);
+		
+        
+        return em.createQuery(categoriaCriteriaQuery).getResultList();
 	}
 
+	public Persona buscarPersonaPorCedula(String cedula) {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Persona> categoriaCriteriaQuery = criteriaBuilder.createQuery(Persona.class);
+        Root<Persona> categoriaRoot = categoriaCriteriaQuery.from(Persona.class);
+        Predicate predicate= criteriaBuilder.equal(categoriaRoot.get("cedula"),cedula);
+        categoriaCriteriaQuery.select(categoriaRoot).where(predicate);
+		
+
+        
+        return em.createQuery(categoriaCriteriaQuery).getSingleResult();
+        
+		}
+
+
+   
 
 }
