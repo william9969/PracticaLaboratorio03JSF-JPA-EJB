@@ -63,7 +63,7 @@
 		            <div class="dropdown-menu">
 		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/gestionFactura.xhtml">Generar Factura</a>
 		            	<a class="dropdown-item" href="#">Anular Factura</a>
-		            	<a class="dropdown-item" href="#">Buscar Factura</a>
+		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/ListFacturas.xhtml">Buscar Factura</a>
 	                </div>
                 </li>
               <!--  <li class="nav-item">
@@ -75,34 +75,30 @@
             
         </header>
         
-        <h2>Editar Clientes</h2>  
+        <h2>Listar Facturas</h2>  
 	
+<div class="section about_section layout_padding dash_bg "> 	
 	<div class="container-md">
 	<h:form>
-		<h:dataTable class="table" value="#{personaBean.listClientes}" var="p" styleClass="tabla"
+		<h:dataTable class="table" value="#{listarFacturas.listFacturas}" var="p" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
 	
 				
 				<h:column>
-				<f:facet name="header">Cedula</f:facet>#{p.cedula}</h:column>
+				<f:facet name="header">ID</f:facet>#{p.idFacturaCabecera}</h:column>
 				
 				<h:column>
-				<f:facet name="header">Nombres</f:facet>
-				<h:inputText value="#{p.nombres}" size="10"
-					rendered="#{p.editable}" />
-				<h:outputText value="#{p.nombres}" rendered="#{not p.editable}" /> </h:column>
+				<f:facet name="header">iva</f:facet>#{p.iva}
+				 </h:column>
 				
 				<h:column>
-				<f:facet name="header">Direccion</f:facet>
-				<h:inputText value="#{p.direccion}" size="10"
-					rendered="#{p.editable}" />
-				<h:outputText value="#{p.direccion}" rendered="#{not p.editable}" /></h:column>
+				<f:facet name="header">subtotal</f:facet>#{p.subtotal}
+				
+				</h:column>
 				
 				<h:column>
-				<f:facet name="header">Correo</f:facet>
-				<h:inputText value="#{p.correo}" size="10"
-					rendered="#{p.editable}" />
-				<h:outputText value="#{p.correo}" rendered="#{not p.editable}" />
+				<f:facet name="header">total</f:facet>#{p.total}
+				
 			</h:column>	
 			
 			<h:column>
@@ -141,7 +137,7 @@
 	      </div>
 	    </div>
 	  </footer><!-- End Footer -->
-	
+</div>	
 	  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
     

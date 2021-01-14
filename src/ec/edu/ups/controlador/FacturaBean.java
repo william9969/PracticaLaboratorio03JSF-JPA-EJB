@@ -62,6 +62,7 @@ public class FacturaBean implements Serializable {
 	private List<Bodega> listBodega = new ArrayList<Bodega>();
 	private List<Bodega> bodegas = new ArrayList<Bodega>();
 	private String productoBuscar="";
+	private double total; 
 	
 	public FacturaBean() {
 		// TODO Auto-generated constructor stub
@@ -293,8 +294,7 @@ public class FacturaBean implements Serializable {
 			this.facturaDetalles.add(fd);
 		}
 		this.facturaCabecera.setListaFacturaDetalle(this.facturaDetalles);
-		this.facturaCabecera.calcularSubtotal();
-		this.facturaCabecera.calcularTotal();
+		
 		return null;
 	}
 
