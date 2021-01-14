@@ -245,7 +245,7 @@ public class FacturaBean implements Serializable {
 	 * */
 	public void buscarPersona() {
 		System.out.println("Entr"+this.cedula);
-		persona = ejbPersonaFacade.buscarPersonaCedula(this.cedula);
+		persona = ejbPersonaFacade.buscarPersonaPorCedula(cedula);
 		this.setCedula(persona.getCedula());
 		this.setNombres(persona.getNombres());
 		
