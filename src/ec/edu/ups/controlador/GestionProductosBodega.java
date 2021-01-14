@@ -129,13 +129,24 @@ public class GestionProductosBodega implements Serializable{
 	
 	
 	public String eliminarProductoBodega(Productos producto) {
-		
-		
+		int idbp=ejbBodegaProductos.buscarIDPorBodegayProducto(producto.getIdProdcuto(), this.idBodega);
+		BodegaProductos bp=ejbBodegaProductos.find(idbp);
+		ejbBodegaProductos.remove(bp);
 		return null;
 	}
 	public String agregarProductoBodega() {
+		Productos producto = ejbProductosFacade.buscarProductoPorNombre(this.nombreNoProducto);
+		Bodega bodega= ejbBodegaFacade.find(this.idBodega);
 		
+		ejbBodegaProductos.create(new BodegaProductos(bodega, producto, stock));
+		listProductos = ejbProductosFacade.buscarProductosBodega(idBodega);
+		for(int i=0;i<listProductos.size();i++) {
+			int stock= ejbBodegaProductos.devolverStock(listProductos.get(i).getIdProdcuto(), idBodega);
+			listProductos.get(i).setStock(stock);
+		}
 		
+		listNoProductos=ejbProductosFacade.buscarNoProductosBodega(idBodega);
+		this.stock=0;
 		return null;
 	}
 	public String editProductoBodega(Productos productos) {

@@ -13,7 +13,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
 import javax.persistence.criteria.Predicate;
-
 import ec.edu.ups.entidades.Categoria;
 import ec.edu.ups.entidades.Productos;
 
@@ -104,6 +103,16 @@ public class ProductosFacade extends AbstractFacade<Productos>{
 		String sql = "SELECT PRODUCTOS p WHERE LOWER(p.NOMBREPRODUCTO) LIKE LOWER('%" +proNombre+"%')";
 		return (List<Productos>) em.createQuery(sql).getResultList();
 		
+	}
+	
+	public Productos buscarProductoPorNombre(String nombre) {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Productos> productoCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
+        Root<Productos> productoRoot = productoCriteriaQuery.from(Productos.class);
+        Predicate predicate= criteriaBuilder.equal(productoRoot.get("nombreProducto"),nombre);
+        productoCriteriaQuery.select(productoRoot).where(predicate);
+		
+        return em.createQuery(productoCriteriaQuery).getSingleResult();
 	}
 
 

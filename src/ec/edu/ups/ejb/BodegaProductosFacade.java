@@ -50,4 +50,12 @@ public class BodegaProductosFacade extends AbstractFacade<BodegaProductos>{
 		return idbodProd;
 	}
 	
+	public int stockTotalProducto(int idProducto) {
+		Query query = em.createNativeQuery("SELECT SUM(STOCK) from bodegaproductos where  PRODUCTOS_IDPRODCUTO="+ idProducto);
+        int stockProductos = Integer.parseInt(String.valueOf(query.getSingleResult()));
+        System.out.println("Stock de Cada Producto"+stockProductos);
+
+		return stockProductos;
+	}
+	
 }

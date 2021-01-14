@@ -4,12 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<title>Login</title>
 	
 	<meta charset="utf-8"></meta>
-		<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
 	<meta content="" name="description"></meta>
 	<meta content="" name="keywords"></meta>
 	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/imagen/favicon.png" rel="icon"></link>
@@ -27,7 +28,31 @@
     <link rel="stylesheet"  href="http://localhost:8080/Practica03EJB-JPA-JSF/css/bootstrap.css" ></link>
     <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/style.css" ></link>
     <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/styleS.css" ></link>
-	<script src="http://localhost:8080/Practica03EJB-JPA-JSF/js/main.js"></script>
+	<style>
+			.tabla {
+				border-collapse: collapse;
+			}
+			
+			.cabeceraTabla {
+				text-align: center;
+				background: none repeat scroll 0 0 #E5E5E5;
+				border-bottom: 1px solid #BBBBBB;
+				padding: 8px;
+			}
+			
+			.filaPar {
+				text-align: center;
+				background: none repeat scroll 0 0 #FFFFFFF;
+				border-top: 1px solid #BBBBBB;
+			}
+			
+			.filaImpar {
+				text-align: center;
+				background: none repeat scroll 0 0 #F9F9F9;
+				border-top: 1px solid #BBBBBB;
+			}
+	</style>
+     <script src="http://localhost:8080/Practica03EJB-JPA-JSF/js/main.js"></script>
 </h:head>
 <h:body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
 	<header class ="float-right">
@@ -67,22 +92,61 @@
             </ul>
           
       </header>
-        
-        <div class="section about_section layout_padding dash_bg">
+      
+      
+      
+      <div class="section about_section layout_padding dash_bg">
+          <div class="container">
+             <div class="row">
+                <div class="col-md-12">
+                   <div class="full">
+                      <div class="section-title">
+				          <h2>Productos en Bodega</h2>
+				        </div>
+                   </div>
+                </div>
+             </div>
+             <div class="row">
+             	<div class="container-md">
+	             <h:form pt:style="width:100%">
+	             	<h:dataTable value="#{gestionEmpresaBean.listProductosTotal}" var="p" styleClass="tabla"
+						headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar" pt:style="width:100%" >
+						<h:column>
+							<f:facet  name="header">Codigo</f:facet>#{p.idProdcuto}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nombre Producto</f:facet>#{p.nombreProducto}
+						</h:column>			
+						<h:column>
+							<f:facet name="header">Precio Producto</f:facet>#{p.precioProducto}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Precio Producto</f:facet>#{p.stock}
+						</h:column>
+					</h:dataTable>
+				 </h:form>
+				 </div>
+             </div>
+    	</div>
+	</div> 
+      
+      
+      
+       <div class="section about_section layout_padding dash_bg">
           <div class="container">
 			  <div class="row">
 			  <div class="col-md-12">
                    <div class="full">
 						<div class="section-title">
-					          <h2><span>Bodegas</span></h2>
-			          			<p>Gestiona las bodegas.</p>
+					          <h2>Gestiona Tus Bodegas</h2>
+			          		
 			          	</div>
 			          	
 			        </div>
 			   </div>
 			</div>
         <div class="row">
-		<ui:repeat value="#{bodegaBean.listBodega}" var="bodega" >
+		<ui:repeat value="#{gestionEmpresaBean.listBodegasTotal}" var="bodega" >
 			<div class="col-md-12 ">
 				<div class="full feature_box">
 					<h4>Bodega: #{bodega.nombre}</h4>
@@ -91,7 +155,6 @@
 						<h:commandButton value="Visualizar Productos" action="#{gestionProductosBodega.listadoBodega(bodega.idBodega)}">
 						</h:commandButton>
 					</h:form>
-						
 				</div>
 			</div>
 			<br></br>
@@ -99,59 +162,10 @@
         </div>
 	</div>
 	</div>
-	
-	<div class="section about_section layout_padding dash_bg">
-		<div class="container-md">
-			<div class="row">
-		      <div class="container">
-		        <div class="section-title">
-		          <h2><span>Agregar Bodega</span></h2>
-		        </div>
-		      </div>
-		      </div>
-		      <div class="row">
-		      <div class="container mt-5">
-		     <h:form headerClass="php-email-form">
-		          
-		        <div class="form-row">
-		          <div class="col-md-6 form-group">
-			            <h4>Nombre:</h4><h:inputText headerClass="form-control" value="#{bodegaBean.nombre}"/>
-			            <div class="validate"></div>
-		          </div>
-		             <div class="col-md-6 form-group">
-			           <h4>Telefono:</h4><h:inputText headerClass="form-control"  value="#{bodegaBean.telefono}"/>
-			           <div class="validate"></div>
-		          </div>
-		          </div>
-		          <div class="form-row">
-			          <div class="col-md-6 form-group">
-				            <h4>Ciudad:</h4><h:inputText headerClass="form-control" value="#{bodegaBean.cuidad}"/>
-				            <div class="validate"></div>
-			          </div>
-			             <div class="col-md-6 form-group">
-				           <h4>Direccion:</h4><h:inputText headerClass="form-control"  value="#{bodegaBean.direccion}"/>
-				           <div class="validate"></div>
-			          </div>
-		          </div>
-		        <div class="form-group">
-				         <h3>Seleccione Provicia: </h3>
-				         <h:selectOneMenu value="#{bodegaBean.nombreProvincia}" style="margin-right: 5%;">
-				            <f:selectItems  value="#{bodegaBean.listProvincias}" var="provincia" itemValue="#{provincia.nombre}" itemLabel="#{provincia.nombre}" />
-				        </h:selectOneMenu>
-				        <!--  <h:selectOneMenu styleClass="btn btn-secondary dropdown-toggle" value="#{productosBean.nombreCategoria}" style="margin-right: 5%;">
-				            <f:selectItems  value="#{categoriaBean.listCategoria}" var="categoria" itemValue="#{categoria.nombre}" itemLabel="#{categoria.nombre}" pt:styleClass="dropdown-item"/>
-				        </h:selectOneMenu>  
-				        -->
-			     </div>
-		     	<div class="text-center"><h:commandButton value="Agregar Bodega" action="#{bodegaBean.addBodega}">
-				</h:commandButton></div>
-		     </h:form>
-			</div>
-			</div>
-		</div>
-		</div>
-
-      <footer id="footer">
+      
+      
+      
+       <footer id="footer">
 	    <div class="container">
 	      <h3>Distribuidora Los Angeles</h3>
 	      <p>Visitanos en nuestras Redes Sociales.</p>
@@ -176,11 +190,11 @@
 	  </footer><!-- End Footer -->
 	
 	  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
- 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	
+	  
+	 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
-	
-    
 	
 </h:body>
 </html>
