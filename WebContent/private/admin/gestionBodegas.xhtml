@@ -39,7 +39,10 @@
               <li class="nav-item">
               	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion Empresa</a>
               	<div class="dropdown-menu">
-                 <a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionEmpresa.xhtml">Visualizar Stock</a>
+                 <h:form>
+              		<h:commandLink class="dropdown-item" value="Visualizar Stock" action="#{gestionEmpresaBean.stockAcutalizar}"/>
+                 <!-- <a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionEmpresa.xhtml">Visualizar Stock</a> -->
+               		</h:form>
                </div>
               </li>
               
@@ -61,7 +64,7 @@
               </li>
             <li class="nav-item">
            		<h:form>
-						<h:commandButton  value="Cerrar Sesion" type="submit"
+						<h:commandButton class="btn btn-dark"  value="Cerrar Sesion" type="submit"
 							action="#{personaBean.cerrarSession()}" />
 				</h:form>
               	
@@ -90,7 +93,7 @@
 					<h4>Bodega: #{bodega.nombre}</h4>
 						<p>Ubicacion:#{bodega.provincia.nombre},#{bodega.cuidad},#{bodega.direccion}</p>
 					<h:form>
-						<h:commandButton value="Visualizar Productos" action="#{gestionProductosBodega.listadoBodega(bodega.idBodega)}">
+						<h:commandButton class="btn btn-dark" value="Visualizar Productos" action="#{gestionProductosBodega.listadoBodega(bodega.idBodega)}">
 						</h:commandButton>
 					</h:form>
 						
@@ -145,7 +148,7 @@
 				        </h:selectOneMenu>  
 				        -->
 			     </div>
-		     	<div class="text-center"><h:commandButton value="Agregar Bodega" action="#{bodegaBean.addBodega}">
+		     	<div class="text-center"><h:commandButton class="btn btn-dark" value="Agregar Bodega" action="#{bodegaBean.addBodega}">
 				</h:commandButton></div>
 		     </h:form>
 			</div>

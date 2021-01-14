@@ -40,8 +40,12 @@
               <li class="nav-item">
               	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion Empresa</a>
               	<div class="dropdown-menu">
-                 <a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionEmpresa.xhtml">Visualizar Stock</a>
+              		<h:form>
+              		<h:commandLink class="dropdown-item" value="Visualizar Stock" action="#{gestionEmpresaBean.stockAcutalizar}"/>
+                 <!-- <a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionEmpresa.xhtml">Visualizar Stock</a> -->
+               		</h:form>
                </div>
+               
               </li>
               
               <li class="nav-item">
@@ -62,7 +66,7 @@
               </li>
             <li class="nav-item">
            		<h:form>
-						<h:commandButton  value="Cerrar Sesion" type="submit"
+						<h:commandButton class="btn btn-dark" value="Cerrar Sesion" type="submit"
 							action="#{personaBean.cerrarSession()}" />
 				</h:form>
               	

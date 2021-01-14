@@ -79,25 +79,31 @@ public class ProductosFacade extends AbstractFacade<Productos>{
 		List<Productos> productos = new ArrayList<Productos>();
 		System.out.println("Lista de Productos Totales"+lisTot.size());
 		System.out.println("Lista de Productos en Bodega"+idConProductos.size());
-		for(int i=0;i<lisTot.size();i++) {
-			for(int j=0;j<idConProductos.size();j++) {
-				if(lisTot.get(i).getIdProdcuto()==idConProductos.get(j)) {
-					System.out.println("Encontrado primer ID"+lisTot.get(i).getIdProdcuto()+"ID en BODEGA"+idConProductos.get(j) );
-					break;
-				}
-				if(j==idConProductos.size()-1) {
-					//System.out.println("NO se encontro el ID" +idProductos);
-					/*int idpord=idProductos.get(i);
-					System.out.println("Id del Productoque se aGrago a la listo del no"+idpord);
-					CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-			        CriteriaQuery<Productos> productosCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
-			        Root<Productos> productosRoot = productosCriteriaQuery.from(Productos.class);
-			        Predicate predicate= criteriaBuilder.equal(productosRoot.get("idProdcuto"),idpord);
-					productosCriteriaQuery.select(productosRoot).where(predicate);
-					Productos producto=(Productos) em.createQuery(productosCriteriaQuery).getSingleResult(); 	
-					System.out.println("Producto --->"+producto);*/
-					
-					productos.add(lisTot.get(i));
+		if(idConProductos.size()==0) {
+			productos=lisTot;
+			return productos;
+		}
+		else {
+			for(int i=0;i<lisTot.size();i++) {
+				for(int j=0;j<idConProductos.size();j++) {
+					if(lisTot.get(i).getIdProdcuto()==idConProductos.get(j)) {
+						System.out.println("Encontrado primer ID"+lisTot.get(i).getIdProdcuto()+"ID en BODEGA"+idConProductos.get(j) );
+						break;
+					}
+					if(j==idConProductos.size()-1) {
+						//System.out.println("NO se encontro el ID" +idProductos);
+						/*int idpord=idProductos.get(i);
+						System.out.println("Id del Productoque se aGrago a la listo del no"+idpord);
+						CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+				        CriteriaQuery<Productos> productosCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
+				        Root<Productos> productosRoot = productosCriteriaQuery.from(Productos.class);
+				        Predicate predicate= criteriaBuilder.equal(productosRoot.get("idProdcuto"),idpord);
+						productosCriteriaQuery.select(productosRoot).where(predicate);
+						Productos producto=(Productos) em.createQuery(productosCriteriaQuery).getSingleResult(); 	
+						System.out.println("Producto --->"+producto);*/
+						
+						productos.add(lisTot.get(i));
+					}
 				}
 			}
 		}
