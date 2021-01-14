@@ -26,8 +26,28 @@ public class GestionEmpresaBean implements Serializable{
 	BodegaProductosFacade ejbBodegaProductosFacade;
 	
 	private List<Productos> listProductosTotal;
+	private List<Integer> listProductosEnBodegas;
 	private List<Bodega> listBodegasTotal;
 	private int stockTotal;
+	
+	@PostConstruct
+	public void init() {
+		listProductosTotal=ejbProductosFacade.findAll();
+		listProductosEnBodegas=ejbBodegaProductosFacade.listProductosEnBodegas();
+		System.out.println("Eh llegado" + listProductosTotal);
+		for(int i=0;i<listProductosTotal.size();i++) {
+			for(int j=0;j<listProductosEnBodegas.size();j++) {
+				if(listProductosTotal.get(i).getIdProdcuto()==listProductosEnBodegas.get(j)) {
+					//System.out.println("Eh llegado" + listProductosEnBodegas.get(i));
+					int stockT=ejbBodegaProductosFacade.stockTotalProducto(listProductosTotal.get(i).getIdProdcuto());
+					listProductosTotal.get(i).setStock(stockT);
+					break;
+				}
+			}
+			
+		}
+		listBodegasTotal=ejbBodegaFacade.findAll();
+	}
 	
 	public List<Productos> getListProductosTotal() {
 		return listProductosTotal;
@@ -52,14 +72,7 @@ public class GestionEmpresaBean implements Serializable{
 	public void setStockTotal(int stockTotal) {
 		this.stockTotal = stockTotal;
 	}
-	@Init
-	public void init() {
-		listProductosTotal=ejbProductosFacade.findAll();
-		for(int i=0;i<listProductosTotal.size();i++) {
-			int stockT=ejbBodegaProductosFacade.stockTotalProducto(listProductosTotal.get(i).getIdProdcuto());
-			listProductosTotal.get(i).setStock(stockT);
-		}
-		listBodegasTotal=ejbBodegaFacade.findAll();
-	}
+	
+	
 	
 }

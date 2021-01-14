@@ -1,5 +1,6 @@
 package ec.edu.ups.controlador;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import java.util.List;
@@ -39,7 +40,8 @@ public class PersonaBean implements Serializable {
 	private String contrasenia;
 	private char rolUsuario; //Para rol de Usuario 'A' administrador, 'E' empleado, 'C' cliente
 	private boolean activo;
-	
+	HttpSession session;
+	FacesContext context;
 	private List<Persona> list;
 	private List<Persona> listClientes;
 	
@@ -184,16 +186,17 @@ public class PersonaBean implements Serializable {
 
                     if (usuario.isActivo()) {
                         //System.out.println("Usuario... " + usuario);
-
-                        HttpSession session = Session.getSession();
-                        session.setAttribute("usuario", usuario);
-
+                    	 context = FacesContext.getCurrentInstance();
+                    	 session = (HttpSession) context.getExternalContext().getSession(true);
+                         session.setAttribute("userlog", usuario);
                         switch (usuario.getRolUsuario()) {
                             case 'A':
                                 System.out.println("admin");
+                                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
                                 return "/private/admin/adminPrincipal.xhtml";
                             case 'E':
                                 System.out.println("empleado");
+                                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
                                 return "/private/empleado/empleadoJSF.xhtml";
                         }
                     } else {
@@ -220,5 +223,12 @@ public class PersonaBean implements Serializable {
 	public void listarClientes() {
 		this.list = ejbPersonaFacade.findClientes();
 		cedula = null;
+	}
+	
+	public void cerrarSession() throws IOException {
+       
+        session.setAttribute("userlog", null);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/Practica03EJB-JPA-JSF/principal.xhtml");
+	
 	}
 }

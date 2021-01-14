@@ -58,4 +58,10 @@ public class BodegaProductosFacade extends AbstractFacade<BodegaProductos>{
 		return stockProductos;
 	}
 	
+	public List<Integer> listProductosEnBodegas(){
+		Query query = em.createNativeQuery("SELECT distinct PRODUCTOS_IDPRODCUTO FROM bodegaproductos");
+		List<Integer> ids=query.getResultList();
+		return ids;
+	}
+	
 }

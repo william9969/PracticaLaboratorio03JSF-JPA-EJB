@@ -121,7 +121,8 @@ public class GestionProductosBodega implements Serializable{
 			listProductos.get(i).setStock(stock);
 		}
 		//listProductos=ejbProductosFacade.buscarProductosBodega(idBodega);
-		listNoProductos=ejbProductosFacade.buscarNoProductosBodega(idBodega);
+		List<Productos>produTotal=ejbProductosFacade.findAll();
+		listNoProductos=ejbProductosFacade.buscarNoProductosBodega(idBodega,produTotal);
 		//System.out.println("La lista de bodegas Productos" +listaBodegaProductos);
 		return "/private/admin/gestionarBodega.xhtml";
 
@@ -145,7 +146,8 @@ public class GestionProductosBodega implements Serializable{
 			listProductos.get(i).setStock(stock);
 		}
 		
-		listNoProductos=ejbProductosFacade.buscarNoProductosBodega(idBodega);
+		List<Productos>produTotal=ejbProductosFacade.findAll();
+		listNoProductos=ejbProductosFacade.buscarNoProductosBodega(idBodega,produTotal);
 		this.stock=0;
 		return null;
 	}

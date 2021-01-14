@@ -54,16 +54,18 @@
               <li class="nav-item">
         	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestionar Productos Bodega</a>
             <div class="dropdown-menu">
-            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/agregarBodega.xhtml">Agregar Bodega</a>
+            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionBodegas.xhtml">Agregar Bodega</a>
             	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionBodegas.xhtml">Listar Bodegas</a>
             	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionBodegas.xhtml">Eliminar Bodega</a>
                </div>
               </li>
-            <!--  <li class="nav-item">
-              	<form action="http://localhost:8080/Practica02/LogOut" method="get">
-            		 <button type="submit" class="nav-link btn-danger">Salir</button>
-            	</form>
-              </li>-->
+            <li class="nav-item">
+           		<h:form>
+						<h:commandButton  value="Cerrar Sesion" type="submit"
+							action="#{personaBean.cerrarSession()}" />
+				</h:form>
+              	
+              </li>
             </ul>
           
       </header>

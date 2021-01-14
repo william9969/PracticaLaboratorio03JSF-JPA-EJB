@@ -55,7 +55,6 @@ public class ProductosFacade extends AbstractFacade<Productos>{
 		for(int i=0;i<idProductos.size();i++) {
 			int idpord=idProductos.get(i);
 			//System.out.println("Id del Producto"+idpord);
-			
 			CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 	        CriteriaQuery<Productos> productosCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
 	        Root<Productos> productosRoot = productosCriteriaQuery.from(Productos.class);
@@ -71,34 +70,46 @@ public class ProductosFacade extends AbstractFacade<Productos>{
 	public List<Integer> idBodega(int id){
 		Query query = em.createNativeQuery("SELECT PRODUCTOS_IDPRODCUTO from  bodegaproductos where BODEGA_IDBODEGA =" + id);
         List<Integer> listIdProductos = query.getResultList();
-        System.out.println("Lista de los Productos en Bodega"+listIdProductos);
+       // System.out.println("Lista de los Productos en Bodega"+listIdProductos);
 		return listIdProductos;
 	}
 	
-	public List<Productos> buscarNoProductosBodega(int idBodega){
-		List<Integer> idProductos= lisProductos(idBodega);
+	public List<Productos> buscarNoProductosBodega(int idBodega,List<Productos> lisTot){
+		List<Integer> idConProductos=idBodega(idBodega);
 		List<Productos> productos = new ArrayList<Productos>();
-		for(int i=0;i<idProductos.size();i++) {
-			int idpord=idProductos.get(i);
-			//System.out.println("Id del Producto"+idpord);
-			CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-	        CriteriaQuery<Productos> productosCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
-	        Root<Productos> productosRoot = productosCriteriaQuery.from(Productos.class);
-	        Predicate predicate= criteriaBuilder.equal(productosRoot.get("idProdcuto"),idpord);
-			productosCriteriaQuery.select(productosRoot).where(predicate);
-			Productos producto=(Productos) em.createQuery(productosCriteriaQuery).getSingleResult(); 	
-			System.out.println("Producto --->"+producto);
-			productos.add(producto);
+		System.out.println("Lista de Productos Totales"+lisTot.size());
+		System.out.println("Lista de Productos en Bodega"+idConProductos.size());
+		for(int i=0;i<lisTot.size();i++) {
+			for(int j=0;j<idConProductos.size();j++) {
+				if(lisTot.get(i).getIdProdcuto()==idConProductos.get(j)) {
+					System.out.println("Encontrado primer ID"+lisTot.get(i).getIdProdcuto()+"ID en BODEGA"+idConProductos.get(j) );
+					break;
+				}
+				if(j==idConProductos.size()-1) {
+					//System.out.println("NO se encontro el ID" +idProductos);
+					/*int idpord=idProductos.get(i);
+					System.out.println("Id del Productoque se aGrago a la listo del no"+idpord);
+					CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+			        CriteriaQuery<Productos> productosCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
+			        Root<Productos> productosRoot = productosCriteriaQuery.from(Productos.class);
+			        Predicate predicate= criteriaBuilder.equal(productosRoot.get("idProdcuto"),idpord);
+					productosCriteriaQuery.select(productosRoot).where(predicate);
+					Productos producto=(Productos) em.createQuery(productosCriteriaQuery).getSingleResult(); 	
+					System.out.println("Producto --->"+producto);*/
+					
+					productos.add(lisTot.get(i));
+				}
+			}
 		}
 		System.out.println("Total Productos");
 		return productos;
 	}
-	public List<Integer> lisProductos(int idBodega){
-		Query query = em.createNativeQuery("SELECT PRODUCTOS_IDPRODCUTO from bodegaproductos where BODEGA_IDBODEGA <>" + idBodega);
+	/*public List<Integer> lisProductosTotales(){
+		Query query = em.createNativeQuery("SELECT IDPRODCUTO from productos");
         List<Integer> listIdProductos = query.getResultList();
-        System.out.println("Lista de los Productos que no estan en Bodega"+listIdProductos);
-		return listIdProductos;
-	}
+        System.out.println("Lista de los Productos Totales para bodega"+listIdProductos);
+		ret*urn listIdProductos;
+	}*/
 	public List<Productos> finByName(String nombre) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Productos> productoCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
