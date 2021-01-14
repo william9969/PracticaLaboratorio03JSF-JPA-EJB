@@ -114,18 +114,11 @@ public class GestionProductosBodega implements Serializable{
 	
 	
 	public String listadoBodega(int idBodega) {
-		this.idBodega=idBodega;
-		List<Object[]> result = (List<Object[]>)ejbBodegaProductos.listaProductosPorBodega(idBodega); 
-		System.out.println("Imprimir longitud"+result.size());
-		for(int i=0;i<result.size();i++) {
-			Object[] bp=result.get(i);
-			int stockTomado= Integer.parseInt(String.valueOf(bp[1]));
-			int idProducto= Integer.parseInt(String.valueOf(bp[3]));
-			Productos producto = ejbProductosFacade.find(idProducto);
-			producto.setStock(stockTomado);
-			listProductos.add(producto);
+		listProductos = ejbProductosFacade.buscarProductosBodega(idBodega);
+		for(int i=0;i<listProductos.size();i++) {
+			int stock= ejbBodegaProductos.devolverStock(listProductos.get(i).getIdProdcuto(), idBodega);
+			listProductos.get(i).setStock(stock);
 		}
-		
 		//listProductos=ejbProductosFacade.buscarProductosBodega(idBodega);
 		listNoProductos=ejbProductosFacade.buscarNoProductosBodega(idBodega);
 		//System.out.println("La lista de bodegas Productos" +listaBodegaProductos);

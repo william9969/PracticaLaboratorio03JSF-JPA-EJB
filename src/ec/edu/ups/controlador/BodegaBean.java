@@ -9,9 +9,11 @@ import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
 import ec.edu.ups.entidades.Bodega;
+import ec.edu.ups.entidades.BodegaProductos;
 import ec.edu.ups.ejb.BodegaFacade;
 import ec.edu.ups.ejb.CategoriaFacade;
 import ec.edu.ups.ejb.ProvinciaFacade;
+import ec.edu.ups.ejb.BodegaProductosFacade;
 import ec.edu.ups.entidades.Productos;
 import ec.edu.ups.entidades.Provincia;
 import ec.edu.ups.entidades.Categoria;
@@ -28,6 +30,8 @@ public class BodegaBean implements Serializable {
 	ProvinciaFacade ejbProvinciaFacade;
 	@EJB
 	private CategoriaFacade ejbCategoriaFacade;
+	@EJB
+	private BodegaProductosFacade ejbBodegaProductosFacade;
 	
 	private String nombre;
 	private String telefono;
@@ -135,8 +139,8 @@ public class BodegaBean implements Serializable {
 
 	
 	
-	/*
 	
+	/*
 	public void agregarBodegas() {
 		//ID=1
 				Categoria cat1 = ejbCategoriaFacade.find(1);

@@ -1,5 +1,6 @@
 package ec.edu.ups.ejb;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -12,6 +13,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import ec.edu.ups.entidades.BodegaProductos;
+import ec.edu.ups.entidades.Productos;
 
 @Stateless
 public class BodegaProductosFacade extends AbstractFacade<BodegaProductos>{
@@ -32,19 +34,12 @@ public class BodegaProductosFacade extends AbstractFacade<BodegaProductos>{
 		// TODO Auto-generated method stub
 		return em;
 	}
-	
-	public List<Object[]> listaProductosPorBodega(int idBodega){
-		List<Object[]> elist=null;
-		try {
-			Query query = em.createNativeQuery("SELECT * from bodegaproductos where BODEGA_IDBODEGA =" + idBodega);
-			elist = query.getResultList();
-			System.out.println("Print ELIST"+elist);
-		}catch(Exception e) {
-			System.out.println("Impresion de Objetos");
-		}
-		//System.out.println("Lista de los Productos que no estan en Bodega"+listIdProductos);
-		return elist;
+	public int devolverStock(int idProducto,int idBodega) {
+		Query query = em.createNativeQuery("SELECT STOCK from bodegaproductos where BODEGA_IDBODEGA =" + idBodega + " AND PRODUCTOS_IDPRODCUTO="+ idProducto);
+        int stockProductos = Integer.parseInt(String.valueOf(query.getSingleResult()));
+        System.out.println("Stock de Cada Producto"+stockProductos);
+
+		return stockProductos;
 	}
-	
 	
 }

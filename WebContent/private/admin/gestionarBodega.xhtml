@@ -93,10 +93,13 @@
 							<f:facet name="header">Nombre Producto</f:facet>#{p.nombreProducto}
 						</h:column>			
 						<h:column>
-							<f:facet name="header">Precio Producto</f:facet>{p.precioProducto}
+							<f:facet name="header">Precio Producto</f:facet>#{p.precioProducto}
 						</h:column>
 						<h:column>
-							<f:facet name="header">Precio Producto</f:facet>{p.stock}
+							<f:facet name="header">Stock Producto</f:facet>
+							<h:inputText value="#{p.stock}" size="10"
+								rendered="#{p.editable}" />
+							<h:outputText value="#{p.stock}" rendered="#{not p.editable}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">Accion</f:facet>
