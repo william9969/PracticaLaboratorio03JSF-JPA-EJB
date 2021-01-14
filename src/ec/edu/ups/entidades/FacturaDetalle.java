@@ -97,7 +97,7 @@ public class FacturaDetalle implements Serializable {
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
-
+/*
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -138,7 +138,7 @@ public class FacturaDetalle implements Serializable {
 		if (Double.doubleToLongBits(total) != Double.doubleToLongBits(other.total))
 			return false;
 		return true;
-	}
+	}*/
    
 	
 }

@@ -2,7 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	
+      
 <h:head>
 	<title>Clientes</title>
 	<meta charset="utf-8"></meta>
@@ -14,7 +19,7 @@
         <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/style.css" ></link>
     <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/styleS.css" ></link>
 
-    <script src="../../js/main.js"></script>
+    <script src="http://localhost:8080/Practica03EJB-JPA-JSF/js/main.js"></script>
     
 	<style>
 		.tabla {
@@ -75,10 +80,70 @@
             
         </header>
         
-        <h2>Listar Facturas</h2>  
+        
 	
-<div class="section about_section layout_padding dash_bg "> 	
-	<div class="container-md">
+
+	<div class="section about_section layout_padding dash_bg "> 	
+	<div class="container">
+	 <h2>Listar Facturas</h2> 
+	 
+	 <div class="d-flex">
+
+                     <div class="col-sm-12">
+                         <div class="page-header float-left">
+                             <div class="page-title">
+                                 <h:form id="f-buscar" class="d-flex align-items-center">
+                                     <div class="form-group mr-3 d-flex align-items-center">
+                                         <label for="input-search" class="sr-only">Buscar Factura</label>
+                                         <h:inputText class="form-control" id="id" a:placeholder="Buscar Factura"
+                                                      value="#{listarFacturas.idFacturaCabecera}"/>
+                                     </div>
+                                     <h:commandButton class="btn btn-primary" value="Buscar"
+                                                      action="#{listarFacturas.buscarFactura}"
+                                                      > <f:ajax render="id subtotal iva total" execute="id" />
+						    			</h:commandButton>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+				<div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Buscar Factura</strong>
+                            </div>
+                            <div class="card-body">
+                                
+                                    <div>
+                                        <p> 
+                                            <h:outputText id="id" value="Codigo:"/>
+                                            <span class="font-weight-bold" ><h:outputText value="#{listarFacturas.fabCab.idFacturaCabecera}"/></span>
+                                        </p>
+                                        <p> 
+                                            <h:outputText id = "subtotal" value="subtotal>"/>
+                                            <span class="font-weight-bold" ><h:outputText value="#{listarFacturas.fabCab.subtotal}"/></span>
+                                        </p>
+                                        
+                                        <p> 
+                                            <h:outputText id = "iva" value="Correo:"/>
+                                            <span class="font-weight-bold" ><h:outputText value="#{listarFacturas.fabCab.iva}"/></span>
+                                        </p>
+                                        <p> 
+                                           <h:outputText id = "total" value="Direccion"/>
+                                            <span class="font-weight-bold" ><h:outputText value="#{listarFacturas.fabCab.total}"/></span>
+                                        </p>
+                                    </div>
+
+                                
+                            </div>
+
+                        </div>
+                    </div>
+	 
+	 
+	 
 	<h:form>
 		<h:dataTable class="table" value="#{listarFacturas.listFacturas}" var="p" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
@@ -103,10 +168,8 @@
 			
 			<h:column>
 				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Edit" action="#{personaBean.edit(p)}"
-					rendered="#{not p.editable}" />
-				<h:commandLink value="Save" action="#{personaBean.save(p)}"
-					rendered="#{p.editable}" />
+				<h:commandLink value="Edit" action="#{listarFacturas.delete(p)}" />
+
 			</h:column>
 			
 		</h:dataTable>

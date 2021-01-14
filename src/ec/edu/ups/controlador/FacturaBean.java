@@ -62,7 +62,10 @@ public class FacturaBean implements Serializable {
 	private List<Bodega> listBodega = new ArrayList<Bodega>();
 	private List<Bodega> bodegas = new ArrayList<Bodega>();
 	private String productoBuscar="";
-	private double total; 
+
+	private double subtotal;
+	private double total;
+	private double iva;
 	
 	public FacturaBean() {
 		// TODO Auto-generated constructor stub
@@ -232,6 +235,31 @@ public class FacturaBean implements Serializable {
 	public void setProductoBuscar(String productoBuscar) {
 		this.productoBuscar = productoBuscar;
 	}
+	
+
+	public double getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(double subtotal) {
+		this.subtotal = subtotal;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public double getIva() {
+		return iva;
+	}
+
+	public void setIva(double iva) {
+		this.iva = iva;
+	}
 
 	public List<Bodega> getBodegas() {
 		return bodegas;
@@ -281,10 +309,12 @@ public class FacturaBean implements Serializable {
 	}
 	
 	public String addProducto(Productos inventario) {
+		this.subtotal=0;
 		this.producto = inventario;
 		FacturaDetalle fd = new FacturaDetalle();
 		fd.setCantidad(1);
 		fd.setDetProducto(producto);
+		fd.setTotal(inventario.getPrecioProducto());
 		if (this.facturaDetalles.contains(fd)) {
 			System.out.println("Producto ya existe");
 			this.addCantidad(facturaDetalles.get(facturaDetalles.indexOf(fd)));
@@ -295,17 +325,28 @@ public class FacturaBean implements Serializable {
 		}
 		this.facturaCabecera.setListaFacturaDetalle(this.facturaDetalles);
 		
+		for(int i=0;i<facturaDetalles.size();i++) {
+			this.subtotal=this.subtotal+facturaDetalles.get(i).getTotal();
+		}
+
+	    
+		this.iva=subtotal*0.12;
+		this.iva=Math.round(iva*100.0)/100.0;
+		this.total=iva+subtotal;
+		
+		
 		return null;
 	}
 
-	public void addCantidad(FacturaDetalle fd) {
+	public String addCantidad(FacturaDetalle fd) {
 		System.out.println("// Cantidad "+fd.getCantidad());
 		if (this.inventario.getStock() > fd.getCantidad()) {
 			fd.setCantidad(fd.getCantidad() + 1);
-			this.facturaCabecera.setListaFacturaDetalle(this.facturaDetalles);
+			//this.facturaCabecera.setListaFacturaDetalle(this.facturaDetalles);
 			this.facturaCabecera.calcularSubtotal();
 			this.facturaCabecera.calcularTotal();
 		}
+		return "";
 	}
 	
 	public void deleteCantidad(FacturaDetalle fd) {
@@ -351,6 +392,9 @@ public class FacturaBean implements Serializable {
 			persona = null;
 			facturaDetalles = new ArrayList<>();
 		}
+		this.subtotal=0;
+		this.iva=0;
+		this.total=0;
 		return null;
 	}
 	
@@ -363,10 +407,6 @@ public class FacturaBean implements Serializable {
 	
 	public void agregarDetalle(Productos productoDetalle) {
 		try {
-			
-			
-			
-			
 			DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
 			separadoresPersonalizados.setDecimalSeparator('.');
 			DecimalFormat formato1 = new DecimalFormat("#.00", separadoresPersonalizados);

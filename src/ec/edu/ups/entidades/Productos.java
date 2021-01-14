@@ -131,7 +131,7 @@ public class Productos implements Serializable {
 		this.listBodegaProductos = listBodegaProductos;
 	}
 
-
+/*
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -182,7 +182,7 @@ public class Productos implements Serializable {
 			return false;
 		
 		return true;
-	}
+	}*/
 
 	
 

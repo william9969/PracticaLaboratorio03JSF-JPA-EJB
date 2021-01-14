@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/style.css" ></link>
     <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/styleS.css" ></link>
     <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/formulario.css" ></link>
-  
+      <script src="http://localhost:8080/Practica03EJB-JPA-JSF/js/main.js"></script>
 </h:head>
 
 <h:body>
@@ -50,9 +50,9 @@
                 <li class="nav-item">
 		        	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Factura</a>
 		            <div class="dropdown-menu">
-		            	<a class="dropdown-item" href="#">Generar Factura</a>
+		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/gestionFactura.xhtml">Generar Factura</a>
 		            	<a class="dropdown-item" href="#">Anular Factura</a>
-		            	<a class="dropdown-item" href="#">Buscar Factura</a>
+		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/ListFacturas.xhtml">Buscar Factura</a>
 	                </div>
                 </li>
               <!--  <li class="nav-item">
@@ -140,7 +140,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-8">
+                    <!--<div class="col-lg-8">
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">Seleccionar producto</strong>
@@ -160,7 +160,7 @@
                             
 
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="table-stats order-table ov-h">
 
@@ -239,7 +239,7 @@
                                         </h:column>               
                                         <h:column>
                                             <f:facet name="header">Sub Total</f:facet>
-                                            <h:outputText id="txt-subtotal" value="#{FacturaBean.total}" />
+                                            <h:outputText id="txt-subtotal" value="#{detalle.total}" />
                                         </h:column>
 
                                     </h:dataTable>
@@ -263,19 +263,19 @@
                                         <h:outputText value="Sub Total:"/>
                                         <span class="font-weight-bold" ><h:outputText 
                                                 id="subTotal" 
-                                                value="#{FacturaBean.facturaCabecera.subtotal}"/></span>
+                                                value="#{FacturaBean.subtotal}"/></span>
                                     </p>
                                     <p> 
                                         <h:outputText value="Iva:"/>
                                         <span class="font-weight-bold" ><h:outputText 
                                                 id="iva" 
-                                                value="#{FacturaBean.facturaCabecera.iva*100} %"/></span>
+                                                value="#{FacturaBean.iva} "/></span>
                                     </p>
                                     <p> 
                                         <h:outputText value="Total:"/>
                                         <span class="font-weight-bold" ><h:outputText 
                                                 id="total" 
-                                                value="#{FacturaBean.facturaCabecera.total}"/></span>
+                                                value="#{FacturaBean.total}"/></span>
                                     </p>
                                 </div>
                                 <h:form class="text-right">
@@ -364,32 +364,12 @@
         </div>
         <!-- END Modal -->
  
- 	<h2>Anular</h2>
- 	<div class="container-md">
-	<h:form>
-		<h:dataTable value="#{FacturaDetalleBean.list}" var="p" styleClass="tabla"
-			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-			<h:column>
-				<f:facet name="header">Cedula</f:facet>#{p.iva}</h:column>
-				<h:column>
-				<f:facet name="header">Nombres</f:facet>#{p.subtotal}</h:column>
-				<h:column>
-				<f:facet name="header">Direccion</f:facet>#{p.cedulaPersona}</h:column>
-				<h:column>
-				<f:facet name="header">Correo</f:facet>#{p.correo}</h:column>
-				
-					
-			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Delete" action="#{personaBean.delete(p)}" />
-			</h:column>
-			
-		</h:dataTable>
-		
-	</h:form>
-	</div>
  </div>  
- 
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+		
+	
   
 </h:body>
 

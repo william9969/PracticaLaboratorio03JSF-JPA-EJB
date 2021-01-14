@@ -31,6 +31,7 @@ public class ListarFacturas implements Serializable {
 	private double subtotal;
 	private double total;
 	private List<FacturaCabecera> listFacturas;
+	private FacturaCabecera fabCab;
 	private Persona personafacturaCabecera;
 	
 	@PostConstruct
@@ -79,6 +80,16 @@ public class ListarFacturas implements Serializable {
 	}
 
 
+	public FacturaCabecera getFabCab() {
+		return fabCab;
+	}
+
+
+	public void setFabCab(FacturaCabecera fabCab) {
+		this.fabCab = fabCab;
+	}
+
+
 	public List<FacturaCabecera> getListFacturas() {
 		return listFacturas;
 	}
@@ -105,10 +116,16 @@ public class ListarFacturas implements Serializable {
 	}
 	
 	public String delete(FacturaCabecera facCab) {
-		
 		ejbFacturaCabeceraFacade.remove(facCab);
 		listFacturas = ejbFacturaCabeceraFacade.findAll();
 		return null;
 	}
-	
+	public void buscarFactura() {
+		System.out.println("Ent"+this.idFacturaCabecera);
+		fabCab = ejbFacturaCabeceraFacade.find(idFacturaCabecera);
+		this.setIdFacturaCabecera(fabCab.getIdFacturaCabecera());
+		this.setSubtotal(fabCab.getSubtotal());
+		this.setIva(fabCab.getIva());
+		this.setTotal(fabCab.getTotal());
+	}
 }

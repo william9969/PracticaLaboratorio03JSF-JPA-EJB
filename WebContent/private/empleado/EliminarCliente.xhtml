@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/style.css" ></link>
     <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/styleS.css" ></link>
 
-    <script src="../../js/main.js"></script>
+    <script src="http://localhost:8080/Practica03EJB-JPA-JSF/js/main.js"></script>
 	<style>
 		.tabla {
 			border-collapse: collapse;
@@ -51,17 +51,17 @@
                 <li class="nav-item">
 		            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cliente</a>
 		            <div class="dropdown-menu">
-		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/ListClientes.xhtml">Agregar Cliente</a>
-		            	<a class="dropdown-item" href="#">Editar Cliente</a>
-		            	<a class="dropdown-item" href="#">Eliminar Cliente</a>
+		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/AgregarCliente.xhtml">Agregar Cliente</a>
+		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/EditarCliente.xhtml">Editar Cliente</a>
+		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/EliminarCliente.xhtml">Eliminar Cliente</a>
 	                </div>
                 </li>
                 <li class="nav-item">
 		        	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Factura</a>
 		            <div class="dropdown-menu">
-		            	<a class="dropdown-item" href="#">Generar Factura</a>
+		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/gestionFactura.xhtml">Generar Factura</a>
 		            	<a class="dropdown-item" href="#">Anular Factura</a>
-		            	<a class="dropdown-item" href="#">Buscar Factura</a>
+		            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/empleado/ListFacturas.xhtml">Buscar Factura</a>
 	                </div>
                 </li>
               <!--  <li class="nav-item">
@@ -72,8 +72,9 @@
               </ul>
             
         </header>
+     <div class="section about_section layout_padding dash_bg">
+          <div class="container">
 	<h2>Eliminar Cliente</h2>
-	<div class="container-md">
 	<h:form>
 		<h:dataTable value="#{personaBean.listClientes}" var="p" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
@@ -95,6 +96,7 @@
 		</h:dataTable>
 		
 	</h:form>
+	</div>
 	</div>
 	<footer id="footer">
 	    <div class="container">
