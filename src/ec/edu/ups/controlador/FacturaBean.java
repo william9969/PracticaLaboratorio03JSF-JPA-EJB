@@ -46,22 +46,27 @@ public class FacturaBean implements Serializable {
 	@EJB
 	private BodegaFacade ejbBodegaFacade;
 	
+	
 	private String cedula;
 	private String nombres;
 	private String direccion;
 	private String correo;
 	private String proNombre;
+
+	private double precioProducto;
 	private Persona persona;
 	private List<FacturaDetalle> facturaDetalles;
 	private List<Productos> productos = new ArrayList<Productos>();
 	private Productos producto;
 	private FacturaCabecera facturaCabecera;
 	private List<BodegaProductos> inventarios;
+	
 	private BodegaProductos inventario;
+	private int stockTotal;
 	private String bodega="";
+	private List<Integer> listProductosEnBodegas;
 	private List<Bodega> listBodega = new ArrayList<Bodega>();
-	private List<Bodega> bodegas = new ArrayList<Bodega>();
-	private String productoBuscar="";
+
 
 	private double subtotal;
 	private double total;
@@ -78,7 +83,8 @@ public class FacturaBean implements Serializable {
 		
 		listBodega = ejbBodegaFacade.findAll();
 		
-		productos = ejbProductosFacade.findAll();
+		inventarios = ejbpBodegaProductosFacade.findAll();
+		
 	}
 
 	public PersonaFacade getEjbPersonaFacade() {
@@ -177,6 +183,14 @@ public class FacturaBean implements Serializable {
 		this.inventario = inventario;
 	}
 	
+	
+	public double getPrecioProducto() {
+		return precioProducto;
+	}
+
+	public void setPrecioProducto(double precioProducto) {
+		this.precioProducto = precioProducto;
+	}
 
 	public String getNombres() {
 		return nombres;
@@ -220,6 +234,14 @@ public class FacturaBean implements Serializable {
 
 	
 
+	public int getStockTotal() {
+		return stockTotal;
+	}
+
+	public void setStockTotal(int stockTotal) {
+		this.stockTotal = stockTotal;
+	}
+
 	public List<Bodega> getListBodega() {
 		return listBodega;
 	}
@@ -227,15 +249,15 @@ public class FacturaBean implements Serializable {
 	public void setListBodega(List<Bodega> listBodega) {
 		this.listBodega = listBodega;
 	}
-
-	public String getProductoBuscar() {
-		return productoBuscar;
-	}
-
-	public void setProductoBuscar(String productoBuscar) {
-		this.productoBuscar = productoBuscar;
-	}
 	
+
+	public List<Integer> getListProductosEnBodegas() {
+		return listProductosEnBodegas;
+	}
+
+	public void setListProductosEnBodegas(List<Integer> listProductosEnBodegas) {
+		this.listProductosEnBodegas = listProductosEnBodegas;
+	}
 
 	public double getSubtotal() {
 		return subtotal;
@@ -261,14 +283,6 @@ public class FacturaBean implements Serializable {
 		this.iva = iva;
 	}
 
-	public List<Bodega> getBodegas() {
-		return bodegas;
-	}
-
-	public void setBodegas(List<Bodega> bodegas) {
-		this.bodegas = bodegas;
-	}
-
 	/**
 	 * Metodo Buscar Usuario
 	 * */
@@ -282,22 +296,7 @@ public class FacturaBean implements Serializable {
 		this.setCorreo(persona.getCorreo());
 		
 	}
-	/**
-	 * Metodo Filtrar
-	 * */
-	public void filtrar() {
-		if (inventarios.equals("")) {
-			inventarios = ejbBodegaFacade.buscarBodega(bodega).getListBodegaProductos();
-		}else {
-			List<Productos> pr= ejbProductosFacade.finByName(productoBuscar);
-			productos = new ArrayList<Productos>();
-			for (int i=0; i< pr.size();i++) {
-				if (pr.get(i).getListBodegaProductos().get(0).getBodega().getNombre().equals(bodega)) {
-					productos.add(pr.get(i));
-				}
-			}
-		}
-	}
+	
 	public void buscarProducto() {
 		//this.productos = ejbProductosFacade.finByName(this.proNombre);
 		this.producto = ejbProductosFacade.buscarProductoPorNombre(this.proNombre);
@@ -308,13 +307,17 @@ public class FacturaBean implements Serializable {
 		this.productos = new ArrayList<>();
 	}
 	
-	public String addProducto(Productos inventario) {
+	public String addProducto(BodegaProductos inventario) {
 		this.subtotal=0;
-		this.producto = inventario;
+		
+		this.inventario = inventario;
+		producto = ejbProductosFacade.find(inventario.getProductos().getIdProdcuto());
+		this.setProNombre(producto.getNombreProducto());
+		this.setPrecioProducto(producto.getPrecioProducto());
 		FacturaDetalle fd = new FacturaDetalle();
 		fd.setCantidad(1);
 		fd.setDetProducto(producto);
-		fd.setTotal(inventario.getPrecioProducto());
+		fd.setTotal(inventario.getProductos().getPrecioProducto());
 		if (this.facturaDetalles.contains(fd)) {
 			System.out.println("Producto ya existe");
 			this.addCantidad(facturaDetalles.get(facturaDetalles.indexOf(fd)));
@@ -357,8 +360,9 @@ public class FacturaBean implements Serializable {
 			fd.setCantidad(fd.getCantidad() - 1);
 		}
 		this.facturaCabecera.setListaFacturaDetalle(this.facturaDetalles);
-		this.facturaCabecera.calcularSubtotal();
-		this.facturaCabecera.calcularTotal();
+		this.iva=subtotal*0.12;
+		this.iva=Math.round(iva*100.0)/100.0;
+		this.total=iva+subtotal;
 	}
 	
 	public void deleteProducto(FacturaDetalle fd) {
@@ -369,32 +373,63 @@ public class FacturaBean implements Serializable {
 		this.facturaCabecera.calcularSubtotal();
 		this.facturaCabecera.calcularTotal();
 	}
+	/**
+	 * Consultar el Stock
+	 *
+	 * */
+	public String consultarStockProducto() {
+		productos = ejbProductosFacade.findAll();
+		listProductosEnBodegas=ejbpBodegaProductosFacade.listProductosEnBodegas();
+		System.out.println("Eh llegado" + productos);
+		for(int i=0;i<productos.size();i++) {
+			for(int j=0;j<listProductosEnBodegas.size();j++) {
+				if(productos.get(i).getIdProdcuto()==listProductosEnBodegas.get(j)) {
+					//System.out.println("Eh llegado" + listProductosEnBodegas.get(i));
+					int stockT=ejbpBodegaProductosFacade.stockTotalProducto(productos.get(i).getIdProdcuto());
+					productos.get(i).setStock(stockT);
+					break;
+				}
+			}
+		}
+		listBodega=ejbBodegaFacade.findAll();
+		return null;
+		
+	}
 	
 	public String generarFactura() {
+		this.subtotal=0;
 		if (persona !=null && facturaDetalles.size() > 0) {
+			this.iva=subtotal*0.12;
+			this.iva=Math.round(iva*100.0)/100.0;
 			this.facturaCabecera.setPersonaFacturaCabecera(this.persona);
 			this.facturaCabecera.calcularSubtotal();
 			this.facturaCabecera.calcularTotal();
-			
+			System.out.println(subtotal);
 			try {
 				for (FacturaDetalle fd : this.facturaCabecera.getListaFacturaDetalle()) {
 					fd.setFacturaDetalleCabecera(facturaCabecera);
+					this.subtotal=this.subtotal+facturaDetalles.get(fd.getIdFacturaDetalle()).getTotal();
 					for (BodegaProductos inv : fd.getDetProducto().getListBodegaProductos()) {
 						inv.setStock(inv.getStock() - fd.getCantidad());
 						ejbpBodegaProductosFacade.edit(inv);
+						
 					}
 					ejbCabeceraFacade.create(this.facturaCabecera);
 				}
 			}catch (Exception e) {
-				
+			
+			
 			}
+			
 			facturaCabecera = new FacturaCabecera();
 			persona = null;
 			facturaDetalles = new ArrayList<>();
 		}
-		this.subtotal=0;
-		this.iva=0;
-		this.total=0;
+		this.iva=subtotal*0.12;
+		this.iva=Math.round(iva*100.0)/100.0;
+		this.total=iva+subtotal;
+
+		inventarios = ejbpBodegaProductosFacade.findAll();
 		return null;
 	}
 	

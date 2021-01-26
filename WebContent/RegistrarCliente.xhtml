@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Clientes</title>
+	<meta charset="utf-8"></meta>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+	<meta content="" name="description"></meta>
+	<meta content="" name="keywords"></meta>
+	<!--Bootsrap 4 CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    
+    <!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"/>
+	
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/imagen/favicon.png" rel="icon"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/imagen/apple-touch-icon.png" rel="apple-touch-icon"></link>
+
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/icofont/icofont.min.css" rel="stylesheet"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/animate.css/animate.min.css" rel="stylesheet"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/venobox/venobox.css" rel="stylesheet"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet"></link>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/css/style.css" rel="stylesheet"></link>
+	
+	<style>
+		.tabla {
+			border-collapse: collapse;
+		}
+		
+		.cabeceraTabla {
+			text-align: center;
+			background: none repeat scroll 0 0 #E5E5E5;
+			border-bottom: 1px solid #BBBBBB;
+			padding: 8px;
+		}
+		
+		.filaPar {
+			text-align: center;
+			background: none repeat scroll 0 0 #FFFFFFF;
+			border-top: 1px solid #BBBBBB;
+		}
+		
+		.filaImpar {
+			text-align: center;
+			background: none repeat scroll 0 0 #F9F9F9;
+			border-top: 1px solid #BBBBBB;
+		}
+	</style>
+	
+</h:head>
+<h:body>
+	<script type="text/javascript">
+	    	function cargar(){
+	    		document.getElementById("editar").style.display = "inline";
+	    	}
+    </script>
+	<header id="header" class="fixed-top d-flex align-items-center header-transparent">
+	  	<div class="container d-flex align-items-center">
+	      <div class="logo mr-auto">
+	        <h2 class="text-light"><a href=""><span>Distribuidora Los Angeles</span></a></h2>
+	        <!-- Uncomment below if you prefer to use an image logo -->
+	        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+	      </div>
+	      <nav class="nav-menu d-none d-lg-block">
+	        <ul>
+	          <li class="active"><a href="index.html">Home</a></li>
+	          <li><a href="#why-us1">Categorias</a></li>
+	          <li><a href="#why-us">Bodegas</a></li>
+	          <li><a href="#contact">Contactanos</a></li>
+	          <li class="book-a-table text-center"><a href="http://localhost:8080/Practica03EJB-JPA-JSF/login.xhtml">Iniciar Sesion</a></li>
+	        </ul>
+	      </nav><!-- .nav-menu -->
+	
+	    </div>
+	  </header><!-- End Header -->
+<section id="why-us1" class="why-us">
+<div class="section about_section layout_padding dash_bg "> 	
+	<div class="container">
+	
+	    <div class="row">
+	        <div class="col-md-12">
+	            <div class="well well-sm">
+	                <h:form class="form-horizontal" >
+	                    <fieldset>
+	                    	<br></br>
+	                        <legend class="text-center header">Agregar Cliente</legend>
+							
+							<div class="form-group">
+								 <div class="col-md-8">
+										<h:form role="form">
+							               	<div class="form-group mb-3">
+								                <div class="input-group-prepend">
+													<h:inputText a:placeholder="Cedula" class="form-control" id="cedula" value="#{registrarClienteBean.cedulaBuscar}"  />
+									   			</div>	
+								   			</div>
+								   		  	
+								   		  	<div class="text-center">
+								   		  		<h:commandButton value="Buscar cliente" action="#{registrarClienteBean.buscarPersona}" class="btn btn-primary" onclick="cargar()" >
+									    		<!-- <f:ajax render="cedulah nombrecli direccioncli correocli" execute="cedula" /> --></h:commandButton>
+									    		<h:commandButton value="Salir"  class="btn btn-primary"/>
+									   		</div>
+					   	
+					   					</h:form>
+				   					</div>
+							</div>
+	                        <div class="form-group">
+	                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-id-card bigicon"></i> </span>
+	                            <div class="col-md-8">
+	                                
+	                                <h:inputText id="cedulah" name="cedulah" type="text" a:placeholder="Cedula" class="form-control" value="#{registrarClienteBean.cedula}"/>
+	                            </div>
+	                        </div>
+	                        <div class="form-group">
+	                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon">  </i></span>
+	                            <div class="col-md-8">
+	                                
+	                                <h:inputText id="nombrecli" name="nombrecli" type="text" a:placeholder="Nombres y Apellidos" class="form-control" value="#{registrarClienteBean.nombres}"/>
+	                            </div>
+	                        </div>
+	
+	                        <div class="form-group">
+	                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-address-card bigicon"> </i></span>
+	                            <div class="col-md-8">
+	                                
+	                                <h:inputText id="direccioncli" name="direccioncli" type="text" a:placeholder="Direccion" class="form-control" value="#{registrarClienteBean.direccion}"/>
+	                            </div>
+	                        </div>
+	                        
+	                        <div class="form-group">
+	                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope bigicon"> </i></span>
+	                            <div class="col-md-8">
+	                                
+	                                <h:inputText id="correocli" name="correocli" type="text" a:placeholder="Correo" class="form-control" value="#{registrarClienteBean.correo}"/>
+	                            </div>
+	                        </div>
+	                        
+	                        <div class="form-group">
+	                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-lock bigicon"> </i></span>
+	                            <div class="col-md-8">
+	                                
+	                                <h:inputText id="contrasenia" name="contrasenia" type="text" a:placeholder="password" class="form-control" value="#{registrarClienteBean.contrasenia}"/>
+	                                <f:ajax render="contrasena" event="keyup" execute="@this" />
+	                            </div>
+	                        </div>
+	                        
+	                 
+	                        <div class="form-group">
+	                            <div class="col-md-12 text-center">
+	                                <h:commandButton class="btn btn-primary btn-lg" value="Editar Cliente" action="#{registrarClienteBean.editarCliente()}" />
+	                                <h:inputText id="cedula" value="#{registrarClienteBean.cedula}" style="visibility:hidden">
+						    			<f:ajax render="cedula" event="keyup" execute="@this" />
+						    		</h:inputText>
+					   		  	
+	                            </div>
+	                           
+	                        </div>
+	                    </fieldset>
+	                </h:form>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+</section>
+<footer id="footer">
+	    <div class="container">
+	      <h3>Distribuidora Los Angeles</h3>
+	      <p>Visitanos en nuestras Redes Sociales.</p>
+	      <div class="social-links">
+	        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+	        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+	        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+	        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+	        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+	      </div>
+	      <div class="copyright">
+	        &copy; Copyright All Rights Reserved
+	      </div>
+	      <div class="credits">
+	        <!-- All the links in the footer should remain intact. -->
+	        <!-- You can delete the links only if you purchased the pro version. -->
+	        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+	        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/delicious-free-restaurant-bootstrap-theme/ -->
+	        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+	      </div>
+	    </div>
+	  </footer><!-- End Footer -->
+	
+	  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    
+	  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+		
+</h:body>
+</html>
