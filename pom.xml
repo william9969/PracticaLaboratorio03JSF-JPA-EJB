@@ -4,6 +4,7 @@
   <artifactId>Practica03EJB-JPA-JSF</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
  <build>
   <finalName>${project.artifactId}}</finalName>
     <sourceDirectory>src</sourceDirectory>
@@ -33,6 +34,27 @@
       </plugin>
     </plugins>
   </build>
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <jakartaee>8.0</jakartaee>
+  </properties>
+  <repositories>
+    <repository>
+      <id>prime-repo</id>
+      <name>PrimeFaces Maven Repository</name>
+      <url>http://repository.primefaces.org</url>
+      <layout>default</layout>
+    </repository>
+    <repository>
+      <id>java.net-Public</id>
+      <name>Maven Java Net Snapshots and Releases</name>
+      <url>https://maven.java.net/content/groups/public/</url>
+    </repository>
+  </repositories>
   <dependencies>
   	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 	<dependency>
@@ -91,6 +113,24 @@
       <artifactId>javax.ws.rs-api</artifactId>
       <version>2.1.1</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-api -->
+	<!-- https://mvnrepository.com/artifact/javax.faces/javax.faces-api -->
+	<dependency>
+	    <groupId>javax.faces</groupId>
+	    <artifactId>javax.faces-api</artifactId>
+	    <version>2.3</version>
+	    <scope>provided</scope>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>4.0.1</version>
+	    <scope>provided</scope>
+	</dependency>
+	
+    
   </dependencies>
  
 </project>

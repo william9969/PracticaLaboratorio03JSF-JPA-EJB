@@ -29,6 +29,7 @@ public class Persona implements Serializable {
 	private String contrasenia;
 	private char rolUsuario; //Para rol de Usuario 'A' administrador, 'E' empleado, 'C' cliente
 	private boolean activo;
+	private char estado;
 	@Transient
     private boolean editable;
 	
@@ -37,10 +38,11 @@ public class Persona implements Serializable {
 	
 	
 	
-	public Persona( String cedula, String nombres, String direccion, String correo,
-			String contrasenia, char rolUsuario, boolean activo) {
+	
+	
+	public Persona(String cedula, String nombres, String direccion, String correo, String contrasenia,
+			char rolUsuario, boolean activo, char estado) {
 		super();
-		
 		this.cedula = cedula;
 		this.nombres = nombres;
 		this.direccion = direccion;
@@ -48,8 +50,9 @@ public class Persona implements Serializable {
 		this.contrasenia = contrasenia;
 		this.rolUsuario = rolUsuario;
 		this.activo = activo;
+		this.estado = estado;
 	}
-	
+
 	public Persona() {
 		this.rolUsuario = 'C';
 		this.contrasenia = "cliente";
@@ -122,6 +125,14 @@ public class Persona implements Serializable {
 
 	public void setEditable(boolean editable) {
 		this.editable = editable;
+	}
+	
+	public char getEstado() {
+		return estado;
+	}
+
+	public void setEstado(char estado) {
+		this.estado = estado;
 	}
 
 	@Override

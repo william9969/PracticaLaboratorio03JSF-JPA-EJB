@@ -40,12 +40,13 @@ public class PersonaBean implements Serializable {
 	private Persona usuario;
 	private String contrasenia;
 	private char rolUsuario; //Para rol de Usuario 'A' administrador, 'E' empleado, 'C' cliente
+	private char estado;
 	private boolean activo;
 	HttpSession session;
 	FacesContext context;
 	private List<Persona> list;
 	private List<Persona> listClientes;
-	
+
 	
 	@PostConstruct
 	public void init() {
@@ -56,15 +57,15 @@ public class PersonaBean implements Serializable {
 		list = ejbPersonaFacade.findAll();
 		listClientes = ejbPersonaFacade.findClientes();
 	}
+	
 	public String add() {
-		ejbPersonaFacade.create(new Persona(this.cedula, this.nombres, this.direccion, this.correo, this.contrasenia="123", this.rolUsuario='C', this.activo=true));
+	ejbPersonaFacade.create(new Persona(this.cedula, this.nombres, this.direccion, this.correo, this.contrasenia="123", this.rolUsuario='C',this.activo=true, this.estado='A'));
 		listClientes = ejbPersonaFacade.findClientes();
 		cedula = "";
 		nombres = "";
 		direccion = "";
 		correo = "";
 		contrasenia="";
-		
 		
 		return null;
 		
@@ -178,8 +179,12 @@ public class PersonaBean implements Serializable {
 		this.list = list;
 	}
 	
-	
-	
+	public char getEstado() {
+		return estado;
+	}
+	public void setEstado(char estado) {
+		this.estado = estado;
+	}
 	public List<Persona> getListClientes() {
 		return listClientes;
 	}
@@ -209,6 +214,10 @@ public class PersonaBean implements Serializable {
                                 System.out.println("empleado");
                                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
                                 return "/private/empleado/empleadoJSF.xhtml";
+                            case 'C':
+                            	System.out.println("cliente");
+                            	FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
+                            	//return "/private/cliente/clienteJSF.xhtml";
                         }
                     } else {
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Su cuenta ah sido desactivada contacte con un administrador"));
