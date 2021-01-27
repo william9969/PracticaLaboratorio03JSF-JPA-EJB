@@ -251,4 +251,5 @@ public class PersonaBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/Practica03EJB-JPA-JSF/principal.xhtml");
 	
 	}
+	
 }
