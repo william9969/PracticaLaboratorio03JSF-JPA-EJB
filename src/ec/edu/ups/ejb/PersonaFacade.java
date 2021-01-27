@@ -69,17 +69,18 @@ public class PersonaFacade extends AbstractFacade<Persona>{
 	}
 
 	public Persona buscarPersonaPorCedula(String cedula) {
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaQuery<Persona> categoriaCriteriaQuery = criteriaBuilder.createQuery(Persona.class);
-        Root<Persona> categoriaRoot = categoriaCriteriaQuery.from(Persona.class);
-        Predicate predicate= criteriaBuilder.equal(categoriaRoot.get("cedula"),cedula);
-        categoriaCriteriaQuery.select(categoriaRoot).where(predicate);
-		
-
+        try{
+        	CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+            CriteriaQuery<Persona> categoriaCriteriaQuery = criteriaBuilder.createQuery(Persona.class);
+            Root<Persona> categoriaRoot = categoriaCriteriaQuery.from(Persona.class);
+            Predicate predicate= criteriaBuilder.equal(categoriaRoot.get("cedula"),cedula);
+            categoriaCriteriaQuery.select(categoriaRoot).where(predicate);
+            return em.createQuery(categoriaCriteriaQuery).getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
         
-        return em.createQuery(categoriaCriteriaQuery).getSingleResult();
-        
-		}
+	}
 
 
    
