@@ -171,7 +171,7 @@ public class ListarFacturas implements Serializable {
 		return null;
 	}
 	public void buscarFactura() {
-		System.out.println("Ent"+this.idFacturaCabecera);
+		System.out.println("Ent "+this.idFacturaCabecera);
 		fabCab = ejbFacturaCabeceraFacade.find(idFacturaCabecera);
 		personafacturaCabecera = ejbPersonaFacade.find(getPersonafacturaCabecera().getIdPersona());
 		System.out.println(personafacturaCabecera);
