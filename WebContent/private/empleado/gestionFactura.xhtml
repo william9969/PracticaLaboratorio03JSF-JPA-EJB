@@ -165,17 +165,17 @@
                 <div class="table-stats order-table ov-h">
 
                                 <h:form>
-                                    <h:dataTable value="#{FacturaBean.productos}" var="p" styleClass="tabla w-100"
+                                    <h:dataTable value="#{FacturaBean.inventarios}" var="p" styleClass="tabla w-100"
                                                  headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
                                        
                                         <h:column>
-							<f:facet  name="header">Codigo</f:facet>#{p.idProdcuto}
+							<f:facet  name="header">Codigo</f:facet>#{p.productos.idProdcuto}
 						</h:column>
 						<h:column>
-							<f:facet name="header">Nombre Producto</f:facet>#{p.nombreProducto}
+							<f:facet name="header">Nombre Producto</f:facet>#{p.productos.nombreProducto}
 						</h:column>			
 						<h:column>
-							<f:facet name="header">Precio Producto</f:facet>#{p.precioProducto}
+							<f:facet name="header">Precio Producto</f:facet>#{p.productos.precioProducto}
 						</h:column>
 						<h:column>
 							<f:facet name="header">Stock Producto</f:facet>#{p.stock}
@@ -303,65 +303,7 @@
         </div>
 
 
-        <!-- Modal inventario-->
-        <div class="modal fade" id="modalInventarios" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="mediumModalLabel">Inventario - <h:outputText id="txt-producto-nombre" value="#{FacturaBean.producto.nombreProducto}"/> </h5>
-                    </div>
-
-
-                    <div class="modal-body">
-                        <h:form id="table-inventarios"> 
-                            <h:dataTable  value="#{FacturaBean.inventarios}" var="i" styleClass="tabla w-100"
-                                          headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Codigo</f:facet>
-                                    <h:outputText value="#{i.codigo}"/>
-                                </h:column>
-
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Bodega</f:facet>
-                                    <h:outputText value="#{i.bodega.nombre}"/>
-                                </h:column>
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Pais</f:facet>
-                                    <h:outputText value="#{i.bodega.localidad.pais}"/>
-                                </h:column>
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Provincia</f:facet>
-                                    <h:outputText value="#{i.bodega.localidad.provincia}"/>
-                                </h:column>
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Ciudad</f:facet>
-                                    <h:outputText value="#{i.bodega.localidad.ciudad}"/>
-                                </h:column>
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Direccion</f:facet>
-                                    <h:outputText value="#{i.bodega.localidad.direccion}"/>
-                                </h:column>
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Telefono</f:facet>
-                                    <h:outputText value="#{i.bodega.localidad.telefono}"/>
-                                </h:column>
-                                <h:column class="serial">
-                                    <f:facet class="serial" name="header">Cantidad</f:facet>
-                                    <h:outputText value="#{i.cantidad}"/>
-                                </h:column>
-
-                                
-
-                            </h:dataTable>
-                        </h:form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <!-- END Modal -->
  
  </div>  
