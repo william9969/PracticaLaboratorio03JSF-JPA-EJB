@@ -45,7 +45,9 @@ public class RegistrarClienteBean implements Serializable {
 	public String editarCliente() {
 		try {
 			Persona persona = ejePersonaFacade.buscarPersonaPorCedula(cedula);
-			
+			persona.setNombres(nombres);
+			persona.setDireccion(direccion);
+			persona.setCorreo(correo);
 			persona.setContrasenia(contrasenia);
 			
 			ejePersonaFacade.edit(persona);

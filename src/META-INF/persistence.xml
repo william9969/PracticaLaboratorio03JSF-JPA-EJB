@@ -10,6 +10,8 @@
 		<class>ec.edu.ups.entidades.Bodega</class>
 		<class>ec.edu.ups.entidades.Provincia</class>
 		<class>ec.edu.ups.entidades.BodegaProductos</class>
+		<class>ec.edu.ups.entidades.PedidoCabecera</class>
+		<class>ec.edu.ups.entidades.PedidoDetalle</class>
 		<properties>
 			<property
 				name="javax.persistence.schema-generation.database.action"

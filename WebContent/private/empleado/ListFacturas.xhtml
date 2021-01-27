@@ -100,7 +100,7 @@
                                      </div>
                                      <h:commandButton class="btn btn-primary" value="Buscar"
                                                       action="#{listarFacturas.buscarFactura}"
-                                                      > <f:ajax render="id subtotal iva total" execute="id" />
+                                                      > <f:ajax render="id cedula nombres direccion correo subtotal iva total" execute="id" />
 						    			</h:commandButton>
                                     </h:form>
                                 </div>
@@ -117,21 +117,39 @@
                             <div class="card-body">
                                 
                                     <div>
-                                        <p> 
+                                    	<p> 
                                             <h:outputText id="id" value="Codigo:"/>
                                             <span class="font-weight-bold" ><h:outputText value="#{listarFacturas.fabCab.idFacturaCabecera}"/></span>
                                         </p>
+                                        
+                                    	 <p> 
+                                            <h:outputText id="cedula" value="Cedula: "/>
+                                            <span class="font-weight-bold" ><h:outputText value="#{listarFacturas.fabCab.personaFacturaCabecera.cedula}"/></span>
+                                        </p>
+                                    	
                                         <p> 
-                                            <h:outputText id = "subtotal" value="subtotal>"/>
+                                            <h:outputText id="nombres" value="Nombres: "/>
+                                            <span class="font-weight-bold" ><h:outputText value="#{listarFacturas.fabCab.personaFacturaCabecera.nombres}"/></span>
+                                        </p>
+                                        <p> 
+                                            <h:outputText id="direccion" value="Direccion: "/>
+                                            <span class="font-weight-bold" ><h:outputText value="#{listarFacturas.fabCab.personaFacturaCabecera.direccion}"/></span>
+                                        </p>
+                                        <p> 
+                                            <h:outputText id="correo" value="Correo: "/>
+                                            <span class="font-weight-bold" ><h:outputText value="#{listarFacturas.fabCab.personaFacturaCabecera.correo}"/></span>
+                                        </p>
+                                        <p> 
+                                            <h:outputText id = "subtotal" value="subtotal: "/>
                                             <span class="font-weight-bold" ><h:outputText value="#{listarFacturas.fabCab.subtotal}"/></span>
                                         </p>
                                         
                                         <p> 
-                                            <h:outputText id = "iva" value="Correo:"/>
+                                            <h:outputText id = "iva" value="Iva:"/>
                                             <span class="font-weight-bold" ><h:outputText value="#{listarFacturas.fabCab.iva}"/></span>
                                         </p>
                                         <p> 
-                                           <h:outputText id = "total" value="Direccion"/>
+                                           <h:outputText id = "total" value="Total"/>
                                             <span class="font-weight-bold" ><h:outputText value="#{listarFacturas.fabCab.total}"/></span>
                                         </p>
                                     </div>
@@ -153,6 +171,14 @@
 				<f:facet name="header">ID</f:facet>#{p.idFacturaCabecera}</h:column>
 				
 				<h:column>
+				<f:facet name="header">Cedula</f:facet>#{p.personaFacturaCabecera.cedula}</h:column>
+				<h:column>
+				<f:facet name="header">Nombres</f:facet>#{p.personaFacturaCabecera.nombres}</h:column>
+				<h:column>
+				<f:facet name="header">Direccion</f:facet>#{p.personaFacturaCabecera.direccion}</h:column>
+				<h:column>
+				<f:facet name="header">Correo</f:facet>#{p.personaFacturaCabecera.correo}</h:column>
+				<h:column>
 				<f:facet name="header">iva</f:facet>#{p.iva}
 				 </h:column>
 				
@@ -168,13 +194,15 @@
 			
 			<h:column>
 				<f:facet name="header">Accion</f:facet>
-				<h:commandLink value="Edit" action="#{listarFacturas.delete(p)}" />
+				<h:commandLink value="Anular" action="#{listarFacturas.delete(p)}" />
 
 			</h:column>
 			
 		</h:dataTable>
 		
 	</h:form>
+	
+	
 	</div>
 	
 	<footer id="footer">
