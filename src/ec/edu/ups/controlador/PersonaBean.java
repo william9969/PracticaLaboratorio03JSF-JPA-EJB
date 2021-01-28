@@ -87,6 +87,7 @@ public class PersonaBean implements Serializable {
 	public String edit(Persona persona) {
 		
 		persona.setEditable(true);
+		listClientes = ejbPersonaFacade.findClientes();
 		return null;
 		
 	}
@@ -225,11 +226,12 @@ public class PersonaBean implements Serializable {
                             case 'A':
                                 System.out.println("admin");
                                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
-                                return "private/admin/adminPrincipal.jsf";
+                                System.out.println("/Practica03EJB-JPA-JSF/private/admin/adminPrincipal.xhtml");
+                                return "/Practica03EJB-JPA-JSF/private/admin/adminPrincipal.xhtml";
                             case 'E':
                                 System.out.println("empleado");
                                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
-                                return "private/admin/empleadoJSF.jsf";
+                                return "/Practica03EJB-JPA-JSF/private/empleado/empleadoJSF.xhtml";
                             case 'C':
                             	System.out.println("cliente");
                             	FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
@@ -253,18 +255,19 @@ public class PersonaBean implements Serializable {
             System.out.println("Error: " + e);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error Interno", "Error! interno intente de nuevo"));
         }
-        return "login.xhtml";
+		System.out.println("No entro ");
+        return null;//"/Practica03EJB-JPA-JSF/login.xhtml";
 	}
-
+/*
 	public void listarClientes() {
 		this.listClientes = ejbPersonaFacade.findClientes();
 		cedula = null;
-	}
+	}*/
 	
 	public void cerrarSession() throws IOException {
        
         session.setAttribute("userlog", null);
-        FacesContext.getCurrentInstance().getExternalContext().redirect("Practica03EJB-JPA-JSF/principal.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica03EJB-JPA-JSF/principal.xhtml");
 	
 	}
 	
