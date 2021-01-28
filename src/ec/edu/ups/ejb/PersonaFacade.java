@@ -58,14 +58,14 @@ public class PersonaFacade extends AbstractFacade<Persona>{
 
 	public List<Persona> findClientes() {
 		
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaQuery<Persona> categoriaCriteriaQuery = criteriaBuilder.createQuery(Persona.class);
-        Root<Persona> categoriaRoot = categoriaCriteriaQuery.from(Persona.class);
-        Predicate predicate= criteriaBuilder.equal(categoriaRoot.get("rolUsuario"),'C');
-        categoriaCriteriaQuery.select(categoriaRoot).where(predicate);
-		
-        
-        return em.createQuery(categoriaCriteriaQuery).getResultList();
+		try {
+			String sql = "From Persona p Where p.estado='A' and p.rolUsuario='C' ";
+			Query query = em.createQuery(sql);
+			return (List<Persona>) query.getResultList();
+		} catch (Exception e) {
+			 System.out.println("Error al buscar la persona con el roll y el estado: "+e);
+	            return null;
+		}
 	}
 
 	public Persona buscarPersonaPorCedula(String cedula) {
@@ -89,7 +89,7 @@ public class PersonaFacade extends AbstractFacade<Persona>{
 	}
 
 	public List<Persona> readCliente(char estado) {
-		Query query = em.createNamedQuery("SELECT c From Persona WHERE c.estado =: estado");
+		Query query = em.createNativeQuery("SELECT c From PERSONA c WHERE c.ESTADO =: '"+estado+"'");
 		query.setParameter("estado", estado);
 		List result = query.getResultList();
 		if (result.isEmpty()) {
