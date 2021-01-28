@@ -13,21 +13,18 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
 	<meta content="" name="description"></meta>
 	<meta content="" name="keywords"></meta>
-	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/imagen/favicon.png" rel="icon"></link>
-	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/imagen/apple-touch-icon.png" rel="apple-touch-icon"></link>
-
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet"></link>
 
-	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
-	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/icofont/icofont.min.css" rel="stylesheet"></link>
-	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"></link>
-	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/animate.css/animate.min.css" rel="stylesheet"></link>
-	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/venobox/venobox.css" rel="stylesheet"></link>
-	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet"></link>
-	<link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/bootstrap-grid.css" ></link>
-    <link rel="stylesheet"  href="http://localhost:8080/Practica03EJB-JPA-JSF/css/bootstrap.css" ></link>
-    <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/style.css" ></link>
-    <link rel="stylesheet" href="http://localhost:8080/Practica03EJB-JPA-JSF/css/styleS.css" ></link>
+	<link href="/Practica03EJB-JPA-JSF/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+	<link href="/Practica03EJB-JPA-JSF/vendor/icofont/icofont.min.css" rel="stylesheet"></link>
+	<link href="/Practica03EJB-JPA-JSF/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"></link>
+	<link href="/Practica03EJB-JPA-JSF/vendor/animate.css/animate.min.css" rel="stylesheet"></link>
+	<link href="/Practica03EJB-JPA-JSF/vendor/venobox/venobox.css" rel="stylesheet"></link>
+	<link href="/Practica03EJB-JPA-JSF/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet"></link>
+	<link rel="stylesheet" href="/Practica03EJB-JPA-JSF/css/bootstrap-grid.css" ></link>
+    <link rel="stylesheet"  href="/Practica03EJB-JPA-JSF/css/bootstrap.css" ></link>
+    <link rel="stylesheet" href="/Practica03EJB-JPA-JSF/css/style.css" ></link>
+    <link rel="stylesheet" href="/Practica03EJB-JPA-JSF/css/styleS.css" ></link>
 	<style>
 			.tabla {
 				border-collapse: collapse;
@@ -52,44 +49,45 @@
 				border-top: 1px solid #BBBBBB;
 			}
 	</style>
-     <script src="http://localhost:8080/Practica03EJB-JPA-JSF/js/main.js"></script>
+    <script src="/Practica03EJB-JPA-JSF/js/main.js"></script>
 </h:head>
 <h:body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
 	<header class ="float-right">
           <ul class="nav justify-content-end">
 
               <li class="nav-item">
-              	<a class="nav-link" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/adminPrincipal.xhtml">  Inicio</a>
+              	<a class="nav-link" href="/Practica03EJB-JPA-JSF/private/admin/adminPrincipal.xhtml">  Inicio</a>
               </li>
               <li class="nav-item">
               	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion Empresa</a>
               	<div class="dropdown-menu">
-                 <h:form>
+              		<h:form>
               		<h:commandLink class="dropdown-item" value="Visualizar Stock" action="#{gestionEmpresaBean.stockAcutalizar}"/>
                  <!-- <a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionEmpresa.xhtml">Visualizar Stock</a> -->
                		</h:form>
                </div>
+               
               </li>
               
               <li class="nav-item">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion Productos</a>
             <div class="dropdown-menu">
-            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionProducto.xhtml">Listar Productos</a>
-            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionProducto.xhtml">Agregar Producto</a>
-            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionProducto.xhtml">Eliminar Producto</a>
+            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/admin/gestionProducto.xhtml">Listar Productos</a>
+            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/admin/gestionProducto.xhtml">Agregar Producto</a>
+            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/admin/gestionProducto.xhtml">Eliminar Producto</a>
                </div>
               </li>
               <li class="nav-item">
         	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestionar Productos Bodega</a>
             <div class="dropdown-menu">
-            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionBodegas.xhtml">Agregar Bodega</a>
-            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionBodegas.xhtml">Listar Bodegas</a>
-            	<a class="dropdown-item" href="http://localhost:8080/Practica03EJB-JPA-JSF/private/admin/gestionBodegas.xhtml">Eliminar Bodega</a>
+            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/admin/gestionBodegas.xhtml">Agregar Bodega</a>
+            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/admin/gestionBodegas.xhtml">Listar Bodegas</a>
+            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/admin/gestionBodegas.xhtml">Eliminar Bodega</a>
                </div>
               </li>
             <li class="nav-item">
            		<h:form>
-						<h:commandButton  value="Cerrar Sesion" type="submit"
+						<h:commandButton class="btn btn-dark" value="Cerrar Sesion" type="submit"
 							action="#{personaBean.cerrarSession()}" />
 				</h:form>
               	
