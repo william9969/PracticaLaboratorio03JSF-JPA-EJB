@@ -64,11 +64,13 @@
 		            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/empleado/ListFacturas.xhtml">Buscar Factura</a>
 	                </div>
                 </li>
-              <!--  <li class="nav-item">
-                	<form action="http://localhost:8080/Practica02/LogOut" method="get">
-	             		 <button type="submit" class="nav-link btn-danger">Salir</button>
-	             	</form>
-                </li>-->
+              	<li class="nav-item">
+           		<h:form>
+						<h:commandButton class="btn btn-dark" value="Cerrar Sesion" type="submit"
+							action="#{personaBean.cerrarSession()}" />
+				</h:form>
+              	
+              </li>
               </ul>
             
         </header>
@@ -86,11 +88,14 @@
 				<f:facet name="header">Direccion</f:facet>#{p.direccion}</h:column>
 				<h:column>
 				<f:facet name="header">Correo</f:facet>#{p.correo}</h:column>
-				
-					
-			<h:column>
+
+			<!--<h:column>
 				<f:facet name="header">Accion</f:facet>
 				<h:commandLink value="Delete" action="#{personaBean.delete(p)}" />
+			</h:column>-->
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Eliminado Logico" action="#{personaBean.eliminadoLogico(p)}" />
 			</h:column>
 			
 		</h:dataTable>
