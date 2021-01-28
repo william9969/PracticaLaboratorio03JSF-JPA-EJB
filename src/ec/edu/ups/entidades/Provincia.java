@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -21,8 +22,10 @@ public class Provincia implements Serializable {
 	private int idProvincia;
 	private String nombre;
 	
+	@JsonbTransient
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "provincia")
 	private List<Bodega> bodegas = new ArrayList<Bodega>();
+	@JsonbTransient
 	@Transient
     private boolean editable;
 	

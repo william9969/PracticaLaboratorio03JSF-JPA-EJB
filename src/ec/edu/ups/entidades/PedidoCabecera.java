@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -23,10 +24,12 @@ public class PedidoCabecera implements Serializable {
 	private String estadoA;
 	private String estadoS;
 	
+	@JsonbTransient
 	@ManyToOne
 	@JoinColumn
 	private Persona persona;
 	
+	@JsonbTransient
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoCabecera")
 	private List<PedidoDetalle> pedidoDetalle = new ArrayList<PedidoDetalle>();
 	

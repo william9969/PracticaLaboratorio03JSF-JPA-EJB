@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -23,15 +24,18 @@ public class Bodega implements Serializable {
 	private String telefono;
 	private String cuidad;
 	private String direccion;
+	@JsonbTransient
 	@Transient
 	private boolean editable;
 	
+	@JsonbTransient
 	@ManyToOne
 	@JoinColumn
 	private Provincia provincia;
 	
 	//@ManyToMany(cascade = CascadeType.ALL)
 	//private List<Productos> listProductos;
+	@JsonbTransient
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "bodega")
 	private List<BodegaProductos> listBodegaProductos;
 	

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 import ec.edu.ups.entidades.Productos;
@@ -24,10 +25,11 @@ public class Categoria implements Serializable {
 	private int idCategoria;
 	private String nombre;
 	
-	
+	@JsonbTransient
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "catProd")
 	private Set<Productos> productos = new HashSet<Productos>();
 	
+	@JsonbTransient
 	@Transient 
 	private boolean editable;
 	

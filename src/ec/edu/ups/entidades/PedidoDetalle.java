@@ -1,6 +1,8 @@
 package ec.edu.ups.entidades;
 
 import java.io.Serializable;
+
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -20,10 +22,12 @@ public class PedidoDetalle implements Serializable {
 	
 	private int cantidad;
 	
+	@JsonbTransient
 	@ManyToOne
 	@JoinColumn
 	private Productos productos;
 	
+	@JsonbTransient
 	@ManyToOne
 	@JoinColumn
 	private PedidoCabecera pedidoCabecera;

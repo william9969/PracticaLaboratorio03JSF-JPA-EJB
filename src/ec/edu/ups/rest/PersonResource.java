@@ -20,18 +20,27 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
+import ec.edu.ups.ejb.PedidoCabeceraFacade;
 import ec.edu.ups.ejb.PersonaFacade;
+import ec.edu.ups.ejb.ProductosFacade;
 import ec.edu.ups.entidades.Persona;
+import ec.edu.ups.entidades.Productos;
 
 @Path("/cliente/")
 public class PersonResource {
 
 	@EJB
 	private PersonaFacade ejebPersonaFacade;
+	@EJB
+	private ProductosFacade ejbProductosFacade;
+	@EJB
+	private PersonaFacade ejbPersonaFacade;
+	@EJB
+	private PedidoCabeceraFacade ejbPedidoCabeceraFacade;
 	
 	@GET
 	@Path("/validarCliente/{cedula}")
@@ -55,9 +64,10 @@ public class PersonResource {
 		//Persona persona = new Persona(cedula,nombres,direccion, correo,contresenia,'C',true,'-');
 		ejebPersonaFacade.updateCliente(cedula,correo,contresenia);
 		
-		return Response.ok("Cliente registrado")
+		return Response.ok("Cliente editado")
 				.header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
 	}
+
 }
