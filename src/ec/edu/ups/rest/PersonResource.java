@@ -45,5 +45,19 @@ public class PersonResource {
 		System.out.println("El nombre es"+persona.getNombres());
 		return Response.status(200).entity(persona).build();
 	}
-
+	
+	@POST
+	@Path("/addCliente")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.TEXT_PLAIN)
+	public Response post(@FormParam("cedula") String cedula,@FormParam("nombres") String nombres, @FormParam("direccion") String direccion, @FormParam("correo") String correo, @FormParam("contrasenia") String contresenia) 
+		throws Exception{
+		//Persona persona = new Persona(cedula,nombres,direccion, correo,contresenia,'C',true,'-');
+		ejebPersonaFacade.updateCliente(cedula,correo,contresenia);
+		
+		return Response.ok("Cliente registrado")
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+	}
 }

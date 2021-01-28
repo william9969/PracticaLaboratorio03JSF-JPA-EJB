@@ -82,6 +82,22 @@ public class PersonaFacade extends AbstractFacade<Persona>{
         
 	}
 
+	public void updateCliente(String cedula, String correo, String contresenia) {
+		Query query = em.createNativeQuery("UPDATE persona SET CORREO = '"+correo+"', CONTRASENIA = '"+contresenia+"' WHERE CEDULA = "+cedula);
+		query.executeUpdate();
+		System.out.println("UPDATE CLIENTE "+ query);
+	}
+
+	public List<Persona> readCliente(char estado) {
+		Query query = em.createNamedQuery("SELECT c From Persona WHERE c.estado =: estado");
+		query.setParameter("estado", estado);
+		List result = query.getResultList();
+		if (result.isEmpty()) {
+			System.out.println("");
+		}
+		return result;
+	}
+
 
    
 
