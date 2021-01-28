@@ -54,11 +54,11 @@ public class RegistrarClienteBean implements Serializable {
 			
 			visibilidad="display: none";
 			
-			return "/principal.xhtml";
+			return "/Practica03EJB-JPA-JSF/principal.xhtml";
 			
 		} catch (Exception e) {
 			System.out.println("No se puede editar ...");
-			return "/RegistrarCliente.xhtml";
+			return "/Practica03EJB-JPA-JSF/RegistrarCliente.xhtml";
 		}
 	}
 	public PersonaFacade getEjePersonaFacade() {

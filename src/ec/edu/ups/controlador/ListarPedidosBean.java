@@ -113,12 +113,12 @@ public class ListarPedidosBean implements Serializable {
 			ejbPedidoCabeceraFacade.edit(pedido);
 			
 			pedidoCabeceras = ejbPedidoCabeceraFacade.findAll();
-			return "private/empleado/ListPedidos.xhtml";
+			return "/Practica03EJB-JPA-JSF/private/empleado/ListPedidos.xhtml";
 			
 		}catch (Exception e) {
 			pedidoCabeceras = new ArrayList<PedidoCabecera>();
 			pedidoDetalles = new ArrayList<PedidoDetalle>();
-			return "/private/empleado/empleadoJSF.xhtml";
+			return "/Practica03EJB-JPA-JSF/private/empleado/empleadoJSF.xhtml";
 		}
 	}
 		
