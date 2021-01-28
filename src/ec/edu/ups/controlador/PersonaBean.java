@@ -45,8 +45,8 @@ public class PersonaBean implements Serializable {
 	HttpSession session;
 	FacesContext context;
 	private List<Persona> list;
-	private List<Persona> listClientes;
-
+	private List<Persona> listClientes, listEstado;
+	private char temporal;
 	
 	@PostConstruct
 	public void init() {
@@ -191,6 +191,15 @@ public class PersonaBean implements Serializable {
 	public void setListClientes(List<Persona> listClientes) {
 		this.listClientes = listClientes;
 	}
+	
+	public char getTemporal() {
+		return temporal;
+	}
+
+	public void setTemporal(char temporal) {
+		this.temporal = temporal;
+	}
+
 	/**
 	 * Metodo Iniciar Seccion
 	 * */
@@ -209,11 +218,11 @@ public class PersonaBean implements Serializable {
                             case 'A':
                                 System.out.println("admin");
                                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
-                                return "/private/admin/adminPrincipal.xhtml";
+                                return "adminPrincipal.jsf";
                             case 'E':
                                 System.out.println("empleado");
                                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
-                                return "/private/empleado/empleadoJSF.xhtml";
+                                return "empleadoJSF.jsf";
                             case 'C':
                             	System.out.println("cliente");
                             	FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
@@ -252,4 +261,16 @@ public class PersonaBean implements Serializable {
 	
 	}
 	
+	public String eliminadoLogico(Persona c) {
+		temporal = c.getEstado();
+		System.out.println();
+		if (temporal == 'A') {
+			c.setEstado('I');
+			ejbPersonaFacade.edit(c);
+			listEstado = ejbPersonaFacade.readCliente('A');
+		}else {
+			System.out.println("Eliminado Logico no funciona ......");
+		}
+		return null;
+	}
 }
