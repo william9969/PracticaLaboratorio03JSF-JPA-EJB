@@ -30,7 +30,7 @@ public class CategoriaBean implements Serializable {
 	
 	@PostConstruct
 	 public void init() {
-		/*Categoria cuiPersonal = new Categoria("Cuidado Personal");
+		Categoria cuiPersonal = new Categoria("Cuidado Personal");
 		Categoria lavanderia = new Categoria("Lavanderia");
 		Categoria proteccion = new Categoria("Proteccion");
 		Categoria dispensadores = new Categoria("Dispensadores");
@@ -40,7 +40,7 @@ public class CategoriaBean implements Serializable {
 		ejbCategoriaFacade.create(lavanderia);
 		ejbCategoriaFacade.create(proteccion);
 		ejbCategoriaFacade.create(dispensadores);
-		ejbCategoriaFacade.create(limpieza);*/
+		ejbCategoriaFacade.create(limpieza);
 		listCategoria=ejbCategoriaFacade.findAll();
 	 }
 	public String getNombre() {
