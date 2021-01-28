@@ -56,6 +56,9 @@ public class PersonaBean implements Serializable {
 */
 		list = ejbPersonaFacade.findAll();
 		listClientes = ejbPersonaFacade.findClientes();
+		System.out.print("Estos son los Clientes"+listClientes);
+		
+		//listEstado = ejbPersonaFacade.readCliente('A');
 	}
 	
 	public String add() {
@@ -66,14 +69,18 @@ public class PersonaBean implements Serializable {
 		direccion = "";
 		correo = "";
 		contrasenia="";
-		
+		//estado= null;
+		//listEstado = ejbPersonaFacade.readCliente('A');
+		listClientes = ejbPersonaFacade.findClientes();
 		return null;
 		
 	}
 	
 	public String delete(Persona persona) {
 		ejbPersonaFacade.remove(persona);
-		list = ejbPersonaFacade.findAll();
+		//list = ejbPersonaFacade.findAll();
+		//listEstado = ejbPersonaFacade.readCliente(this.estado);
+		listClientes = ejbPersonaFacade.findClientes();
 		return null;
 	}
 	
@@ -267,7 +274,7 @@ public class PersonaBean implements Serializable {
 		if (temporal == 'A') {
 			c.setEstado('I');
 			ejbPersonaFacade.edit(c);
-			listEstado = ejbPersonaFacade.readCliente('A');
+			listClientes = ejbPersonaFacade.findClientes();
 		}else {
 			System.out.println("Eliminado Logico no funciona ......");
 		}
