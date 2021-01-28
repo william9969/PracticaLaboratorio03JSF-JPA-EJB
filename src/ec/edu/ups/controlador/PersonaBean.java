@@ -225,11 +225,11 @@ public class PersonaBean implements Serializable {
                             case 'A':
                                 System.out.println("admin");
                                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
-                                return "adminPrincipal.jsf";
+                                return "/Practica03EJB-JPA-JSF/private/admin/adminPrincipal.jsf";
                             case 'E':
                                 System.out.println("empleado");
                                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
-                                return "empleadoJSF.jsf";
+                                return "/Practica03EJB-JPA-JSF/private/empleado/empleadoJSF.jsf";
                             case 'C':
                             	System.out.println("cliente");
                             	FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
@@ -253,7 +253,7 @@ public class PersonaBean implements Serializable {
             System.out.println("Error: " + e);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error Interno", "Error! interno intente de nuevo"));
         }
-        return "/login.xhtml";
+        return "/Practica03EJB-JPA-JSF/login.xhtml";
 	}
 
 	public void listarClientes() {
@@ -264,7 +264,7 @@ public class PersonaBean implements Serializable {
 	public void cerrarSession() throws IOException {
        
         session.setAttribute("userlog", null);
-        FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/Practica03EJB-JPA-JSF/principal.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("Practica03EJB-JPA-JSF/principal.xhtml");
 	
 	}
 	
