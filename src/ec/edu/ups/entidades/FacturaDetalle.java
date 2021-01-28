@@ -2,7 +2,7 @@ package ec.edu.ups.entidades;
 
 import java.io.Serializable;
 
-
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 import ec.edu.ups.entidades.FacturaCabecera;
@@ -23,15 +23,17 @@ public class FacturaDetalle implements Serializable {
 	private int cantidad;
 	private double total;
 	
-	
+	@JsonbTransient
 	@ManyToOne
 	@JoinColumn
 	private FacturaCabecera facturaDetalleCabecera;
 	
+	@JsonbTransient
 	@ManyToOne
 	@JoinColumn
 	private Productos detProducto;
 	
+	@JsonbTransient
 	@Transient
     private boolean editable;
 	

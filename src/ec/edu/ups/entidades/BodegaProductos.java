@@ -1,6 +1,8 @@
 package ec.edu.ups.entidades;
 
 import java.io.Serializable;
+
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -14,16 +16,19 @@ public class BodegaProductos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idBodegaProductos;
 	
+	@JsonbTransient
     @ManyToOne
     @JoinColumn
     private Bodega bodega;
 	
+	@JsonbTransient
     @ManyToOne
     @JoinColumn
     private Productos productos;
 	
     private int stock;
     
+    @JsonbTransient
 	@Transient
 	private boolean editable;
     
