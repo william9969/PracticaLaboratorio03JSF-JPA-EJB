@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 /**
@@ -30,9 +31,10 @@ public class Persona implements Serializable {
 	private char rolUsuario; //Para rol de Usuario 'A' administrador, 'E' empleado, 'C' cliente
 	private boolean activo;
 	private char estado;
+	@JsonbTransient
 	@Transient
     private boolean editable;
-	
+	@JsonbTransient
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "personafacturaCabecera" )
 	private Set<FacturaCabecera> facturas = new HashSet<FacturaCabecera>();
 	

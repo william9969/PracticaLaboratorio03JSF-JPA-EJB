@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 import ec.edu.ups.entidades.FacturaDetalle;
@@ -24,12 +25,16 @@ public class FacturaCabecera implements Serializable {
 	private double iva;
 	private double subtotal;
 	private double total;
+	@JsonbTransient
 	@Transient
 	private boolean editable;
+	
+	@JsonbTransient
 	@ManyToOne
 	@JoinColumn
 	private Persona personafacturaCabecera;
 	
+	@JsonbTransient
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "facturaDetalleCabecera")
 	private List<FacturaDetalle> listaFacturaDetalle;
 	
