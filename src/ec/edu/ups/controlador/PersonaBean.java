@@ -226,12 +226,15 @@ public class PersonaBean implements Serializable {
                             case 'A':
                                 System.out.println("admin");
                                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
-                                System.out.println("/Practica03EJB-JPA-JSF/private/admin/adminPrincipal.xhtml");
-                                return "/Practica03EJB-JPA-JSF/private/admin/adminPrincipal.xhtml";
+                                System.out.println("/Practica03EJB-JPA-JSF/private/admin/adminPrincipal.jsf");
+                                FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica03EJB-JPA-JSF/private/admin/adminPrincipal.xhtml");
+                                System.out.println("/Practica03EJB-JPA-JSF/private/empleado/adminPrincipal.jsf");
+                                return null;
                             case 'E':
                                 System.out.println("empleado");
                                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
-                                return "/Practica03EJB-JPA-JSF/private/empleado/empleadoJSF.xhtml";
+                                FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica03EJB-JPA-JSF/private/admin/adminPrincipal.xhtml");
+                                return null;
                             case 'C':
                             	System.out.println("cliente");
                             	FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
@@ -255,8 +258,8 @@ public class PersonaBean implements Serializable {
             System.out.println("Error: " + e);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error Interno", "Error! interno intente de nuevo"));
         }
-		System.out.println("No entro ");
-        return null;//"/Practica03EJB-JPA-JSF/login.xhtml";
+
+        return "/Practica03EJB-JPA-JSF/login.xhtml";
 	}
 /*
 	public void listarClientes() {
@@ -264,11 +267,11 @@ public class PersonaBean implements Serializable {
 		cedula = null;
 	}*/
 	
-	public void cerrarSession() throws IOException {
+	public void cerrarSession() throws IOException{
        
         session.setAttribute("userlog", null);
+        
         FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica03EJB-JPA-JSF/principal.xhtml");
-	
 	}
 	
 	public String eliminadoLogico(Persona c) {
