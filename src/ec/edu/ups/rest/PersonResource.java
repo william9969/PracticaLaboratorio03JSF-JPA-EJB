@@ -56,7 +56,7 @@ public class PersonResource {
 	}
 	
 	@POST
-	@Path("/addCliente")
+	@Path("/editCliente")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response post(@FormParam("cedula") String cedula,@FormParam("nombres") String nombres, @FormParam("direccion") String direccion, @FormParam("correo") String correo, @FormParam("contrasenia") String contresenia) 
@@ -69,5 +69,33 @@ public class PersonResource {
 				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
 	}
-
+	
+	@POST
+	@Path("/addCliente")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.TEXT_PLAIN)
+	public Response add(@FormParam("cedula") String cedula,@FormParam("nombres") String nombres, @FormParam("direccion") String direccion, @FormParam("correo") String correo, @FormParam("contrasenia") String contresenia) 
+			throws Exception{
+		System.out.println("Persona a crear "+ cedula+ nombres);
+		ejbPersonaFacade.create(new Persona(cedula, nombres, direccion, correo, contresenia, 'C', true, 'A'));
+		
+		return Response.ok("Cliente Agregado")
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+	}
+	
+	@PUT
+	@Path("deleteCliente/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteCliente(@PathParam("id")int id) {
+		
+		Persona c = ejbPersonaFacade.find(id);
+		System.out.println("Persona encontrada"+c);
+		c.setEstado('I');
+	
+		ejbPersonaFacade.edit(c);
+		return Response.status(201).entity("Cliente eliminado de manera logica").build();
+		
+	}
 }
