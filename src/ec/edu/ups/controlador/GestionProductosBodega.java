@@ -124,7 +124,7 @@ public class GestionProductosBodega implements Serializable{
 		List<Productos>produTotal=ejbProductosFacade.findAll();
 		listNoProductos=ejbProductosFacade.buscarNoProductosBodega(idBodega,produTotal);
 		//System.out.println("La lista de bodegas Productos" +listaBodegaProductos);
-		return "/private/admin/gestionarBodega.xhtml";
+		return "/Practica03EJB-JPA-JSF/private/admin/gestionarBodega.xhtml";
 
 	}
 	

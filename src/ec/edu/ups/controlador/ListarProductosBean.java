@@ -61,13 +61,13 @@ public class ListarProductosBean implements Serializable{
 	public String listadoProductiosCategoria(int idCategoria) {
 		Categoria categoria = ejbCategoriaFacade.find(idCategoria);
 		listProductos= ejbProductosFacade.buscarProductosCategoria(categoria);
-		return "/listarProductos.xhtml";
+		return "/Practica03EJB-JPA-JSF/listarProductos.xhtml";
 	}
 	
 	public String listadoProductosBodega(int idBodega) {
 		System.out.println("Id de la Bodega"+idBodega);
 		listProductos=ejbProductosFacade.buscarProductosBodega(idBodega);
-		return "/listarProductos.xhtml";
+		return "/Practica03EJB-JPA-JSF/listarProductos.xhtml";
 		
 	}
 }
