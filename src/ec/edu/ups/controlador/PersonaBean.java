@@ -233,7 +233,7 @@ public class PersonaBean implements Serializable {
                             case 'E':
                                 System.out.println("empleado");
                                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
-                                FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica03EJB-JPA-JSF/private/admin/adminPrincipal.xhtml");
+                                FacesContext.getCurrentInstance().getExternalContext().redirect("/Practica03EJB-JPA-JSF/private/empleado/empleadoJSF.xhtml");
                                 return null;
                             case 'C':
                             	System.out.println("cliente");
