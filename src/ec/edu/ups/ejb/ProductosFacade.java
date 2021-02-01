@@ -126,6 +126,5 @@ public class ProductosFacade extends AbstractFacade<Productos>{
 		
         return em.createQuery(productoCriteriaQuery).getSingleResult();
 	}
-
-
+	
 }
