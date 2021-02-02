@@ -44,13 +44,12 @@ public class ListarFacturas implements Serializable {
 	private String direccion;
 	private String correo;
 	
-	/*@PostConstruct
+	@PostConstruct
 	public void init() {
 		listFacturas = ejbFacturaCabeceraFacade.findAll();
 		
 	}
 
-*/
 	public int getIdFacturaCabecera() {
 		return idFacturaCabecera;
 	}
@@ -160,11 +159,11 @@ public class ListarFacturas implements Serializable {
 		this.personafacturaCabecera = personafacturaCabecera;
 	}
 
-	public String listadoFac() {
+/*	public String listadoFac() {
 		listFacturas = ejbFacturaCabeceraFacade.findAll();
 		
 		return "ListFacturas.xhtml";
-	}
+	}*/
 	
 	public String delete(FacturaCabecera facCab) {
 		ejbFacturaCabeceraFacade.remove(facCab);
