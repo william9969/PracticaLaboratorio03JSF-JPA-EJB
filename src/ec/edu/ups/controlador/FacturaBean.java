@@ -29,7 +29,6 @@ import ec.edu.ups.entidades.Productos;
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named(value = "FacturaBean")
 @RequestScoped
-
 public class FacturaBean implements Serializable {
 
 	private static final long serialVersionUID = 1;
