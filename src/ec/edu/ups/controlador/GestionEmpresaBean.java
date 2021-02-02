@@ -72,6 +72,7 @@ public class GestionEmpresaBean implements Serializable{
 			}
 		}
 		listBodegasTotal=ejbBodegaFacade.findAll();
+		
 		return "/Practica03EJB-JPA-JSF/private/admin/gestionEmpresa.xhtml";
 	}
 }
