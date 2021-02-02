@@ -86,7 +86,7 @@ public class ListarPedidosBean implements Serializable {
 	public String mostrarDetalles(PedidoCabecera pedidoCabecera) {
 		pedidoDetalles = new ArrayList<PedidoDetalle>();
 		this.setPedidoDetalles(pedidoCabecera.getPedidoDetalle());
-		return null;
+		return "ListPedidos.xhtml";
 	}
 
 	public String cambiarEstado(PedidoCabecera pedido) {
@@ -117,7 +117,7 @@ public class ListarPedidosBean implements Serializable {
 			ejbPedidoCabeceraFacade.edit(pedido);
 			
 			pedidoCabeceras = ejbPedidoCabeceraFacade.findAll();
-			return "/Practica03EJB-JPA-JSF/private/empleado/ListPedidos.xhtml";
+			return "ListPedidos.xhtml";
 			
 		}catch (Exception e) {
 			pedidoCabeceras = new ArrayList<PedidoCabecera>();
