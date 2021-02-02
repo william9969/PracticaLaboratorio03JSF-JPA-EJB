@@ -60,15 +60,16 @@ public class ListarPedidosBean implements Serializable {
 	private String direccion;
 	private String correo;
 	
-	@PostConstruct
-	public void init() {
+	
+	public String listarPed() {
 		try {
 			pedidoCabeceras = ejbPedidoCabeceraFacade.findAll();
 		} catch (Exception e) {
 			System.out.println("null   "+e);
 		}
-		
+		return "ListPedidos.xhtml";
 	}
+
 	
 	public void buscarPorCedula() {
 		System.out.println(pedidoCabeceras);
