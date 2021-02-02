@@ -67,7 +67,7 @@ public class ListarProductosBean implements Serializable{
 	public String listadoProductosBodega(int idBodega) {
 		System.out.println("Id de la Bodega"+idBodega);
 		listProductos=ejbProductosFacade.buscarProductosBodega(idBodega);
-		return "/Practica03EJB-JPA-JSF/listarProductos.xhtml";
+		return "listarProductos.xhtml";
 		
 	}
 }
