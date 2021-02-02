@@ -238,7 +238,7 @@ public class PersonaBean implements Serializable {
                             case 'C':
                             	System.out.println("cliente");
                             	FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuariolog", usuario);
-                            	//return "/private/cliente/clienteJSF.xhtml";
+                            	return "clienteJSF.xhtml";
                         }
                     } else {
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Alerta", "Su cuenta ah sido desactivada contacte con un administrador"));
