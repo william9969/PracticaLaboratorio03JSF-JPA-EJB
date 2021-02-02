@@ -71,7 +71,7 @@ public class ListarPedidosBean implements Serializable {
 	}
 
 	
-	public void buscarPorCedula() {
+	public String buscarPorCedula() {
 		System.out.println(pedidoCabeceras);
 		pedidoCabeceras = new ArrayList<PedidoCabecera>();
 		try {
@@ -80,11 +80,13 @@ public class ListarPedidosBean implements Serializable {
 			pedidoCabeceras = ejbPedidoCabeceraFacade.findAll();
 					System.out.println("No tiene pedido cabecera...");
 		}
+		return null;
 	}
 	
-	public void mostrarDetalles(PedidoCabecera pedidoCabecera) {
+	public String mostrarDetalles(PedidoCabecera pedidoCabecera) {
 		pedidoDetalles = new ArrayList<PedidoDetalle>();
 		this.setPedidoDetalles(pedidoCabecera.getPedidoDetalle());
+		return null;
 	}
 
 	public String cambiarEstado(PedidoCabecera pedido) {
