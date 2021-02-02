@@ -286,7 +286,7 @@ public class FacturaBean implements Serializable {
 	/**
 	 * Metodo Buscar Usuario
 	 * */
-	public void buscarPersona() {
+	public String buscarPersona() {
 		System.out.println("Entr"+this.cedula);
 		persona = ejbPersonaFacade.buscarPersonaPorCedula(cedula);
 		this.setCedula(persona.getCedula());
@@ -294,7 +294,7 @@ public class FacturaBean implements Serializable {
 		
 		this.setDireccion(persona.getDireccion());
 		this.setCorreo(persona.getCorreo());
-		
+		return null;
 	}
 	
 	public void buscarProducto() {

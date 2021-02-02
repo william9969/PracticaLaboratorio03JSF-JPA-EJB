@@ -60,18 +60,24 @@ public class ListarPedidosBean implements Serializable {
 	private String direccion;
 	private String correo;
 	
-	
-	public String listarPed() {
+	@PostConstruct
+	public void init() {
+
 		try {
 			pedidoCabeceras = ejbPedidoCabeceraFacade.findAll();
 		} catch (Exception e) {
 			System.out.println("null   "+e);
 		}
-		return "ListPedidos.xhtml";
+	}
+	
+	public void listarPed() {
+
+			pedidoCabeceras = ejbPedidoCabeceraFacade.findAll();
+	
 	}
 
 	
-	public String buscarPorCedula() {
+	public void buscarPorCedula() {
 		System.out.println(pedidoCabeceras);
 		pedidoCabeceras = new ArrayList<PedidoCabecera>();
 		try {
@@ -80,13 +86,11 @@ public class ListarPedidosBean implements Serializable {
 			pedidoCabeceras = ejbPedidoCabeceraFacade.findAll();
 					System.out.println("No tiene pedido cabecera...");
 		}
-		return null;
 	}
 	
-	public String mostrarDetalles(PedidoCabecera pedidoCabecera) {
+	public void mostrarDetalles(PedidoCabecera pedidoCabecera) {
 		pedidoDetalles = new ArrayList<PedidoDetalle>();
 		this.setPedidoDetalles(pedidoCabecera.getPedidoDetalle());
-		return "ListPedidos.xhtml";
 	}
 
 	public String cambiarEstado(PedidoCabecera pedido) {
@@ -117,7 +121,7 @@ public class ListarPedidosBean implements Serializable {
 			ejbPedidoCabeceraFacade.edit(pedido);
 			
 			pedidoCabeceras = ejbPedidoCabeceraFacade.findAll();
-			return "ListPedidos.xhtml";
+			return "/Practica03EJB-JPA-JSF/private/empleado/ListPedidos.xhtml";
 			
 		}catch (Exception e) {
 			pedidoCabeceras = new ArrayList<PedidoCabecera>();
