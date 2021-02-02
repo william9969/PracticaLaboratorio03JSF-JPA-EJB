@@ -14,6 +14,13 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
 	<meta content="" name="description"></meta>
 	<meta content="" name="keywords"></meta>
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet"></link>
+	<link href="/Practica03EJB-JPA-JSF/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+	<link href="/Practica03EJB-JPA-JSF/vendor/icofont/icofont.min.css" rel="stylesheet"></link>
+	<link href="/Practica03EJB-JPA-JSF/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"></link>
+	<link href="/Practica03EJB-JPA-JSF/vendor/animate.css/animate.min.css" rel="stylesheet"></link>
+	<link href="/Practica03EJB-JPA-JSF/vendor/venobox/venobox.css" rel="stylesheet"></link>
+	<link href="/Practica03EJB-JPA-JSF/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet"></link>
 	<link rel="stylesheet" href="/Practica03EJB-JPA-JSF/css/bootstrap-grid.css" ></link>
     <link rel="stylesheet"  href="/Practica03EJB-JPA-JSF/css/bootstrap.css" ></link>
         <link rel="stylesheet" href="/Practica03EJB-JPA-JSF/css/style.css" ></link>
@@ -28,27 +35,27 @@
 		
 		.cabeceraTabla {
 			text-align: center;
-			background: none repeat scroll 0 0 #E5E5E5;
+			background: none repeat scroll 0 0 #ffb03b;
 			border-bottom: 1px solid #BBBBBB;
 			padding: 8px;
 		}
 		
 		.filaPar {
 			text-align: center;
-			background: none repeat scroll 0 0 #FFFFFFF;
+			background: none repeat scroll 0 0 #35322d;
 			border-top: 1px solid #BBBBBB;
 		}
 		
 		.filaImpar {
 			text-align: center;
-			background: none repeat scroll 0 0 #F9F9F9;
+			background: none repeat scroll 0 0 #35322d;
 			border-top: 1px solid #BBBBBB;
 		}
 	</style>
 </h:head>
 <h:body>
 
-	<<header class ="float-right">
+	<header class ="float-right">
             <ul class="nav mt-2 justify-content-end">
 
                 <li class="nav-item">
@@ -69,6 +76,7 @@
 		            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/empleado/gestionFactura.xhtml">Generar Factura</a>
 		            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/empleado/ListFacturas.xhtml">Anular Factura</a>
 		            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/empleado/ListFacturas.xhtml">Buscar Factura</a>
+		            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/empleado/ListPedidos.xhtml">Listar Pedido</a>
 	                </div>
                 </li>
               <li class="nav-item">
@@ -98,7 +106,7 @@
 			            <div class="table-responsive">
 			    		
 				    		<h:dataTable value="#{listarPedidosBean.pedidoCabeceras}" var="c" 
-					    	styleClass="table align-items-center table-dark table-flush" headerClass="thead-light" rowClasses="filaPar, filaImpar">
+					    	styleClass="table align-items-center table-dark table-flush" headerClass="cabeceraTabla" rowClasses="filaPar, filaImpar">
 					   			<h:column>
 					   				<f:facet name="header" id="pedid">CODIGO</f:facet>#{c.id}
 					   			</h:column>
@@ -110,11 +118,11 @@
 					   			</h:column>
 					   			<h:column>
 					   				<f:facet name="header" id="proid">DETALLE</f:facet>
-					   				<h:commandButton value="Ver Detalle" action="#{listarPedidosBean.mostrarDetalles(c)}" update="list:detalles" class="btn btn-primary"/>
+					   				<h:commandButton value="Ver Detalle" action="#{listarPedidosBean.mostrarDetalles(c)}" update="list:detalles" class="btn btn-outline-warning"/>
 					   			</h:column>
 					   			<h:column>
 					   				<f:facet name="header" id="proid">CAMBIAR ESTADO</f:facet>
-					   				<h:commandButton value="Cambiar de estado" action="#{listarPedidosBean.cambiarEstado(c)}" update="list:detalles" class="btn btn-primary"/>
+					   				<h:commandButton value="Cambiar de estado" action="#{listarPedidosBean.cambiarEstado(c)}" update="list:detalles" class="btn btn-outline-warning"/>
 					   			</h:column>
 							</h:dataTable>
 		         		</div>
@@ -123,7 +131,7 @@
 				
 				<div class="col">
 					<h:dataTable id="detalles" value="#{listarPedidosBean.pedidoDetalles}" var="d" 
-					styleClass="table align-items-center table-dark table-flush" headerClass="thead-light" rowClasses="filaPar, filaImpar">
+					styleClass="table align-items-center table-dark table-flush" headerClass="cabeceraTabla" rowClasses="filaPar, filaImpar">
 			   			<h:column>
 			   				<f:facet name="header" id="pedid">CODIGO</f:facet>#{d.id}
 			   			</h:column>

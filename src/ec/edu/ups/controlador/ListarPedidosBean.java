@@ -103,7 +103,7 @@ public class ListarPedidosBean implements Serializable {
 				break;
 			case "En camino":
 				pedido.setEstadoA(pedido.getEstadoS());
-				pedido.setEstadoS("Entregado");
+				pedido.setEstadoS("Finalizado");
 				break;
 			case "Entregado":
 				break;

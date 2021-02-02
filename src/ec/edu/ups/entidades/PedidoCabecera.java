@@ -1,11 +1,15 @@
 package ec.edu.ups.entidades;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
+
+import java.util.Map;
 
 /**
  * Entity implementation class for Entity: PedidoCabecera
@@ -84,5 +88,14 @@ public class PedidoCabecera implements Serializable {
 	public void setPedidoDetalle(List<PedidoDetalle> pedidoDetalle) {
 		this.pedidoDetalle = pedidoDetalle;
 	}
+
+	public void crearPedidoDetalle(int cantidad, Productos productos) {
+		if (this.pedidoDetalle == null) {
+			pedidoDetalle =  new ArrayList<>();
+		}
+		PedidoDetalle pedidoDetalle = new PedidoDetalle(0,cantidad,productos,this);
+		this.pedidoDetalle.add(pedidoDetalle);
+	}
+
 	
 }
