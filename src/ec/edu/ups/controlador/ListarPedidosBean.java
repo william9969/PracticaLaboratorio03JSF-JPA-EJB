@@ -27,7 +27,7 @@ import ec.edu.ups.entidades.Persona;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
-@SessionScoped
+
 public class ListarPedidosBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -125,7 +125,9 @@ public class ListarPedidosBean implements Serializable {
 	private void generarFactura(PedidoCabecera pedido) {
 		FacturaCabecera fc = new FacturaCabecera();
 		List<FacturaDetalle> fd = new ArrayList<FacturaDetalle>();
-		
+		double subtotalFac=0;
+		double ivaFac=0;
+		double totalFac=0;
 		fc.setIdFacturaCabecera(0);
 		fc.setPersonaFacturaCabecera(pedido.getPersona());
 		fc.setSubtotal(0);
@@ -138,20 +140,25 @@ public class ListarPedidosBean implements Serializable {
 		
 		for (int i=0; i<pedido.getPedidoDetalle().size(); i++) {
 			FacturaDetalle det = new FacturaDetalle(pedido.getPedidoDetalle().get(i).getCantidad(), pedido.getPedidoDetalle().get(i).getCantidad()*pedido.getPedidoDetalle().get(i).getProductos().getPrecioProducto(),fc,pedido.getPedidoDetalle().get(i).getProductos());
+			double subPedido=pedido.getPedidoDetalle().get(i).getCantidad()*pedido.getPedidoDetalle().get(i).getProductos().getPrecioProducto();
 			
-			fc.setSubtotal(fc.getSubtotal()+pedido.getPedidoDetalle().get(i).getCantidad()*pedido.getPedidoDetalle().get(i).getProductos().getPrecioProducto());
-			fc.setIva(Float.parseFloat(format.format(fc.getSubtotal()*(float)0.12)));
-			fc.setTotal(Float.parseFloat(format.format(fc.getIva()+fc.getSubtotal())));
+			subtotalFac=subPedido+subtotalFac;
+			
+			ivaFac=subtotalFac*0.12;
+			ivaFac=Math.round(ivaFac*100.0)/100.0;
+			totalFac=ivaFac+subtotalFac;
+		
 			fd.add(det);
-			
-			//Actualizar stock
-			
 			for (BodegaProductos inv : det.getDetProducto().getListBodegaProductos()) {
 				inv.setStock(inv.getStock() - det.getCantidad());
 				ejbpBodegaProductosFacade.edit(inv);
 				
 			}
 		}
+		fc.setSubtotal(subtotalFac);
+		fc.setIva(ivaFac);
+		fc.setTotal(totalFac);
+		
 		
 		ejbFacturaCabeceraFacade.create(fc);
 		
