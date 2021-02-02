@@ -67,8 +67,10 @@
 		        	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Factura</a>
 		            <div class="dropdown-menu">
 		            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/empleado/gestionFactura.xhtml">Generar Factura</a>
-		            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/empleado/ListFacturas.xhtml">Anular Factura</a>
-		            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/empleado/ListFacturas.xhtml">Buscar Factura</a>
+		            	<h:form>
+		            	<h:commandLink class="dropdown-item" value="Anular Factura" action="#{listarFacturas.listadoFac}"/>
+		            	<h:commandLink class="dropdown-item" value="Buscar Factura" action="#{listarFacturas.listadoFac}"/>
+		            	</h:form>
 		            	<a class="dropdown-item" href="/Practica03EJB-JPA-JSF/private/empleado/ListPedidos.xhtml">Listar Pedido</a>
 	                </div>
                 </li>
