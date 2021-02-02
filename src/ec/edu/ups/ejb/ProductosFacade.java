@@ -52,19 +52,25 @@ public class ProductosFacade extends AbstractFacade<Productos>{
 	public List<Productos> buscarProductosBodega(int id) {
 		List<Integer> idProductos= idBodega(id);
 		List<Productos> productos = new ArrayList<Productos>();
-		for(int i=0;i<idProductos.size();i++) {
-			int idpord=idProductos.get(i);
-			//System.out.println("Id del Producto"+idpord);
-			CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-	        CriteriaQuery<Productos> productosCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
-	        Root<Productos> productosRoot = productosCriteriaQuery.from(Productos.class);
-	        Predicate predicate= criteriaBuilder.equal(productosRoot.get("idProdcuto"),idpord);
-			productosCriteriaQuery.select(productosRoot).where(predicate);
-			Productos producto=(Productos) em.createQuery(productosCriteriaQuery).getSingleResult(); 	
-			System.out.println("Producto --->"+producto);
-			productos.add(producto);
+		try{
+			for(int i=0;i<idProductos.size();i++) {
+				int idpord=idProductos.get(i);
+				//System.out.println("Id del Producto"+idpord);
+				CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		        CriteriaQuery<Productos> productosCriteriaQuery = criteriaBuilder.createQuery(Productos.class);
+		        Root<Productos> productosRoot = productosCriteriaQuery.from(Productos.class);
+		        Predicate predicate= criteriaBuilder.equal(productosRoot.get("idProdcuto"),idpord);
+				productosCriteriaQuery.select(productosRoot).where(predicate);
+				Productos producto=(Productos) em.createQuery(productosCriteriaQuery).getSingleResult(); 	
+				System.out.println("Producto --->"+producto);
+				productos.add(producto);
+			}
+			System.out.println("Total Productos"+productos);
+			
+		}catch (Exception e) {
+			
 		}
-		System.out.println("Total Productos"+productos);
+		
 		return productos;
 	}
 	public List<Integer> idBodega(int id){
