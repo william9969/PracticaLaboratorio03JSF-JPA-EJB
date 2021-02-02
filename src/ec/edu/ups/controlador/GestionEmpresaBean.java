@@ -16,7 +16,7 @@ import ec.edu.ups.ejb.*;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
-@RequestScoped
+@SessionScoped
 public class GestionEmpresaBean implements Serializable{
 	
 	@EJB
@@ -72,6 +72,7 @@ public class GestionEmpresaBean implements Serializable{
 			}
 		}
 		listBodegasTotal=ejbBodegaFacade.findAll();
-		return "/Practica03EJB-JPA-JSF/private/admin/gestionEmpresa.xhtml";
+		 
+		return "gestionEmpresa.xhtml";
 	}
 }

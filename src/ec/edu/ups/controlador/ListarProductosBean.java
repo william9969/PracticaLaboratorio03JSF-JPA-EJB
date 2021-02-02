@@ -20,7 +20,7 @@ import ec.edu.ups.entidades.Bodega;
 import ec.edu.ups.entidades.Categoria;
 
 @Named
-@RequestScoped
+@SessionScoped
 public class ListarProductosBean implements Serializable{
 	private static final long serialVersionUID = 1L;	
 	@EJB
@@ -61,13 +61,13 @@ public class ListarProductosBean implements Serializable{
 	public String listadoProductiosCategoria(int idCategoria) {
 		Categoria categoria = ejbCategoriaFacade.find(idCategoria);
 		listProductos= ejbProductosFacade.buscarProductosCategoria(categoria);
-		return "/Practica03EJB-JPA-JSF/listarProductos.xhtml";
+		return "listarProductos.xhtml";
 	}
 	
 	public String listadoProductosBodega(int idBodega) {
 		System.out.println("Id de la Bodega"+idBodega);
 		listProductos=ejbProductosFacade.buscarProductosBodega(idBodega);
-		return "/Practica03EJB-JPA-JSF/listarProductos.xhtml";
+		return "listarProductos.xhtml";
 		
 	}
 }

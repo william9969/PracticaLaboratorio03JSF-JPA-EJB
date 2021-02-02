@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
@@ -27,7 +28,7 @@ import ec.edu.ups.entidades.Persona;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
-
+@RequestScoped
 public class ListarPedidosBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -61,13 +62,20 @@ public class ListarPedidosBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
+
 		try {
 			pedidoCabeceras = ejbPedidoCabeceraFacade.findAll();
 		} catch (Exception e) {
 			System.out.println("null   "+e);
 		}
-		
 	}
+	
+	public void listarPed() {
+
+			pedidoCabeceras = ejbPedidoCabeceraFacade.findAll();
+	
+	}
+
 	
 	public void buscarPorCedula() {
 		System.out.println(pedidoCabeceras);
