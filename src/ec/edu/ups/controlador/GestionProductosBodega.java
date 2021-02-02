@@ -25,7 +25,7 @@ import ec.edu.ups.entidades.Provincia;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
-@RequestScoped
+@SessionScoped
 public class GestionProductosBodega implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@EJB
