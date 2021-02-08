@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
@@ -28,7 +27,8 @@ import ec.edu.ups.entidades.Productos;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named(value = "FacturaBean")
-@RequestScoped
+@SessionScoped
+
 public class FacturaBean implements Serializable {
 
 	private static final long serialVersionUID = 1;
@@ -286,7 +286,7 @@ public class FacturaBean implements Serializable {
 	/**
 	 * Metodo Buscar Usuario
 	 * */
-	public String buscarPersona() {
+	public void buscarPersona() {
 		System.out.println("Entr"+this.cedula);
 		persona = ejbPersonaFacade.buscarPersonaPorCedula(cedula);
 		this.setCedula(persona.getCedula());
@@ -294,7 +294,7 @@ public class FacturaBean implements Serializable {
 		
 		this.setDireccion(persona.getDireccion());
 		this.setCorreo(persona.getCorreo());
-		return null;
+		
 	}
 	
 	public void buscarProducto() {
