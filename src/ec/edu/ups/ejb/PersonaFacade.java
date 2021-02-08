@@ -75,8 +75,11 @@ public class PersonaFacade extends AbstractFacade<Persona>{
             Root<Persona> categoriaRoot = categoriaCriteriaQuery.from(Persona.class);
             Predicate predicate= criteriaBuilder.equal(categoriaRoot.get("cedula"),cedula);
             categoriaCriteriaQuery.select(categoriaRoot).where(predicate);
+            System.out.println("Cedula"+cedula);	
             return em.createQuery(categoriaCriteriaQuery).getSingleResult();
+            
         }catch(Exception e){
+        	System.out.println("Cedula"+cedula);	
             return null;
         }
         
