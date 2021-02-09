@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link
-	href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;900&display=swap"
-	rel="stylesheet">
-<link href="css/404.css" rel="stylesheet" type="text/css" media="all"></link>
-<script src="https://kit.fontawesome.com/4b9ba14b0f.js"
-	crossorigin="anonymous"></script>
+	<link href="http://localhost:8080/Practica03EJB-JPA-JSF/css/css.css" rel="stylesheet"></link>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;900&display=swap"
+		rel="stylesheet">
+	<link href="css/404.css" rel="stylesheet" type="text/css" media="all"></link>
+	<script src="https://kit.fontawesome.com/4b9ba14b0f.js"
+		crossorigin="anonymous"></script>
 </head>
-<body style="background-color: #141019;">
-	<div class="mainbox">
-		<div class="err">4</div>
-		<i class="far fa-question-circle fa-spin"></i>
-		<div class="err2">4</div>
-		<div class="msg">
-			Lo sentimos, no podemos encontrar la pagina,.
-			<p>
-				Vamos al <a href="http://localhost:8080/Practica03EJB-JPA-JSF/principal.xhtml"> Inicio </a> e intentalo nuevamente.
-			</p>
+<body style ="background-color: #4e5a6a;">
+	
+
+	<div class="container error-container">
+		<div class="row  d-flex align-items-center justify-content-center">
+			<div class="col-md-12 text-center">
+				<br/>
+				<br/>
+				<h2 style ="color: #ec9238;" class="small-text">404 - PAGE NOT FOUND</h2>
+
+				<h1 class="big-text">Oops!</h1>
+				<i class="far fa-question-circle fa-spin"></i>
+				<br/>
+			</div>
+			<div class="col-md-6  text-center">
+				<h2 style ="color: #ec9238;">Lo sentimos, no podemos encontrar la pagina.</h2>
+
+
+				<br/>
+				<h5 style ="color: #e3e2e0;" class="small-text">Intentalo nuevamentes</h5>
+				
+				<button href="http://localhost:8080/Practica03EJB-JPA-JSF/principal.xhtml" class="button button-dark-blue iq-mt-15 text-center"> Inicio</button>
+
+			</div>
+
 		</div>
+
+
 	</div>
+
 </body>
