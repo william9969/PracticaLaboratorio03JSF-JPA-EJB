@@ -37,7 +37,7 @@
        <filter-name>loginFilter</filter-name>
        <filter-class>com.example.LoginFilter</filter-class>
    </filter>
-   <filter-mapping>
+    <filter-mapping>
        <filter-name>loginFilter</filter-name>
        <url-pattern>/private/*</url-pattern>
    </filter-mapping>
