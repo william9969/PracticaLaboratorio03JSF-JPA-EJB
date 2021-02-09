@@ -35,13 +35,153 @@
     <link rel="stylesheet" href="/Practica03EJB-JPA-JSF/css/styleS.css" ></link>
     <link rel="stylesheet" href="/Practica03EJB-JPA-JSF/css/formulario.css" ></link>
       <script src="/Practica03EJB-JPA-JSF/js/main.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>s
 </h:head>
 
 <h:body>
+	
+	<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="modal-title">Hola, <strong>¿Sabes como realizar una factura exitosamente?</strong></p>
+      </div>
+      <div class="modal-body">
+        <p>Te mostrare pasos importantes con los que te puedes guiar para realizar una factura exitosa.</p>
+        <br></br>
+        <p style="color:tomato;">Si deseas continuar haz click en Paso 1.</p>
+        <p style="color: tomato;">Si deseas terminar haz click en Cerrar.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#myModal2">Paso 1</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="myModal2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title">Paso 1: <strong>Buscar Usuario</strong></p>
+        </div>
+        <div class="modal-body">
+            <div class="card">
+                <div class="card-header">
+                    <p><strong class="card-title">Debes ingresar el numero de cedula del cliente para que se habilite la opcion de generar factura.</strong></p>
+                </div>
+                <div class="card-body">
+                    <img style="width: 100%; height: 200px;" class="default-block" src="/Practica03EJB-JPA-JSF/images/tec1.png" alt="#" />
+                    
+                </div>
+                <br></br>
+                <p style="color:tomato;">Si deseas continuar haz click en Paso 2.</p>
+                <p style="color:tomato;">Si deseas terminar haz click en Cerrar.</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#myModal3">Paso 2</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="myModal3" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title">Paso 2: <strong>Agregar Productos</strong></p>
+        </div>
+        <div class="modal-body">
+            <div class="card">
+                <div class="card-header">
+                    <p><strong class="card-title">Debes hacer click en AGREGAR segun la dila del producto que deseas incluir a la factura.</strong></p>
+                </div>
+                <div class="card-body">
+                    <img style="width: 100%; height: 200px;" class="default-block" src="/Practica03EJB-JPA-JSF/images/tec2.png" alt="#" />
+                    
+                </div>
+                <br></br>
+                <p style="color:tomato;">Si deseas continuar haz click en Paso 3.</p>
+                <p style="color:tomato;">Si deseas terminar haz click en Cerrar.</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#myModal4">Paso 3</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="myModal4" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title">Paso 3: <strong>Aumentar o Disminuir Productos</strong></p>
+        </div>
+        <div class="modal-body">
+            <div class="card">
+                <div class="card-header">
+                    <p><strong class="card-title">En la parte inferior de la página se muestra los detalles, ahi podras aumentar o dosminuir la cantidad del producto.</strong></p>
+                </div>
+                <div class="card-body">
+                    <img style="width: 100%; height: 200px;" class="default-block" src="/Practica03EJB-JPA-JSF/images/tec3.png" alt="#" />
+                    
+                </div>
+                <br></br>
+                <p style="color:tomato;">Si deseas continuar haz click en Paso 4.</p>
+                <p style="color:tomato;">Si deseas terminar haz click en Cerrar.</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#myModal5">Paso 4</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="myModal5" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title">Paso 4: <strong>Generar la factura</strong></p>
+        </div>
+        <div class="modal-body">
+            <div class="card">
+                <div class="card-header">
+                    <p><strong class="card-title">En la parte inferior de la página se muestra el subtotal, total e iva. Al igual dos opciones en las que podras generer o cancelar la factura.</strong></p>
+                </div>
+                <div class="card-body">
+                    <img style="width: 100%; height: 200px;" class="default-block" src="/Practica03EJB-JPA-JSF/images/tec4.png" alt="#" />
+                    
+                </div>
+                <br></br>
+
+                <p style="color:blue;"><strong>Excelente!!! Has terminado el recorrido. A conticuación haz click en finalizar y genera tu primera Factura.</strong></p>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Finalizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 	<header class ="float-right">
             <ul class="nav mt-2 justify-content-end">
-
+            	<li class="nav-item">
+				<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal">¿Cómo Facturar?</button>
+                </li>
                 <li class="nav-item">
                 	<a class="nav-link" href="/Practica03EJB-JPA-JSF/private/empleado/empleadoJSF.xhtml">  Inicio</a>
                 </li>
